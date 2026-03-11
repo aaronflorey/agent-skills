@@ -7,9 +7,16 @@ description: Write, scaffold, explain, and debug plugins for the Pelican gaming 
 
 Pelican is an open-source game server management panel built on Laravel + FilamentPHP. Plugins let you add functionality without touching core files.
 
-> ⚠️ The plugin system is still in active development — some features may be missing or change.
+> ⚠️ The plugin system is still in active development — some features may change.
 
-## Scaffolding a new plugin
+## Quick Reference
+
+📖 **Detailed Guides:**
+- [FilamentPHP Patterns](references/filament-patterns.md) - Resources, pages, widgets, actions, relation managers
+- [Advanced Patterns](references/advanced-patterns.md) - Models, services, routes, commands, events
+- [Complete Plugin Walkthrough](examples/complete-plugin-walkthrough.md) - Step-by-step example
+
+## Scaffolding a New Plugin
 
 Run inside the panel directory (`/var/www/pelican` by default):
 
@@ -17,42 +24,41 @@ Run inside the panel directory (`/var/www/pelican` by default):
 php artisan p:plugin:make
 ```
 
-This creates:
-- `plugins/<id>/plugin.json` — metadata and configuration
-- `plugins/<id>/src/<YourPlugin>.php` — main plugin class
-- `plugins/<id>/src/Providers/<YourPlugin>ServiceProvider.php` — service provider
-- `plugins/<id>/config/<id>.php` — config file
+This creates the basic structure with `plugin.json`, main plugin class, service provider, and config file.
 
-> **The plugin folder name must exactly match the `id` field in `plugin.json`.**
+> **Critical:** The plugin folder name must exactly match the `id` field in `plugin.json`.
 
-## Plugin structure
+## Plugin Structure
 
 ```
 plugins/my-plugin/
-├── plugin.json
+├── plugin.json              # Metadata and configuration
 ├── config/
+│   └── my-plugin.php       # Config values (use env vars)
 ├── database/
-│   ├── migrations/
-│   └── Seeder/               # <PluginName>Seeder.php
-├── lang/                     # translations (namespaced by plugin id)
+│   └── migrations/         # Auto-discovered migrations
+├── lang/                   # Translations (namespaced: my-plugin::strings.key)
 ├── resources/
-│   └── views/                # blade views (namespaced by plugin id)
-├── routes/                   # loaded via RouteServiceProvider
-└── src/                      # equivalent of Laravel's app/
-    ├── MyPlugin.php           # main plugin class
+│   └── views/              # Blade views (namespaced: my-plugin::view-name)
+├── routes/                 # Optional route files
+└── src/                    # App logic (PSR-4 autoloaded)
+    ├── MyPlugin.php        # Main plugin class
     ├── Filament/
-    │   ├── Admin/
+    │   ├── Admin/          # Admin panel components
     │   │   ├── Pages/
     │   │   ├── Resources/
     │   │   └── Widgets/
-    │   ├── App/
-    │   └── Server/
+    │   ├── App/            # Server list panel
+    │   └── Server/         # Server management panel
     ├── Models/
-    ├── Providers/
-    └── ...
+    ├── Policies/           # Auto-discovered
+    ├── Providers/          # Auto-discovered service providers
+    ├── Console/Commands/   # Auto-discovered artisan commands
+    └── Http/
+        └── Controllers/
 ```
 
-Everything is **auto-discovered**: migrations, service providers, artisan commands.
+Everything in standard Laravel locations is **auto-discovered**: migrations, providers, commands, policies.
 
 ## plugin.json
 
@@ -62,15 +68,14 @@ Everything is **auto-discovered**: migrations, service providers, artisan comman
     "name": "My Plugin",
     "author": "Your Name",
     "version": "1.0.0",
-    "description": "What the plugin does.",
+    "description": "Short description",
     "category": "plugin",
-    "namespace": "MyPlugin",
+    "namespace": "MyName\\MyPlugin",
     "class": "MyPlugin",
-    "panels": ["admin"],
+    "panels": ["admin", "server"],
     "panel_version": "^1.2.0",
-    "update_url": "https://example.com/my-plugin/update.json",
     "composer_packages": {
-        "some/package": "^1.0"
+        "vendor/package": "^1.0"
     }
 }
 ```
@@ -78,40 +83,24 @@ Everything is **auto-discovered**: migrations, service providers, artisan comman
 | Field | Required | Notes |
 |---|---|---|
 | `id` | ✅ | Must match folder name |
-| `name` | ✅ | Display name |
-| `author` | ✅ | Your name |
-| `version` | No | Defaults to `1.0.0` |
-| `description` | No | Short summary |
+| `namespace` | ✅ | PHP namespace root (use `\\` for backslashes) |
+| `class` | ✅ | Main class name (in `src/`) |
 | `category` | ✅ | `plugin`, `theme`, or `language` |
-| `namespace` | ✅ | PHP namespace root |
-| `class` | ✅ | Main class name |
-| `panels` | No | Omit to load on all panels |
-| `panel_version` | No | `^1.2.0` = 1.2.0 or higher |
-| `update_url` | No | Points to a `update.json` |
-| `composer_packages` | No | Extra Composer deps |
+| `panels` | No | Array of panel IDs or omit for all panels |
+| `panel_version` | No | Minimum panel version (e.g., `^1.2.0`) |
+| `composer_packages` | No | External dependencies |
 
-### Update URL format
+## Main Plugin Class
 
-```json
-{
-    "*": { "version": "1.1.0", "download_url": "https://..." }
-}
-```
-
-Use panel version keys (e.g. `"panel_version_1"`) for version-specific releases; `*` acts as a wildcard fallback.
-
-## Main plugin class
-
-The main class (in `src/`) implements the Filament plugin interface and is where you register UI components:
+Located in `src/{ClassName}.php`:
 
 ```php
-namespace MyPlugin;
+namespace MyName\MyPlugin;
 
+use Filament\Contracts\Plugin;
 use Filament\Panel;
-use Pelican\Contracts\Extensions\HasPluginSettings;
-use Pelican\Extensions\PelicanPlugin;
 
-class MyPlugin extends PelicanPlugin
+class MyPlugin implements Plugin
 {
     public function getId(): string
     {
@@ -120,40 +109,42 @@ class MyPlugin extends PelicanPlugin
 
     public function register(Panel $panel): void
     {
-        parent::register($panel);
-
         $id = str($panel->getId())->title(); // "Admin", "App", "Server"
 
-        // Auto-discover Filament resources, pages, and widgets
+        // Auto-discover Filament components
         $panel->discoverPages(
             plugin_path($this->getId(), "src/Filament/$id/Pages"),
-            "MyPlugin\\Filament\\$id\\Pages"
+            "MyName\\MyPlugin\\Filament\\$id\\Pages"
         );
         $panel->discoverResources(
             plugin_path($this->getId(), "src/Filament/$id/Resources"),
-            "MyPlugin\\Filament\\$id\\Resources"
+            "MyName\\MyPlugin\\Filament\\$id\\Resources"
         );
         $panel->discoverWidgets(
             plugin_path($this->getId(), "src/Filament/$id/Widgets"),
-            "MyPlugin\\Filament\\$id\\Widgets"
+            "MyName\\MyPlugin\\Filament\\$id\\Widgets"
         );
+    }
+
+    public function boot(Panel $panel): void
+    {
+        //
     }
 }
 ```
 
-## The three Filament panels
+## The Three Filament Panels
 
-| Panel ID | Area | Notes |
+| Panel ID | Area | Use Case |
 |---|---|---|
-| `admin` | Admin area | Full navigation |
-| `app` | Server list | No navigation by default (see below) |
-| `server` | Client area | `Server` model is the tenant |
+| `admin` | Admin area | Full CRUD for resources, settings, management |
+| `app` | Server list | Minimal UI (no nav by default) |
+| `server` | Server management | Tenant-scoped (current server context) |
 
-### Re-enabling navigation on the `app` panel
+### Enabling Navigation on `app` Panel
 
 ```php
-use App\Models\Server;
-use App\Filament\App\Resources\ServerResource;
+use App\Filament\App\Resources\Servers\ServerResource;
 use App\Enums\CustomizationKey;
 
 public function register(Panel $panel): void
@@ -161,7 +152,7 @@ public function register(Panel $panel): void
     parent::register($panel);
 
     if ($panel->getId() === 'app') {
-        // ServerResource::embedServerList(); // optional: add "Servers" nav item
+        ServerResource::embedServerList();
         $panel->navigation(true);
         $panel->topbar(function () {
             $nav = user()?->getCustomization(CustomizationKey::TopNavigation);
@@ -172,43 +163,42 @@ public function register(Panel $panel): void
 }
 ```
 
-## Modifying existing resources and pages
+## Extending Core Resources
 
 Call static methods on core classes inside a **service provider's `register()`**:
 
 ```php
-use App\Filament\Admin\Resources\UserResource;
-use App\Filament\Server\Pages\Console;
-use App\Filament\App\Pages\ListServers;
-use App\Enums\ConsoleWidgetPosition;
-use App\Enums\HeaderActionPosition;
+use App\Filament\Admin\Resources\Users\UserResource;
+use App\Filament\Admin\Resources\Servers\ServerResource;
+use App\Models\Role;
 
 public function register(): void
 {
-    // Add a relation manager tab to UserResource
-    UserResource::registerCustomRelations(MyCustomRelationManager::class);
-
-    // Add a widget above the console
-    Console::registerCustomWidgets(ConsoleWidgetPosition::AboveConsole, [MyWidget::class]);
-
-    // Add an action button to the server list header
-    ListServers::registerCustomHeaderActions(HeaderActionPosition::Before, MyAction::make());
+    // Add a relation manager tab
+    ServerResource::registerCustomRelations(MyRelationManager::class);
+    
+    // Register permissions
+    Role::registerCustomDefaultPermissions('myModel');
+    Role::registerCustomModelIcon('myModel', 'tabler-star');
 }
 ```
 
-Browse `app/Traits/Filament/` in the panel source for all available `CanModify*` / `CanCustomize*` traits.
+**Available customization traits** (check `app/Traits/Filament/` for all):
+- `CanModifyResource` - Relation managers, custom actions
+- `CanCustomizePage` - Widgets, header actions
+- `CanModifyForm` / `CanModifyTable` - Form/table hooks
 
-## Plugin settings
+## Plugin Settings
 
-Implement `HasPluginSettings` on your main class to get a settings page in the plugin list:
+Implement `HasPluginSettings` on your main class:
 
 ```php
+use App\Contracts\Plugins\HasPluginSettings;
+use App\Traits\EnvironmentWriterTrait;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Components\Toggle;
 use Filament\Notifications\Notification;
-use Pelican\Extensions\Traits\EnvironmentWriterTrait;
 
-class MyPlugin extends PelicanPlugin implements HasPluginSettings
+class MyPlugin implements Plugin, HasPluginSettings
 {
     use EnvironmentWriterTrait;
 
@@ -218,17 +208,13 @@ class MyPlugin extends PelicanPlugin implements HasPluginSettings
             TextInput::make('api_key')
                 ->required()
                 ->default(fn () => config('my-plugin.api_key')),
-            Toggle::make('feature_enabled')
-                ->inline(false)
-                ->default(fn () => config('my-plugin.feature_enabled')),
         ];
     }
 
     public function saveSettings(array $data): void
     {
         $this->writeToEnvironment([
-            'MY_PLUGIN_API_KEY'        => $data['api_key'],
-            'MY_PLUGIN_FEATURE_ENABLED' => $data['feature_enabled'],
+            'MY_PLUGIN_API_KEY' => $data['api_key'],
         ]);
 
         Notification::make()->title('Settings saved')->success()->send();
@@ -236,31 +222,66 @@ class MyPlugin extends PelicanPlugin implements HasPluginSettings
 }
 ```
 
-> Always prefix env vars with your plugin id (e.g. `MY_PLUGIN_*`) to avoid conflicts.
+> Always prefix env vars with your plugin ID to avoid conflicts.
+
+## Permissions
+
+### Admin Role Permissions
+
+In your service provider's `register()`:
+
+```php
+use App\Models\Role;
+
+// Shorthand: registers viewList, view, create, update, delete
+Role::registerCustomDefaultPermissions('myModel');
+
+// Custom permissions
+Role::registerCustomPermissions([
+    'myModel' => ['export', 'approve'],
+    'server'  => ['customAction'], // extend existing model
+]);
+
+// Optional: icon for permission group
+Role::registerCustomModelIcon('myModel', 'tabler-star');
+```
+
+### Subuser Permissions
+
+```php
+use App\Models\Subuser;
+
+// New permission group
+Subuser::registerCustomPermissions('myFeature', ['read', 'write'], 'tabler-bolt', false);
+
+// Append to existing group
+Subuser::registerCustomPermissions('console', ['myCustomAction']);
+```
 
 ## Routes
 
-Register routes in a `RouteServiceProvider` (place it in `src/Providers/`):
+Create a `RouteServiceProvider` in `src/Providers/`:
 
 ```php
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Route;
 
 class MyPluginRoutesProvider extends RouteServiceProvider
 {
     public function boot(): void
     {
         $this->routes(function () {
-            // Simple single route
+            // Simple route
             Route::get('/my-plugin/test', [TestController::class, 'index'])
                 ->name('my-plugin.test');
 
-            // Load from a routes file
+            // Load from file
             Route::prefix('/my-plugin')
                 ->group(plugin_path('my-plugin', 'routes/web.php'));
 
-            // Append to the existing client API
+            // Append to client API
             Route::middleware(['api', 'client-api', 'throttle:api.client'])
-                ->prefix('/api/client')
+                ->prefix('/api/client/servers/{server}')
                 ->scopeBindings()
                 ->group(plugin_path('my-plugin', 'routes/api-client.php'));
         });
@@ -268,84 +289,120 @@ class MyPluginRoutesProvider extends RouteServiceProvider
 }
 ```
 
-## Permissions
+## Models & Relationships
 
-### Admin role permissions
+### Add Relationship to Core Models
+
+In your service provider's `boot()`:
 
 ```php
-use App\Models\Role;
+use App\Models\Server;
+use MyPlugin\Models\Ticket;
 
-public function register(): void
+public function boot(): void
 {
-    // Shorthand: registers viewList, view, create, update, delete
-    Role::registerCustomDefaultPermissions('myModel');
-
-    // Custom permissions
-    Role::registerCustomPermissions([
-        'myModel' => ['export', 'impersonate'],
-        'server'  => ['customAction'], // extend an existing model
-    ]);
-
-    // Optional: icon for the model group
-    Role::registerCustomModelIcon('myModel', 'tabler-star');
+    Server::resolveRelationUsing('tickets', fn (Server $server) => 
+        $server->hasMany(Ticket::class, 'server_id', 'id')
+    );
 }
 ```
 
-### Subuser permissions
+Now `$server->tickets` works everywhere.
+
+### Policies
 
 ```php
-use App\Models\Subuser;
+use App\Policies\DefaultAdminPolicies;
 
-public function register(): void
+class MyModelPolicy
 {
-    // New group with icon
-    Subuser::registerCustomPermissions('myFeature', ['read', 'write'], 'tabler-bolt', false);
-
-    // Append to an existing group
-    Subuser::registerCustomPermissions('console', ['myExtra']);
+    use DefaultAdminPolicies;
+    
+    protected string $modelName = 'myModel';
 }
 ```
+
+This automatically checks admin role permissions based on the registered model name.
 
 ## Translations
 
-Translations live in `lang/` and are auto-namespaced under your plugin id:
+Place in `lang/{locale}/` (e.g., `lang/en/strings.php`):
 
 ```php
-trans('my-plugin::strings.welcome')
-// → plugins/my-plugin/lang/strings.php → 'welcome'
+return [
+    'welcome' => 'Welcome',
+    'item' => 'Item|Items', // Pluralization
+];
 ```
 
-Set `"category": "language"` in `plugin.json` if the plugin adds default panel languages (no namespace wrapping in that case).
+Usage:
+```php
+trans('my-plugin::strings.welcome')
+trans_choice('my-plugin::strings.item', 2) // "Items"
+```
 
 ## Views
 
-Views are namespaced the same way:
+Place in `resources/views/`:
 
 ```php
 view('my-plugin::my-view')
 // → plugins/my-plugin/resources/views/my-view.blade.php
 ```
 
-## Database seeder
+## Common Patterns
 
-Create `plugins/my-plugin/database/Seeder/MyPluginSeeder.php`:
+### FilamentPHP Components
 
-```php
-class MyPluginSeeder extends Seeder
-{
-    public function run(): void
-    {
-        // seed data here
-    }
-}
-```
+See [FilamentPHP Patterns](references/filament-patterns.md) for:
+- Resources (CRUD interfaces)
+- Pages (custom pages)
+- Widgets (dashboard components)
+- Relation Managers (manage related records)
+- Custom Actions (reusable buttons)
+- Form components (inputs, selects, toggles)
+- Table columns and filters
 
-It runs automatically on install and when `php artisan db:seed` or `php artisan migrate --seed` is called.
+### Advanced Patterns
 
-## Publishing a plugin
+See [Advanced Patterns](references/advanced-patterns.md) for:
+- Model events and hooks
+- Enums with Filament interfaces
+- Service classes
+- HTTP controllers and API routes
+- Artisan commands and scheduling
+- HTTP macros for external APIs
+- Database migrations
+- Error handling
 
-1. Open `plugin.json` and **remove** the `meta` block (added internally by the panel).
-2. Zip the entire plugin folder.
-3. Share the zip — install via the panel UI Import button, or manually drop into `plugins/`.
+### Complete Example
 
-Publish to the community at [github.com/pelican-dev/plugins](https://github.com/pelican-dev/plugins) or the `#plugins` channel on [Discord](https://discord.gg/pelican-panel).
+See [Complete Plugin Walkthrough](examples/complete-plugin-walkthrough.md) for a step-by-step guide building a "Server Notes" plugin.
+
+## Publishing a Plugin
+
+1. Open `plugin.json` and **remove** the `meta` block (internal use only)
+2. Zip the entire plugin folder
+3. Share the zip — users install via panel UI Import button or manually drop into `plugins/`
+
+Publish to the community:
+- GitHub: [pelican-dev/plugins](https://github.com/pelican-dev/plugins)
+- Discord: `#plugins` channel at [discord.gg/pelican-panel](https://discord.gg/pelican-panel)
+
+## Tips & Gotchas
+
+- **Namespace in plugin.json**: Use `\\` (double backslash) for namespace separators
+- **Migration naming**: Use numeric prefixes (`001_`, `002_`) to control execution order
+- **Environment variables**: Always prefix with your plugin ID (e.g., `MY_PLUGIN_*`)
+- **Panel context**: Use `Filament::getTenant()` to get current server in server panel
+- **Auto-discovery**: Service providers, commands, migrations, and policies are auto-discovered
+- **Relation managers**: Must be registered on core resources via `registerCustomRelations()` in service provider's `register()` method
+- **Testing**: Use `php artisan migrate:fresh --seed` to reset and test migrations
+- **Permissions**: Register in service provider's `register()`, not `boot()`
+
+## Getting Help
+
+- **Documentation**: [pelican.dev/docs/panel](https://pelican.dev/docs/panel)
+- **Discord**: [discord.gg/pelican-panel](https://discord.gg/pelican-panel)
+- **GitHub**: [github.com/pelican-dev/panel](https://github.com/pelican-dev/panel)
+- **Example Plugins**: [github.com/pelican-dev/plugins](https://github.com/pelican-dev/plugins)
