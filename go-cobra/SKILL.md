@@ -1,3 +1,10 @@
+---
+name: go-cobra
+description: Write, scaffold, and debug Go CLI applications using the spf13/cobra library. Use this skill whenever the user wants to build a command-line interface in Go, add commands/subcommands, work with flags (persistent, local, required), implement shell completions, generate documentation, or asks anything about cobra-based CLI development.
+source: local
+license: MIT
+---
+
 # Cobra CLI Framework Skill
 
 Write, scaffold, and debug Go CLI applications using the spf13/cobra library. Use this skill whenever the user wants to build a command-line interface in Go, add commands/subcommands to a CLI, work with flags (persistent, local, required), implement shell completions, generate documentation, or asks anything about cobra-based CLI development -- even if they just say "I want to build a CLI tool" or "how do I add commands to my Go app".
