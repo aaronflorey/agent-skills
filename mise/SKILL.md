@@ -63,6 +63,10 @@ For detailed information, read the appropriate reference file:
 - **Configuration options** (tool options, env directives, settings): `references/configuration.md`
 - **Task definition** (toml tasks, file tasks, arguments, dependencies): `references/tasks.md`
 - **CLI commands** (all command flags and examples): `references/cli.md`
+- **Installable overview** (where to look first for all installable options): `references/installable-overview.md`
+- **Core tools** (built-in first-party languages): `references/core-tools.md`
+- **Backends** (supported package ecosystems and backend families): `references/backends.md`
+- **Registry aliases** (tool shorthands accepted by `mise use`): `references/registry-tools.md`
 - **Hooks and advanced features**: `references/advanced.md`
 
 ## Common Patterns
