@@ -1,6 +1,7 @@
 ---
 name: go-viper
 description: Write, debug, and explain Go configuration code using github.com/spf13/viper. Use this skill whenever the user wants Viper-based config loading, config structs, file plus env plus flag precedence, Cobra or pflag integration, unmarshaling config into structs, env key replacers, or a clean application config bootstrap that follows Viper's README behavior.
+version: 1.0.0
 source: local
 license: MIT
 ---

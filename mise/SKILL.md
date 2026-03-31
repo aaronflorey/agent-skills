@@ -1,6 +1,9 @@
 ---
 name: mise
 description: Configure and use mise for dev tool management, environment variables, and task running. Use this skill when the user wants to set up project tooling with mise, manage tool versions (node, python, go, etc.), define tasks in mise.toml, configure environment variables per project, or asks about mise configuration, backends, hooks, or CLI commands.
+version: 1.0.0
+source: local
+license: MIT
 ---
 
 # Mise

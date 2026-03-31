@@ -1,6 +1,9 @@
 ---
 name: release-please
 description: Set up release-please for automated releases in a repository. Use this skill when users want to add release-please to their project, configure GitHub Actions for automated releases, set up conventional commit workflows, create release-please config files, or bootstrap release-please in a new or existing repository.
+version: 1.0.0
+source: local
+license: MIT
 ---
 
 # Setting Up Release-Please
@@ -40,11 +43,68 @@ jobs:
           release-type: <type>  # See references/release-types.md
 ```
 
-If the user needs CI to run on release PRs (common), they need a PAT:
+### Unified release-please + GoReleaser workflow (recommended when both are used)
+
+If the project uses both release-please and GoReleaser, prefer a single workflow file. Run release-please first, then run GoReleaser only when `release_created` is `true`.
+
+This avoids the common PAT workaround. You do not need a custom `RELEASE_PLEASE_TOKEN` just to trigger a second workflow for GoReleaser.
+
+For the canonical recipe, see `references/release-please-goreleaser-unified-workflow.md`.
+
+```yaml
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  packages: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: <type>
+
+  goreleaser:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.release-please.outputs.tag_name }}
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+      - uses: goreleaser/goreleaser-action@v6
+        with:
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+```
+
+If the user needs CI to run on release PRs (common), they need a PAT for that PR-triggering behavior:
 ```yaml
         with:
           token: ${{ secrets.RELEASE_PLEASE_TOKEN }}
 ```
+
+Do not use this PAT requirement as the default fix for release-please + GoReleaser integration. Prefer the unified single-workflow pattern above.
 
 ### 2. Create Config Files (for advanced setups)
 
@@ -121,3 +181,4 @@ Read these for detailed options:
 - `references/release-types.md` - All supported languages
 - `references/github-actions.md` - Action inputs, outputs, examples
 - `references/manifest-config.md` - Full config options, plugins, monorepos
+- `references/release-please-goreleaser-unified-workflow.md` - Canonical combined setup for release-please + GoReleaser

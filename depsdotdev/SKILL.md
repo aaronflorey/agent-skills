@@ -3,6 +3,7 @@ name: depsdotdev
 description: Use the deps.dev API (Open Source Insights) to fetch package, version, dependency graph, project, advisory, and hash lookup data. Use this skill when the user asks about deps.dev endpoints, package metadata lookups, dependency intelligence, purl lookups, or API integration patterns.
 version: 1.0.0
 source: https://docs.deps.dev/api/
+license: MIT
 ---
 
 # deps.dev API

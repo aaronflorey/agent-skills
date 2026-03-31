@@ -5,6 +5,9 @@ description: >
   Load this skill whenever the user wants to: read/write/convert data files with dasel, write dasel query expressions,
   filter/map/transform structured data on the command line, edit config files in place using dasel, pipe data through dasel in shell scripts,
   or asks about dasel syntax, functions, or CLI flags. Even if they just say "use dasel to..." or "dasel query for...", load this skill.
+version: 1.0.0
+source: local
+license: MIT
 ---
 
 # Dasel v3

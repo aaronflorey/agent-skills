@@ -9,6 +9,8 @@ description: >
   (PyInstaller/UV/Poetry) projects. Also use when asked about releasing
   software, creating GitHub releases, or automating binary distribution.
 version: 1.0.0
+source: local
+license: MIT
 ---
 
 # GoReleaser Skill
@@ -27,6 +29,7 @@ GoReleaser automates the release process for software projects. It builds binari
 | Signing & notarization | `references/signing.md` |
 | Changelog generation | `references/changelog.md` |
 | CI/CD integration | `references/ci.md` |
+| release-please integration | `../release-please/references/release-please-goreleaser-unified-workflow.md` |
 | Template variables | `references/templates.md` |
 | Complete examples | `references/examples.md` |
 
@@ -204,6 +207,19 @@ release:
 4. **Test**: `goreleaser release --snapshot --clean` tests locally
 5. **Release**: Tag and push, CI runs `goreleaser release`
 
+## release-please Integration Rule
+
+When a project uses both release-please and GoReleaser, always implement them in a unified workflow (same workflow file) instead of separate chained workflows.
+
+Use `../release-please/references/release-please-goreleaser-unified-workflow.md` as the canonical integration recipe.
+
+- Run `googleapis/release-please-action@v4` first.
+- Use its outputs (`release_created`, `tag_name`) to conditionally run GoReleaser.
+- Checkout `ref: ${{ needs.release-please.outputs.tag_name }}` before `goreleaser release --clean`.
+- Use `GITHUB_TOKEN` and avoid introducing a custom PAT just to trigger GoReleaser.
+
+This avoids GitHub Actions token recursion issues and removes the need for release-trigger PAT workarounds.
+
 ## When to Load References
 
 - **Setting up builds**: Load `references/builds.md` for complete build options
@@ -211,5 +227,6 @@ release:
 - **Linux packages**: Load `references/nfpm.md` for deb/rpm/apk packages
 - **Package managers**: Load `references/homebrew.md` for Homebrew/Scoop/AUR/etc.
 - **CI setup**: Load `references/ci.md` for GitHub Actions/GitLab CI
+- **release-please integration**: Load `../release-please/references/release-please-goreleaser-unified-workflow.md` for the unified no-custom-PAT workflow
 - **Template syntax**: Load `references/templates.md` for available variables
 - **Complete examples**: Load `references/examples.md` for copy-paste configs

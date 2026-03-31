@@ -1,0 +1,55 @@
+version: '3'
+
+includes:
+  api:
+    taskfile: ./services/api
+    dir: ./services/api
+  web:
+    taskfile: ./services/web
+    dir: ./services/web
+  shared:
+    taskfile: ./taskfiles/shared.yml
+    flatten: false
+    optional: false
+
+tasks:
+  default:
+    desc: List monorepo tasks
+    cmds:
+      - task --list
+    silent: true
+
+  setup:
+    desc: Install dependencies for all services
+    deps: [api:setup, web:setup]
+
+  dev:
+    desc: Run both services in dev mode
+    deps: [api:dev, web:dev]
+
+  test:
+    desc: Run all tests in parallel
+    deps: [api:test, web:test]
+
+  build:
+    desc: Build all deployable units
+    cmds:
+      - task: api:build
+      - task: web:build
+
+  changed-tests:
+    desc: Example matrix/loop invocation for targeted test runs
+    vars:
+      TARGETS: api,web
+    cmds:
+      - for:
+          var: TARGETS
+          split: ','
+          as: SERVICE
+        cmd: task {{.SERVICE}}:test -- {{.CLI_ARGS}}
+
+  ci:
+    desc: CI entrypoint
+    deps: [setup, test]
+    cmds:
+      - task: build

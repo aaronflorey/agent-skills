@@ -1,0 +1,67 @@
+version: '3'
+
+dotenv:
+  - .env.local
+  - .env
+
+vars:
+  APP_NAME: demo-app
+  BIN: dist/{{.APP_NAME}}
+
+tasks:
+  default:
+    desc: Show available tasks
+    cmds:
+      - task --list
+    silent: true
+
+  lint:
+    desc: Run linters
+    cmds:
+      - golangci-lint run ./...
+
+  test:
+    desc: Run tests (forwards args after --)
+    cmds:
+      - go test ./... {{.CLI_ARGS}}
+
+  build:
+    desc: Build binary incrementally
+    deps: [lint]
+    sources:
+      - '**/*.go'
+      - go.mod
+      - go.sum
+    generates:
+      - '{{.BIN}}'
+    preconditions:
+      - sh: command -v go >/dev/null 2>&1
+        msg: Go is required to build
+    cmds:
+      - mkdir -p dist
+      - go build -o {{.BIN}} ./cmd/app
+
+  clean:
+    desc: Remove build artifacts
+    cmds:
+      - rm -rf dist
+
+  run:
+    desc: Build then run app
+    cmds:
+      - task: build
+      - '{{.BIN}}'
+
+  release:
+    desc: Release artifact
+    prompt: This will build and publish. Continue?
+    requires:
+      vars:
+        - name: ENV
+          enum: [staging, production]
+    preconditions:
+      - sh: test -n "$GITHUB_TOKEN"
+        msg: GITHUB_TOKEN is required
+    cmds:
+      - task: build
+      - ./scripts/release.sh {{.ENV}} {{.BIN}}

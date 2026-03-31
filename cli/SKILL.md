@@ -1,6 +1,9 @@
 ---
 name: cli
 description: Route terminal work to optimized CLI tools instead of generic shell patterns. Use when the user wants to search code with `rg` or `fd`, rewrite text with `sd`, `comby`, or `ast-grep`, inspect output with `head` or `less`, fetch data with `wget`, transform JSON or YAML with `jq` or `yq`, pick items with `fzf`, compare code with `difftastic`, lint shell with `shellcheck`, or measure repositories with `scc`.
+version: 1.0.0
+source: local
+license: MIT
 ---
 
 # CLI Router
