@@ -1,0 +1,19 @@
+prepare-commit-msg:
+  commands:
+    commitzen:
+      interactive: true
+      env:
+        LEFTHOOK: 0
+      run: pnpm cz --hook
+
+commit-msg:
+  commands:
+    commitlint:
+      run: pnpm commitlint --edit {1}
+
+pre-push:
+  commands:
+    release-branch-check:
+      only:
+        - ref: main
+      run: pnpm test

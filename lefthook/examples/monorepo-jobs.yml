@@ -1,0 +1,49 @@
+glob_matcher: doublestar
+
+pre-commit:
+  parallel: true
+  jobs:
+    - name: frontend lint
+      root: frontend/
+      run: pnpm eslint --fix {staged_files}
+      glob: "frontend/src/**/*.{ts,tsx}"
+      stage_fixed: true
+
+    - name: frontend format
+      root: frontend/
+      run: pnpm prettier --write {staged_files}
+      glob:
+        - "frontend/src/**/*.{ts,tsx,css}"
+        - "frontend/*.json"
+      stage_fixed: true
+
+    - name: api rubocop
+      root: api/
+      run: bundle exec rubocop --force-exclusion -- {staged_files}
+      glob: "api/**/*.rb"
+
+    - name: proxy gofmt
+      root: proxy/
+      run: gofmt -w {staged_files}
+      glob: "proxy/**/*.go"
+      stage_fixed: true
+
+    - name: db migrations
+      root: api/
+      glob: "api/db/migrations/*"
+      group:
+        piped: true
+        jobs:
+          - run: bundle install
+          - run: bundle exec rails db:migrate
+
+pre-push:
+  jobs:
+    - name: frontend typecheck
+      root: frontend/
+      run: pnpm tsc --noEmit
+      glob: "frontend/**/*.{ts,tsx}"
+
+    - name: api test
+      root: api/
+      run: bundle exec rspec

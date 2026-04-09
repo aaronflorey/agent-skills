@@ -13,6 +13,7 @@ A collection of skills for [Claude Code](https://docs.anthropic.com/en/docs/clau
 | **github-cli** | Use the [GitHub CLI](https://cli.github.com/) to authenticate, manage repos, issues, PRs, releases, Actions, projects, and call the GitHub API from the terminal. |
 | **goreleaser** | Configure and use [GoReleaser](https://goreleaser.com/) for release automation, including standalone setup and unified release-please + GoReleaser workflows. |
 | **laravel-actions** | Write, scaffold, explain, and refactor code using the [lorisleiva/laravel-actions](https://github.com/lorisleiva/laravel-actions) package. Covers using actions as objects, controllers, jobs, listeners, commands, with validation, authorization, and testing. |
+| **lefthook** | Write, debug, and explain [Lefthook](https://lefthook.dev/) configuration for Git hooks, including `lefthook.yml`, `jobs`/`commands`/`scripts`, file filtering, local overrides, and hook troubleshooting. |
 | **mise** | Configure and use [mise](https://mise.jdx.dev/) for dev tool management, environment variables, and task running. Covers mise.toml configuration, tool backends (npm, pipx, cargo, etc.), tasks, hooks, and CLI commands. |
 | **num30-config** | Write, debug, and explain Go configuration code using [github.com/num30/config](https://github.com/num30/config). Covers config structs, reading from files/env vars/CLI flags, validation, and watching for changes. |
 | **pelican-panel-plugins** | Write, scaffold, explain, and debug plugins for the [Pelican](https://pelican.dev/) gaming panel. Covers FilamentPHP resources/pages/widgets, permissions, settings, routes, models, and plugin publishing. |
@@ -32,6 +33,7 @@ bunx skills add aaronflorey/agent-skills --skill depsdotdev
 bunx skills add aaronflorey/agent-skills --skill github-cli
 bunx skills add aaronflorey/agent-skills --skill goreleaser
 bunx skills add aaronflorey/agent-skills --skill laravel-actions
+bunx skills add aaronflorey/agent-skills --skill lefthook
 bunx skills add aaronflorey/agent-skills --skill mise
 bunx skills add aaronflorey/agent-skills --skill num30-config
 bunx skills add aaronflorey/agent-skills --skill pelican-panel-plugins

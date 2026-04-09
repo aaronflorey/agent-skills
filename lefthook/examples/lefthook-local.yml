@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    lint:
+      run: docker compose run --rm api {cmd}
+    links:
+      skip: true
+
+post-merge:
+  files: git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD
+  commands:
+    install-deps:
+      glob: "package.json"
+      run: pnpm install
