@@ -17,6 +17,7 @@ A collection of skills for [Claude Code](https://docs.anthropic.com/en/docs/clau
 | **mise** | Configure and use [mise](https://mise.jdx.dev/) for dev tool management, environment variables, and task running. Covers mise.toml configuration, tool backends (npm, pipx, cargo, etc.), tasks, hooks, and CLI commands. |
 | **num30-config** | Write, debug, and explain Go configuration code using [github.com/num30/config](https://github.com/num30/config). Covers config structs, reading from files/env vars/CLI flags, validation, and watching for changes. |
 | **pelican-panel-plugins** | Write, scaffold, explain, and debug plugins for the [Pelican](https://pelican.dev/) gaming panel. Covers FilamentPHP resources/pages/widgets, permissions, settings, routes, models, and plugin publishing. |
+| **php-monorepo-builder** | Use [symplify/monorepo-builder](https://github.com/symplify/monorepo-builder) to manage PHP monorepos, including `monorepo-builder.php`, composer.json merging, inter-package version validation, and automated releases. |
 | **release-please** | Set up [release-please](https://github.com/googleapis/release-please) and automate release PRs, including unified release-please + GoReleaser workflows. |
 
 Note: `goreleaser` and `release-please` both support `/setup-release-please-goreleaser` to configure a unified workflow that avoids requiring a custom PAT just to trigger GoReleaser.
@@ -37,6 +38,7 @@ bunx skills add aaronflorey/agent-skills --skill lefthook
 bunx skills add aaronflorey/agent-skills --skill mise
 bunx skills add aaronflorey/agent-skills --skill num30-config
 bunx skills add aaronflorey/agent-skills --skill pelican-panel-plugins
+bunx skills add aaronflorey/agent-skills --skill php-monorepo-builder
 bunx skills add aaronflorey/agent-skills --skill release-please
 ```
 

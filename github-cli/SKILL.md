@@ -1,6 +1,6 @@
 ---
 name: github-cli
-description: Use GitHub CLI (`gh`) for authentication, repository work, issues, pull requests, releases, Actions, projects, API calls, and other GitHub workflows. Use this skill whenever the user asks how to do something with `gh`, wants a command example, needs help scripting GitHub operations, or wants to translate GitHub UI work into CLI commands.
+description: Use GitHub CLI, `gh`, for authentication, repository work, issues, pull requests, releases, Actions, projects, and `gh api` calls. Use this skill whenever the user mentions `gh`, `gh pr`, `gh issue`, `gh repo`, `gh run`, `gh workflow`, `gh auth`, wants a GitHub CLI command example, needs to script GitHub operations, or wants to translate GitHub UI steps into terminal commands.
 version: 1.0.0
 source: https://cli.github.com/manual/gh
 license: MIT

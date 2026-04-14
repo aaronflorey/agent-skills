@@ -1,6 +1,6 @@
 ---
 name: charmbracelet
-description: Build Go terminal user interfaces and interactive CLI tools with the Charmbracelet ecosystem. Use when the user asks for a TUI, terminal UI, terminal user interface, interactive CLI, Bubble Tea app, Bubbles component, Huh form, Lip Gloss styling or layout, Wish SSH app, Glamour markdown rendering, Log-based terminal logging, or a Go CLI that should feel polished in the terminal.
+description: Build Go terminal user interfaces and interactive CLIs with the Charmbracelet ecosystem, especially Bubble Tea, Bubbles, Huh, Lip Gloss, Wish, Glamour, and Log. Use this skill when the user asks for a TUI, terminal UI, interactive CLI, Bubble Tea model/update/view code, Bubbles widgets, Huh forms, Lip Gloss layout or styling, Wish SSH apps, Glamour markdown rendering, or a polished Go terminal app.
 version: 1.0.0
 source: local
 license: MIT

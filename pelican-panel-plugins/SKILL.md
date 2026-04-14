@@ -1,6 +1,6 @@
 ---
 name: pelican-panel-plugins
-description: Write, scaffold, explain, and debug plugins for the Pelican gaming panel. Use this skill whenever the user wants to create a Pelican plugin, add functionality to the Pelican panel, build a FilamentPHP resource or page for Pelican, register custom permissions, add plugin settings, write plugin routes, or asks anything about Pelican plugin development — even if they just say "I want to add something to Pelican" or "how do I extend Pelican".
+description: Write, scaffold, explain, and debug plugins for the Pelican gaming panel. Use this skill whenever the user mentions Pelican plugins, extending Pelican, FilamentPHP resources or pages for Pelican, plugin service providers, custom permissions, plugin settings, routes, models, widgets, or asks how to add new functionality to the Pelican panel.
 version: 1.0.0
 source: local
 license: MIT

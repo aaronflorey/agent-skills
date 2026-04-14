@@ -1,6 +1,6 @@
 ---
 name: beamng-mods
-description: Build and debug BeamNG.drive and BeamMP mods/resources using Lua. Use this skill whenever the user mentions BeamNG modding, BeamMP server plugins, `Resources/Server`, `Resources/Client`, `modScript.lua`, `extensions.load`, `MP.RegisterEvent`, `AddEventHandler`, or client/server event wiring.
+description: Build and debug BeamNG.drive and BeamMP mods, resources, and server plugins using Lua. Use this skill whenever the user mentions BeamNG modding, BeamMP, `Resources/Server`, `Resources/Client`, `modScript.lua`, `lua/ge/extensions`, `extensions.load`, `MP.RegisterEvent`, `AddEventHandler`, client/server event wiring, custom vehicles, gameplay scripts, or BeamNG Lua hooks.
 version: 1.0.0
 source: local
 license: MIT

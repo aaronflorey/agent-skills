@@ -1,6 +1,6 @@
 ---
 name: laravel-actions
-description: Write, scaffold, explain, and refactor code using the lorisleiva/laravel-actions package. Use this skill whenever the user is working with Laravel Actions, wants to create an action class, convert a controller/job/listener/command into an action, asks how to use AsAction trait, dispatch an action as a job, use an action as a controller or listener, set up validation/authorization in an action, test or mock actions, or asks anything about the laravel-actions package pattern.
+description: Write, scaffold, explain, and refactor code using the `lorisleiva/laravel-actions` package. Use this skill whenever the user mentions Laravel Actions, `AsAction`, `php artisan make:action`, action classes, converting a controller, job, listener, or command into an action, dispatching an action as a job, using an action as a controller or listener, or adding validation, authorization, testing, or mocking around an action.
 version: 1.0.0
 source: local
 license: MIT

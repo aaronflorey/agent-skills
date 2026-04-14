@@ -1,6 +1,6 @@
 ---
 name: lefthook
-description: Write, debug, and explain Lefthook configuration for Git hooks. Use this skill when the user wants to set up `lefthook.yml`, install or validate hooks, route checks by staged or pushed files, use `jobs`/`commands`/`scripts`, add local overrides, or troubleshoot hook execution.
+description: Write, debug, and explain Lefthook configuration for Git hooks. Use this skill when the user mentions `lefthook`, `lefthook.yml`, `lefthook install`, `pre-commit`, `pre-push`, staged-file or push-file filtering, `jobs`, `commands`, `scripts`, local overrides, or troubleshooting hook execution and recursive hook behavior.
 version: 1.0.0
 source: https://lefthook.dev/
 license: MIT

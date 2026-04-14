@@ -1,6 +1,6 @@
 ---
 name: num30-config
-description: Write, debug, and explain Go configuration code using the github.com/num30/config library. Use this skill when the user asks to set up config structs, read from files/env vars/CLI flags, validate config, watch for changes, or use the num30/config package in Go applications.
+description: Write, debug, and explain Go configuration code using `github.com/num30/config`. Use this skill when the user mentions `num30/config`, wants config structs, file plus env plus CLI flag loading, validation, config watching, precedence rules, or asks how to integrate the num30/config package into a Go application.
 version: 1.0.0
 source: local
 license: MIT

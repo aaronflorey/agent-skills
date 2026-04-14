@@ -1,6 +1,6 @@
 ---
 name: flyscrape
-description: Write and run web scraping scripts using flyscrape - a standalone, scriptable CLI scraper with jQuery-like selectors. Use this skill when the user wants to scrape websites, extract data from HTML pages, follow pagination links, download files from sites, or asks about flyscrape configuration. Also use when they mention "scraping script", nested scraping, browser-mode scraping, or need to crawl multiple pages with depth control.
+description: Write and run web scraping scripts with `flyscrape`, the standalone CLI scraper with jQuery-like selectors. Use this skill when the user asks to scrape a site, extract data from HTML, follow pagination, crawl multiple pages, download files, use browser mode, configure selectors, or mentions `flyscrape`, a scraping script, nested scraping, or depth-controlled crawling.
 version: 1.0.0
 source: local
 license: MIT

@@ -1,6 +1,6 @@
 ---
 name: amber-lang
-description: Write, debug, and explain Amber code — the modern language that compiles to Bash. Use this skill when the user asks to write shell scripts in Amber, convert Bash to Amber, debug Amber code, or asks about Amber syntax and features. Covers Amber 0.5.1-alpha syntax, types, error handling, standard library, and compilation.
+description: Write, debug, and explain Amber code, the `amber` language that compiles `.ab` files to Bash. Use this skill when the user asks to write an Amber script, convert Bash to Amber, compile Amber to Bash, debug Amber syntax or type errors, or asks about Amber 0.5.1-alpha syntax, functions, types, error handling, the standard library, or the `amber` CLI.
 version: 1.0.0
 source: local
 license: MIT

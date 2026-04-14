@@ -1,6 +1,9 @@
 ---
 name: valinor-php
-description: Writes and fixes PHP code using `cuyz/valinor`. Use whenever the user mentions Valinor, `MapperBuilder`, `NormalizerBuilder`, mapping arrays/JSON/YAML/HTTP requests into typed PHP objects, normalizing objects back to arrays or JSON, custom Valinor converters/constructors/transformers, advanced PHPStan or Psalm type signatures with Valinor, or debugging Valinor `MappingError`s.
+description: Write and fix PHP code using `cuyz/valinor`. Use this skill whenever the user mentions Valinor, `MapperBuilder`, `NormalizerBuilder`, `MappingError`, mapping arrays, JSON, YAML, or HTTP requests into typed PHP objects, normalizing objects back to arrays or JSON, custom converters, constructors, transformers, or advanced PHPStan or Psalm type signatures with Valinor.
+version: 1.0.0
+source: https://valinor.cuyz.io/latest/
+license: MIT
 ---
 
 # Valinor PHP

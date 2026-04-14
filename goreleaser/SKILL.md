@@ -1,13 +1,10 @@
 ---
 name: goreleaser
 description: >
-  Configure and use GoReleaser for release automation. Use this skill when
-  creating or editing .goreleaser.yaml files, setting up release pipelines,
-  building cross-platform binaries, publishing to package managers (Homebrew,
-  Scoop, AUR, nFPM packages), creating Docker images, or automating changelog
-  generation. Supports Go, Rust, Zig, TypeScript (Bun/Deno), and Python
-  (PyInstaller/UV/Poetry) projects. Also use when asked about releasing
-  software, creating GitHub releases, or automating binary distribution.
+  Configure and use GoReleaser for release automation with `.goreleaser.yaml`, `goreleaser build`, and `goreleaser release`.
+  Use this skill when creating or editing GoReleaser config, setting up GitHub Actions release pipelines, building cross-platform binaries,
+  publishing to Homebrew, Scoop, AUR, nFPM, Docker, or other package targets, generating changelogs, or automating release artifacts for Go,
+  Rust, Zig, TypeScript, or Python projects.
 version: 1.0.0
 source: local
 license: MIT

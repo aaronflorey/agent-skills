@@ -1,6 +1,6 @@
 ---
 name: release-please
-description: Set up release-please for automated releases in a repository. Use this skill when users want to add release-please to their project, configure GitHub Actions for automated releases, set up conventional commit workflows, create release-please config files, or bootstrap release-please in a new or existing repository.
+description: Set up `release-please` for automated releases in a repository. Use this skill when the user mentions release-please, `googleapis/release-please-action`, release PRs, conventional commits, `release-please-config.json`, `.release-please-manifest.json`, GitHub Actions release automation, or wants to bootstrap or debug release-please in a new or existing repo.
 version: 1.0.0
 source: local
 license: MIT

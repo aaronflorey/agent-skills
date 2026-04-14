@@ -1,6 +1,6 @@
 ---
 name: qodo-merge
-description: Configure and use Qodo Merge / PR-Agent for AI-powered pull request descriptions, reviews, inline suggestions, docs, labels, and ticket checks across GitHub, GitLab, Bitbucket, and Azure DevOps. Use this skill whenever the user mentions Qodo Merge, PR-Agent, `.pr_agent.toml`, PR review bots, `/describe`, `/review`, `/improve`, model setup, or debugging PR-Agent automation.
+description: Configure and use Qodo Merge, formerly PR-Agent, for AI-powered pull request reviews, descriptions, inline suggestions, labels, docs, and ticket checks across GitHub, GitLab, Bitbucket, and Azure DevOps. Use this skill whenever the user mentions Qodo Merge, PR-Agent, `.pr_agent.toml`, `pr_agent`, PR review bots, `/describe`, `/review`, `/improve`, GitHub App or Action setup, model configuration, or debugging PR-Agent automation.
 version: 1.0.0
 source: https://qodo-merge-docs.qodo.ai/
 license: MIT

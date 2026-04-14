@@ -1,6 +1,6 @@
 ---
 name: taskfile
-description: Build, debug, and refactor Taskfile.yml automation using go-task/Task. Use this skill whenever the user mentions Taskfile, go-task, `task` CLI, task dependencies, includes, `sources`/`generates` caching, Task templating, or migration from Make/npm scripts to Task. Use it for both writing new Taskfiles and diagnosing broken or slow Task workflows.
+description: Build, debug, and refactor `Taskfile.yml` or `Taskfile.yaml` automation using go-task and the `task` CLI. Use this skill whenever the user mentions Taskfile, go-task, `task`, task dependencies, includes, variables, templates, `sources` or `generates` caching, taskfiles split across directories, or migrating Makefiles or npm scripts to Task.
 version: 1.0.0
 source: https://taskfile.dev/llms-full.txt
 license: MIT
