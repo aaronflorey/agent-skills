@@ -34,7 +34,7 @@ Options:
   --rate-limit SECONDS   Web scrape rate limit (default: 0.2)
   --chunk-tokens N       RAG chunk size (default: 700)
   --chunk-overlap N      RAG chunk overlap (default: 80)
-  --browser              Enable browser rendering for web sources
+  --browser              Enable browser rendering for web sources (disables --async)
   --skip-cleanup         Only run Skill Seekers generation
   --skip-quality         Skip post-run quality report
   --help, -h             Show this help text
@@ -401,7 +401,7 @@ mkdir -p "$OUTPUT_ROOT"
 OUTPUT_DIR="${OUTPUT_ROOT%/}/$NAME"
 
 CREATE_CMD=(
-  uvx --from skill-seekers skill-seekers create "$SOURCE"
+  uvx --from skill-seekers[browser] skill-seekers create "$SOURCE"
   --name "$NAME"
   --output "$OUTPUT_DIR"
   --preset comprehensive
@@ -416,7 +416,11 @@ if [[ -n "$DOC_VERSION" ]]; then
 fi
 
 if [[ "$SOURCE" =~ ^https?:// ]]; then
-  CREATE_CMD+=(--async --workers "$WORKERS" --rate-limit "$RATE_LIMIT")
+  if [[ "$BROWSER" -eq 1 ]]; then
+    note "Browser rendering enabled; skipping --async to avoid Playwright thread-switch errors"
+  else
+    CREATE_CMD+=(--async --workers "$WORKERS" --rate-limit "$RATE_LIMIT")
+  fi
   if [[ -n "$MAX_PAGES" ]]; then
     CREATE_CMD+=(--max-pages "$MAX_PAGES")
   fi
