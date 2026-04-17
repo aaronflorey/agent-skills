@@ -8,76 +8,39 @@ license: MIT
 
 # php-saloon
 
-Use this skill when you need to:
-- build or refactor Saloon connectors, requests, or SDK-style clients
-- add authentication, request bodies, retries, middleware, DTOs, pools, or pagination
-- test Saloon integrations with `MockClient`, fixtures, or Laravel helpers
-- work with Saloon plugins such as Laravel, caching, rate limiting, pagination, XML Wrangler, or Lawman
-- upgrade Saloon between major versions, especially `v3` to `v4`
+Use this skill when building or debugging PHP API integrations and SDKs with Saloon, including connectors, requests, authentication, request bodies, testing, pagination, Laravel integration, and plugin workflows.
 
-## Start Here
+## Rules
 
-1. Read `references/getting-started.md` for install and first-request setup.
-2. Read `references/core-patterns.md` for connectors, requests, auth, bodies, and sending flow.
-3. Read `references/api-reference.md` for the most-used `Response`, failure-handling, and debugging APIs.
-4. Read `references/advanced-patterns.md` for DTOs, middleware, OAuth2, pools, retries, solo requests, PSR hooks, and SDK patterns.
+### Standalone API Clients
 
-## Key Patterns
+- Start with `references/standalone-sdk-guidance.md` and `references/building-sdks.md`.
+- Build the SDK around a Saloon `Connector`, and keep it easy to expand with resource classes, request classes, and strongly typed DTOs.
+- Always use strongly typed DTOs for responses. Prefer `github.com/Crell/Serde` for response DTO serialization.
+- If a request needs more than 2 or 3 parameters, or a DTO materially improves DX, use a typed DTO instead of a long parameter list.
+- Everything must be strongly typed. Follow the nearby `php-pro` skill for PHP typing expectations when it is available.
+- Add docblocks anywhere generics are required.
+- If the API supports authentication, add it. Let developers pass strongly typed auth details instead of loose arrays.
+- Always support pagination if the API supports it.
+- Always add rate limiting.
+- Support caching as an optional dependency, and let developers pass their own cache implementation.
+- Let developers register their own middleware.
+- Add custom exceptions, with a base SDK exception plus specific exceptions for common failures.
+- Put the request and response on exceptions so developers can inspect them.
+- Always write tests without hitting the real API.
 
-- Model each API integration with a `Connector` and each endpoint with a `Request`.
-- Put shared behavior like base URL, default headers, auth, retries, and middleware on the connector.
-- For request bodies, add `HasBody` and the matching trait like `HasJsonBody`, `HasMultipartBody`, `HasXmlBody`, `HasFormBody`, `HasStringBody`, or `HasStreamBody`.
-- Use `Response` helpers like `json()`, `dto()`, `dtoOrFail()`, `status()`, `failed()`, `throw()`, `getPsrRequest()`, and `getPsrResponse()`.
-- Prefer Saloon's built-in testing tools over real API calls in tests.
+### Laravel Support
 
-## Quick Examples
+- Keep Laravel support optional and isolated in its own namespace.
+- Add the Laravel plugin as an optional dependency.
+- Implement a facade and config.
+- Auto-wire the SDK through a wrapper class that applies optional concerns like auth, caching, and middleware composition.
+- Use `spatie/laravel-package-tools` for package wiring.
 
-```php
-use Saloon\Http\Connector;
+## References
 
-class ForgeConnector extends Connector
-{
-    public function resolveBaseUrl(): string
-    {
-        return 'https://forge.laravel.com/api/v1';
-    }
-}
-```
-
-```php
-use Saloon\Enums\Method;
-use Saloon\Http\Request;
-
-class GetServersRequest extends Request
-{
-    protected Method $method = Method::GET;
-
-    public function resolveEndpoint(): string
-    {
-        return '/servers';
-    }
-}
-```
-
-```php
-$response = $connector->send(new GetServersRequest);
-
-$servers = $response->json();
-```
-
-## Reference Files
-
-- `references/getting-started.md`: installation, first connector, first request, sending basics
-- `references/core-patterns.md`: connectors, requests, auth, request bodies, and sending flow
-- `references/api-reference.md`: response helpers, response customization, failure handling, and debug APIs
-- `references/advanced-patterns.md`: SDKs, DTOs, middleware, OAuth2, pools, retries, solo requests, PSR hooks
-- `references/testing-debugging.md`: `MockClient`, fixtures, assertions, debug helpers, known testing pitfalls
-- `references/integrations-plugins.md`: pagination, Laravel plugin, caching, rate limits, XML Wrangler, Lawman, plugin authoring
-- `references/upgrades.md`: supported versions, `v2` to `v3`, `v3` to `v4`, and security-sensitive upgrade notes
-
-## Retrieval Notes
-
-- Open `references/core-patterns.md` before writing new Saloon code from scratch.
-- Open `references/api-reference.md` when you need the exact response and error-handling helpers to call.
-- Open `references/testing-debugging.md` before changing fixtures, mocks, or request inspection.
-- Open `references/upgrades.md` before touching legacy Saloon code or serializer, endpoint, and fixture-path behavior.
+- Read `references/index.md` for the full page-by-page map.
+- Read `references/standalone-sdk-guidance.md` before designing a standalone client or package.
+- Read `references/connectors.md`, `references/requests.md`, and `references/sending-requests.md` before writing core Saloon code.
+- Read `references/data-transfer-objects.md`, `references/middleware.md`, `references/building-sdks.md`, and `references/laravel-integration.md` before building an SDK package.
+- Read `references/testing.md`, `references/handling-failures.md`, and `references/handling-rate-limits.md` before shipping production integrations.
