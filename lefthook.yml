@@ -1,0 +1,4 @@
+commit-msg:
+  jobs:
+    - name: bump skill versions
+      run: bunx --bun zx scripts/bump-skill-versions.mjs {1}
