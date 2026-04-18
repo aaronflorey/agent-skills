@@ -1,47 +1,91 @@
 # Agent Skills
 
-A collection of skills for [Claude Code](https://docs.anthropic.com/en/docs/claude-code) or [Codex](https://openai.com/codex/)
+[![License](https://img.shields.io/github/license/aaronflorey/agent-skills?style=flat-square)](LICENSE)
+[![CI](https://img.shields.io/github/actions/workflow/status/aaronflorey/agent-skills/ci.yaml?branch=main&style=flat-square&label=ci)](https://github.com/aaronflorey/agent-skills/actions/workflows/ci.yaml)
+[![Release](https://img.shields.io/github/v/release/aaronflorey/agent-skills?display_name=tag&sort=semver&style=flat-square)](https://github.com/aaronflorey/agent-skills/releases)
 
-## Available Skills
+A collection of reusable skills for coding agents such as [Claude Code](https://docs.anthropic.com/en/docs/claude-code) and [Codex](https://openai.com/codex/).
 
-| Skill | Description |
-|-------|-------------|
-| **amber-lang** | Write, debug, and explain [Amber](https://amber-lang.com) code — the modern language that compiles to Bash. Covers syntax, types, error handling, standard library, and compilation. |
-| **charmbracelet** | Build polished Go terminal user interfaces and interactive CLI tools with the [Charmbracelet](https://github.com/charmbracelet) ecosystem, with emphasis on Bubble Tea plus Bubbles, Huh, Lip Gloss, Wish, Glamour, and Log. |
-| **cli** | Route terminal work to optimized CLI tools instead of generic shell patterns. Covers search, rewrite, fetch, paging, structured data, diffing, linting, and repository metrics with tools like `rg`, `fd`, `jq`, `yq`, `shellcheck`, and more. |
-| **depsdotdev** | Use the [deps.dev API](https://docs.deps.dev/api/) to fetch package/version metadata, requirements, resolved dependency graphs, advisories, project mappings, and hash lookup data with correct encoding and endpoint selection. |
-| **github-cli** | Use the [GitHub CLI](https://cli.github.com/) to authenticate, manage repos, issues, PRs, releases, Actions, projects, and call the GitHub API from the terminal. |
-| **goreleaser** | Configure and use [GoReleaser](https://goreleaser.com/) for release automation, including standalone setup and unified release-please + GoReleaser workflows. |
-| **laravel-actions** | Write, scaffold, explain, and refactor code using the [lorisleiva/laravel-actions](https://github.com/lorisleiva/laravel-actions) package. Covers using actions as objects, controllers, jobs, listeners, commands, with validation, authorization, and testing. |
-| **lefthook** | Write, debug, and explain [Lefthook](https://lefthook.dev/) configuration for Git hooks, including `lefthook.yml`, `jobs`/`commands`/`scripts`, file filtering, local overrides, and hook troubleshooting. |
-| **mise** | Configure and use [mise](https://mise.jdx.dev/) for dev tool management, environment variables, and task running. Covers mise.toml configuration, tool backends (npm, pipx, cargo, etc.), tasks, hooks, and CLI commands. |
-| **num30-config** | Write, debug, and explain Go configuration code using [github.com/num30/config](https://github.com/num30/config). Covers config structs, reading from files/env vars/CLI flags, validation, and watching for changes. |
-| **pelican-panel-plugins** | Write, scaffold, explain, and debug plugins for the [Pelican](https://pelican.dev/) gaming panel. Covers FilamentPHP resources/pages/widgets, permissions, settings, routes, models, and plugin publishing. |
-| **php-monorepo-builder** | Use [symplify/monorepo-builder](https://github.com/symplify/monorepo-builder) to manage PHP monorepos, including `monorepo-builder.php`, composer.json merging, inter-package version validation, and automated releases. |
-| **release-please** | Set up [release-please](https://github.com/googleapis/release-please) and automate release PRs, including unified release-please + GoReleaser workflows. |
-
-Note: `goreleaser` and `release-please` both support `/setup-release-please-goreleaser` to configure a unified workflow that avoids requiring a custom PAT just to trigger GoReleaser.
+Each skill lives in its own directory and is centered on a `SKILL.md` file, with optional `references/` and `examples/` content alongside it.
 
 ## Installation
 
-Install a skill using the `skills` CLI:
+Install a skill from this repository with the `skills` CLI:
+
+```sh
+bunx skills add aaronflorey/agent-skills --skill <skill-name>
+```
+
+Examples:
 
 ```sh
 bunx skills add aaronflorey/agent-skills --skill amber-lang
-bunx skills add aaronflorey/agent-skills --skill charmbracelet
-bunx skills add aaronflorey/agent-skills --skill cli
-bunx skills add aaronflorey/agent-skills --skill depsdotdev
-bunx skills add aaronflorey/agent-skills --skill github-cli
 bunx skills add aaronflorey/agent-skills --skill goreleaser
-bunx skills add aaronflorey/agent-skills --skill laravel-actions
-bunx skills add aaronflorey/agent-skills --skill lefthook
-bunx skills add aaronflorey/agent-skills --skill mise
-bunx skills add aaronflorey/agent-skills --skill num30-config
-bunx skills add aaronflorey/agent-skills --skill pelican-panel-plugins
-bunx skills add aaronflorey/agent-skills --skill php-monorepo-builder
 bunx skills add aaronflorey/agent-skills --skill release-please
 ```
 
+## Available Skills
+
+`amber-lang`, `beamng-mods`, `charmbracelet`, `cli`, `dasel`, `depsdotdev`, `flyscrape`, `github-cli`, `go-cobra`, `go-viper`, `goreleaser`, `kasetto`, `laravel-actions`, `lefthook`, `mise`, `num30-config`, `pelican-panel-plugins`, `php-monorepo-builder`, `php-saloon`, `qodo-merge`, `release-please`, `shieldsio`, `taskfile`, `valinor-php`
+
+## Usage
+
+- Browse the skill directories in this repository to inspect the available `SKILL.md` files.
+- Install the skill that matches the task you want the agent to handle.
+- Use the trigger language described in that skill's `description` so the agent can activate it reliably.
+
+## Development Setup
+
+This repository does not have a global build pipeline. The main maintenance command is:
+
+```sh
+bun scripts/update-mise-registry.js
+```
+
+Use it only when you intentionally update the generated files under `mise/references/`.
+
+Useful local validation commands:
+
+```sh
+python3 - <<'PY'
+from pathlib import Path
+import re
+root = Path('.')
+required = {'name','description','version','source','license'}
+ok = True
+for f in sorted(root.glob('*/SKILL.md')):
+    t = f.read_text(encoding='utf-8')
+    m = re.match(r'^---\n(.*?)\n---\n', t, re.S)
+    if not m:
+        ok = False
+        print(f'{f}: invalid frontmatter')
+        continue
+    keys = {re.match(r'^([A-Za-z_][A-Za-z0-9_-]*):', ln).group(1)
+            for ln in m.group(1).splitlines()
+            if re.match(r'^([A-Za-z_][A-Za-z0-9_-]*):', ln)}
+    missing = sorted(required - keys)
+    if missing:
+        ok = False
+        print(f'{f}: missing {missing}')
+print('OK' if ok else 'FAILED')
+PY
+```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines, validation commands, and generated-file rules.
+
+## Release Process
+
+- Releases are managed with `release-please`.
+- Tags use the `vX.X.X` format.
+- Conventional commit headers such as `feat:` and `fix:` drive changelog and version bumps.
+- GitHub Releases are published from the default branch after the release pull request is merged.
+
+## Security
+
+See [SECURITY.md](SECURITY.md) for vulnerability reporting guidance.
+
 ## License
 
-MIT
+[MIT](LICENSE)

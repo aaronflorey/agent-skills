@@ -1,0 +1,93 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install YAML linting tool
+        run: python -m pip install yamllint==1.37.1
+
+      - name: Validate skill frontmatter
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          required = {'name', 'description', 'version', 'source', 'license'}
+          ok = True
+
+          for skill_file in sorted(root.glob('*/SKILL.md')):
+              text = skill_file.read_text(encoding='utf-8')
+              match = re.match(r'^---\n(.*?)\n---\n', text, re.S)
+              if not match:
+                  ok = False
+                  print(f'{skill_file}: invalid frontmatter')
+                  continue
+
+              keys = {
+                  re.match(r'^([A-Za-z_][A-Za-z0-9_-]*):', line).group(1)
+                  for line in match.group(1).splitlines()
+                  if re.match(r'^([A-Za-z_][A-Za-z0-9_-]*):', line)
+              }
+              missing = sorted(required - keys)
+              if missing:
+                  ok = False
+                  print(f'{skill_file}: missing {missing}')
+
+          if not ok:
+              raise SystemExit(1)
+
+          print('OK')
+          PY
+
+      - name: Validate release metadata files
+        run: |
+          python3 - <<'PY'
+          import json
+          import re
+          from pathlib import Path
+
+          version = Path('version.txt').read_text(encoding='utf-8').strip()
+          if not re.fullmatch(r'\d+\.\d+\.\d+', version):
+              raise SystemExit(f'invalid version.txt value: {version}')
+
+          config = json.loads(Path('release-please-config.json').read_text(encoding='utf-8'))
+          manifest = json.loads(Path('.release-please-manifest.json').read_text(encoding='utf-8'))
+
+          if config.get('release-type') != 'simple':
+              raise SystemExit('release-please-config.json must use release-type simple')
+
+          if manifest.get('.') != version:
+              raise SystemExit('manifest version must match version.txt')
+
+          print('OK')
+          PY
+
+      - name: Lint workflow YAML
+        run: >-
+          yamllint -d "{extends: default, rules: {line-length: disable}}"
+          .github/workflows/*.yaml lefthook.yml

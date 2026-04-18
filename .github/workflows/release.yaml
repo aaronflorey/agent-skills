@@ -1,0 +1,74 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag_name: ${{ steps.release.outputs.tag_name }}
+      html_url: ${{ steps.release.outputs.html_url }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Run release-please
+        id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  post-release:
+    needs: release-please
+    if: ${{ needs.release-please.outputs.release_created == 'true' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out released tag
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ needs.release-please.outputs.tag_name }}
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Cache Bun downloads
+        uses: actions/cache@v4
+        with:
+          path: ~/.bun/install/cache
+          key: bun-${{ runner.os }}-${{ hashFiles('version.txt') }}
+
+      - name: Verify release tag matches version file
+        env:
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
+        run: |
+          bun -e 'const version = (await Bun.file("version.txt").text()).trim(); const expected = `v${version}`; const tag = process.env.TAG_NAME; if (tag !== expected) throw new Error(`expected ${expected} but got ${tag}`); console.log(`Verified ${tag}`);'
+
+      - name: Publish job summary
+        env:
+          RELEASE_URL: ${{ needs.release-please.outputs.html_url }}
+          TAG_NAME: ${{ needs.release-please.outputs.tag_name }}
+        run: |
+          {
+            echo "## Release published"
+            echo
+            echo "- Tag: \\`${TAG_NAME}\\`"
+            echo "- Release: ${RELEASE_URL}"
+          } >> "$GITHUB_STEP_SUMMARY"
