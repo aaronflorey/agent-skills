@@ -1,0 +1,6 @@
+agent: codex
+
+skills:
+  - source: https://github.com/org/skill-pack
+    skills:
+      - code-reviewer

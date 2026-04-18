@@ -1,0 +1,156 @@
+# Repository File Structure
+
+Total items: 150
+
+```
+📄 .editorconfig
+📁 .github
+📄 .gitignore
+📄 .vercelignore
+📄 CHANGELOG.md
+📄 CLAUDE.md
+📄 CODE_OF_CONDUCT.md
+📄 CONTRIBUTING.md
+📄 Cargo.lock
+📄 Cargo.toml
+📁 Formula
+📄 LICENSE
+📄 LICENSE-APACHE
+📄 LICENSE-MIT
+📄 README.md
+📄 SECURITY.md
+📁 assets
+📄 cliff.toml
+📁 docs
+📄 justfile
+📄 kasetto.example.yaml
+📁 landing
+📁 scripts
+📁 src
+  📄 FUNDING.yaml
+  📁 ISSUE_TEMPLATE
+  📄 PULL_REQUEST_TEMPLATE.md
+  📄 labels.yaml
+  📁 workflows
+  📄 kasetto.rb
+  📄 icon.svg
+  📄 logo.svg
+  📄 .gitignore
+  📁 .overrides
+  📄 agents.md
+  📁 assets
+  📄 authentication.md
+  📄 ci.md
+  📄 commands.md
+  📄 configuration.md
+  📄 cookbook.md
+  📄 faq.md
+  📄 getting-started.md
+  📄 how-sync-works.md
+  📄 index.md
+  📄 installation.md
+  📄 mkdocs.yml
+  📄 requirements.txt
+  📄 roadmap.md
+  📄 security.md
+  📁 stylesheets
+  📄 vercel.json
+  📄 writing-skills.md
+  📄 .gitignore
+  📁 app
+  📄 biome.json
+  📄 next.config.ts
+  📄 package.json
+  📄 pnpm-lock.yaml
+  📄 postcss.config.mjs
+  📁 public
+  📄 tailwind.config.ts
+  📄 tsconfig.json
+  📄 install.ps1
+  📄 install.sh
+  📄 release.sh
+  📄 update-homebrew-formula.sh
+  📄 app.rs
+  📄 banner.rs
+  📁 bin
+  📄 cli.rs
+  📄 colors.rs
+  📁 commands
+  📄 error.rs
+  📁 fsops
+  📁 home
+  📄 lib.rs
+  📁 list
+  📄 lock.rs
+  📄 main.rs
+  📁 mcps
+  📁 model
+  📄 profile.rs
+  📁 source
+  📄 tui.rs
+  📄 ui.rs
+    📄 ---bug-report.yaml
+    📄 ---documentation.yaml
+    📄 ---feature-request.yaml
+    📄 config.yaml
+    📄 ci.yaml
+    📄 labels.yaml
+    📄 release.yaml
+    📄 main.html
+    📄 icon.svg
+    📄 logo.svg
+    📄 extra.css
+    📁 components
+    📄 globals.css
+    📄 icon.svg
+    📁 install.ps1
+    📁 install
+    📄 layout.tsx
+    📄 page.tsx
+    📄 logo.svg
+    📄 kst.rs
+    📄 clean.rs
+    📄 completions.rs
+    📄 doctor.rs
+    📄 init.rs
+    📄 list.rs
+    📄 mod.rs
+    📄 self_update.rs
+    📁 sync
+    📄 uninstall.rs
+    📄 copy.rs
+    📄 dirs.rs
+    📄 hash.rs
+    📄 http.rs
+    📄 mod.rs
+    📄 settings.rs
+    📄 mod.rs
+    📄 prompt.rs
+    📄 browse.rs
+    📄 mod.rs
+    📄 render.rs
+    📄 session.rs
+    📄 tab.rs
+    📄 types.rs
+    📄 codex.rs
+    📄 merge.rs
+    📄 mod.rs
+    📄 pack.rs
+    📄 agent.rs
+    📄 config.rs
+    📄 mod.rs
+    📄 types.rs
+    📄 auth.rs
+    📄 hosts.rs
+    📄 mod.rs
+    📄 parse.rs
+    📄 remote.rs
+      📄 agents-grid.tsx
+      📄 copy-button.tsx
+      📄 feature-tabs.tsx
+      📄 route.ts
+      📄 route.ts
+      📄 mcps.rs
+      📄 mod.rs
+      📄 skills.rs
+```

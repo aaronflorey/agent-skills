@@ -1,0 +1,21 @@
+agent:
+  - codex
+  - claude-code
+scope: project
+
+skills:
+  - source: https://github.com/org/skill-pack
+    skills:
+      - code-reviewer
+      - name: design-system
+
+  - source: https://github.com/acme/stable-skills
+    ref: v1.2.0
+    skills:
+      - name: custom-skill
+        path: tools/skills
+
+mcps:
+  - source: https://github.com/org/mcp-pack
+  - source: https://github.com/org/monorepo
+    path: mcps/my-server/pack.json
