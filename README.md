@@ -26,7 +26,7 @@ bunx skills add aaronflorey/agent-skills --skill release-please
 
 ## Available Skills
 
-`amber-lang`, `beamng-mods`, `charmbracelet`, `cli`, `dasel`, `depsdotdev`, `flyscrape`, `github-cli`, `go-cobra`, `go-viper`, `goreleaser`, `kasetto`, `laravel-actions`, `lefthook`, `mise`, `num30-config`, `pelican-panel-plugins`, `php-monorepo-builder`, `php-saloon`, `qodo-merge`, `release-please`, `shieldsio`, `taskfile`, `valinor-php`
+`amber-lang`, `beamng-mods`, `charmbracelet`, `cli`, `dasel`, `depsdotdev`, `flyscrape`, `github-cli`, `go-cobra`, `go-viper`, `goreleaser`, `kasetto`, `laravel-actions`, `lefthook`, `mise`, `num30-config`, `pelican-panel-plugins`, `php-monorepo-builder`, `php-saloon`, `qodo-merge`, `release-please`, `shieldsio`, `skill-researcher`, `taskfile`, `valinor-php`
 
 ## Usage
 
