@@ -49,6 +49,14 @@ If you modify the mise registry generator or intentionally refresh the generated
 bun scripts/update-mise-registry.js
 ```
 
+Refresh the generated README skill table when skill folders or descriptions change:
+
+```sh
+bun scripts/update-readme-skills.js
+```
+
+The shared `pre-commit` hook runs this automatically and stages any README updates.
+
 Commit both the script changes and the regenerated `mise/references/*` outputs together.
 
 ## Commits And Releases

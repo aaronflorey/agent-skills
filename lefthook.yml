@@ -1,3 +1,9 @@
+pre-commit:
+  jobs:
+    - name: update README skill table
+      run: bun scripts/update-readme-skills.js
+      stage_fixed: true
+
 commit-msg:
   jobs:
     - name: bump skill versions
