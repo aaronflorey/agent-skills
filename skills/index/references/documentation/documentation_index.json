@@ -1,0 +1,990 @@
+{
+  "total_files": 139,
+  "categories": {
+    "overview": [
+      "docs-current-cmds-abbr.md",
+      "docs-current-cmds-alias.md",
+      "docs-current-cmds-and.md",
+      "docs-current-cmds-argparse.md",
+      "docs-current-cmds-begin.md",
+      "docs-current-cmds-bg.md",
+      "docs-current-cmds-bind.md",
+      "docs-current-cmds-block.md",
+      "docs-current-cmds-break.md",
+      "docs-current-cmds-breakpoint.md",
+      "docs-current-cmds-builtin.md",
+      "docs-current-cmds-case.md",
+      "docs-current-cmds-cd.md",
+      "docs-current-cmds-cdh.md",
+      "docs-current-cmds-command.md",
+      "docs-current-cmds-commandline.md",
+      "docs-current-cmds-complete.md",
+      "docs-current-cmds-contains.md",
+      "docs-current-cmds-continue.md",
+      "docs-current-cmds-count.md",
+      "docs-current-cmds-dirh.md",
+      "docs-current-cmds-dirs.md",
+      "docs-current-cmds-disown.md",
+      "docs-current-cmds-echo.md",
+      "docs-current-cmds-else.md",
+      "docs-current-cmds-emit.md",
+      "docs-current-cmds-end.md",
+      "docs-current-cmds-eval.md",
+      "docs-current-cmds-exec.md",
+      "docs-current-cmds-exit.md",
+      "docs-current-cmds-export.md",
+      "docs-current-cmds-false.md",
+      "docs-current-cmds-fg.md",
+      "docs-current-cmds-fish-add-path.md",
+      "docs-current-cmds-fish-breakpoint-prompt.md",
+      "docs-current-cmds-fish-clipboard-copy.md",
+      "docs-current-cmds-fish-clipboard-paste.md",
+      "docs-current-cmds-fish-command-not-found.md",
+      "docs-current-cmds-fish-config.md",
+      "docs-current-cmds-fish-default-key-bindings.md",
+      "docs-current-cmds-fish-delta.md",
+      "docs-current-cmds-fish-git-prompt.md",
+      "docs-current-cmds-fish-greeting.md",
+      "docs-current-cmds-fish-hg-prompt.md",
+      "docs-current-cmds-fish-indent.md",
+      "docs-current-cmds-fish-is-root-user.md",
+      "docs-current-cmds-fish-key-reader.md",
+      "docs-current-cmds-fish-mode-prompt.md",
+      "docs-current-cmds-fish-opt.md",
+      "docs-current-cmds-fish-prompt.md",
+      "docs-current-cmds-fish-right-prompt.md",
+      "docs-current-cmds-fish-status-to-signal.md",
+      "docs-current-cmds-fish-svn-prompt.md",
+      "docs-current-cmds-fish-tab-title.md",
+      "docs-current-cmds-fish-title.md",
+      "docs-current-cmds-fish-update-completions.md",
+      "docs-current-cmds-fish-vcs-prompt.md",
+      "docs-current-cmds-fish-vi-key-bindings.md",
+      "docs-current-cmds-fish.md",
+      "docs-current-cmds-for.md",
+      "docs-current-cmds-funced.md",
+      "docs-current-cmds-funcsave.md",
+      "docs-current-cmds-function.md",
+      "docs-current-cmds-functions.md",
+      "docs-current-cmds-help.md",
+      "docs-current-cmds-if.md",
+      "docs-current-cmds-isatty.md",
+      "docs-current-cmds-jobs.md",
+      "docs-current-cmds-math.md",
+      "docs-current-cmds-nextd.md",
+      "docs-current-cmds-not.md",
+      "docs-current-cmds-open.md",
+      "docs-current-cmds-or.md",
+      "docs-current-cmds-path.md",
+      "docs-current-cmds-popd.md",
+      "docs-current-cmds-prevd.md",
+      "docs-current-cmds-printf.md",
+      "docs-current-cmds-prompt-hostname.md",
+      "docs-current-cmds-prompt-login.md",
+      "docs-current-cmds-prompt-pwd.md",
+      "docs-current-cmds-psub.md",
+      "docs-current-cmds-pushd.md",
+      "docs-current-cmds-pwd.md",
+      "docs-current-cmds-random.md",
+      "docs-current-cmds-read.md",
+      "docs-current-cmds-realpath.md",
+      "docs-current-cmds-return.md",
+      "docs-current-cmds-set-color.md",
+      "docs-current-cmds-set.md",
+      "docs-current-cmds-source.md",
+      "docs-current-cmds-status.md",
+      "docs-current-cmds-string-collect.md",
+      "docs-current-cmds-string-escape.md",
+      "docs-current-cmds-string-join.md",
+      "docs-current-cmds-string-join0.md",
+      "docs-current-cmds-string-length.md",
+      "docs-current-cmds-string-lower.md",
+      "docs-current-cmds-string-match.md",
+      "docs-current-cmds-string-pad.md",
+      "docs-current-cmds-string-repeat.md",
+      "docs-current-cmds-string-replace.md",
+      "docs-current-cmds-string-shorten.md",
+      "docs-current-cmds-string-split.md",
+      "docs-current-cmds-string-split0.md",
+      "docs-current-cmds-string-sub.md",
+      "docs-current-cmds-string-trim.md",
+      "docs-current-cmds-string-unescape.md",
+      "docs-current-cmds-string-upper.md",
+      "docs-current-cmds-string.md",
+      "docs-current-cmds-suspend.md",
+      "docs-current-cmds-switch.md",
+      "docs-current-cmds-test.md",
+      "docs-current-cmds-time.md",
+      "docs-current-cmds-trap.md",
+      "docs-current-cmds-true.md",
+      "docs-current-cmds-type.md",
+      "docs-current-cmds-ulimit.md",
+      "docs-current-cmds-umask.md",
+      "docs-current-cmds-vared.md",
+      "docs-current-cmds-wait.md",
+      "docs-current-cmds-while.md",
+      "docs-current-cmds.md",
+      "docs-current-commands.md",
+      "docs-current-completions.md",
+      "docs-current-faq.md",
+      "docs-current-fish-for-bash-users.md",
+      "docs-current-index.md",
+      "docs-current-interactive.md",
+      "docs-current-language.md",
+      "docs-current-prompt.md",
+      "docs-current-relnotes.md",
+      "docs-current-terminal-compatibility.md",
+      "docs-current-tutorial.md",
+      "index.md"
+    ],
+    "changelog": [
+      "docs-current-cmds-fish-should-add-to-history.md",
+      "docs-current-cmds-history.md"
+    ],
+    "contributing": [
+      "docs-current-contributing.md"
+    ],
+    "architecture": [
+      "docs-current-design.md"
+    ],
+    "license": [
+      "docs-current-license.md"
+    ]
+  },
+  "files": [
+    {
+      "path": "docs-current-cmds-abbr.md",
+      "filename": "docs-current-cmds-abbr.md",
+      "category": "overview",
+      "size_bytes": 8008
+    },
+    {
+      "path": "docs-current-cmds-alias.md",
+      "filename": "docs-current-cmds-alias.md",
+      "category": "overview",
+      "size_bytes": 2352
+    },
+    {
+      "path": "docs-current-cmds-and.md",
+      "filename": "docs-current-cmds-and.md",
+      "category": "overview",
+      "size_bytes": 1293
+    },
+    {
+      "path": "docs-current-cmds-argparse.md",
+      "filename": "docs-current-cmds-argparse.md",
+      "category": "overview",
+      "size_bytes": 21995
+    },
+    {
+      "path": "docs-current-cmds-begin.md",
+      "filename": "docs-current-cmds-begin.md",
+      "category": "overview",
+      "size_bytes": 1612
+    },
+    {
+      "path": "docs-current-cmds-bg.md",
+      "filename": "docs-current-cmds-bg.md",
+      "category": "overview",
+      "size_bytes": 1930
+    },
+    {
+      "path": "docs-current-cmds-bind.md",
+      "filename": "docs-current-cmds-bind.md",
+      "category": "overview",
+      "size_bytes": 21589
+    },
+    {
+      "path": "docs-current-cmds-block.md",
+      "filename": "docs-current-cmds-block.md",
+      "category": "overview",
+      "size_bytes": 1603
+    },
+    {
+      "path": "docs-current-cmds-break.md",
+      "filename": "docs-current-cmds-break.md",
+      "category": "overview",
+      "size_bytes": 1033
+    },
+    {
+      "path": "docs-current-cmds-breakpoint.md",
+      "filename": "docs-current-cmds-breakpoint.md",
+      "category": "overview",
+      "size_bytes": 513
+    },
+    {
+      "path": "docs-current-cmds-builtin.md",
+      "filename": "docs-current-cmds-builtin.md",
+      "category": "overview",
+      "size_bytes": 893
+    },
+    {
+      "path": "docs-current-cmds-case.md",
+      "filename": "docs-current-cmds-case.md",
+      "category": "overview",
+      "size_bytes": 1879
+    },
+    {
+      "path": "docs-current-cmds-cd.md",
+      "filename": "docs-current-cmds-cd.md",
+      "category": "overview",
+      "size_bytes": 2063
+    },
+    {
+      "path": "docs-current-cmds-cdh.md",
+      "filename": "docs-current-cmds-cdh.md",
+      "category": "overview",
+      "size_bytes": 1156
+    },
+    {
+      "path": "docs-current-cmds-command.md",
+      "filename": "docs-current-cmds-command.md",
+      "category": "overview",
+      "size_bytes": 1464
+    },
+    {
+      "path": "docs-current-cmds-commandline.md",
+      "filename": "docs-current-cmds-commandline.md",
+      "category": "overview",
+      "size_bytes": 6906
+    },
+    {
+      "path": "docs-current-cmds-complete.md",
+      "filename": "docs-current-cmds-complete.md",
+      "category": "overview",
+      "size_bytes": 10041
+    },
+    {
+      "path": "docs-current-cmds-contains.md",
+      "filename": "docs-current-cmds-contains.md",
+      "category": "overview",
+      "size_bytes": 1594
+    },
+    {
+      "path": "docs-current-cmds-continue.md",
+      "filename": "docs-current-cmds-continue.md",
+      "category": "overview",
+      "size_bytes": 1205
+    },
+    {
+      "path": "docs-current-cmds-count.md",
+      "filename": "docs-current-cmds-count.md",
+      "category": "overview",
+      "size_bytes": 1418
+    },
+    {
+      "path": "docs-current-cmds-dirh.md",
+      "filename": "docs-current-cmds-dirh.md",
+      "category": "overview",
+      "size_bytes": 953
+    },
+    {
+      "path": "docs-current-cmds-dirs.md",
+      "filename": "docs-current-cmds-dirs.md",
+      "category": "overview",
+      "size_bytes": 794
+    },
+    {
+      "path": "docs-current-cmds-disown.md",
+      "filename": "docs-current-cmds-disown.md",
+      "category": "overview",
+      "size_bytes": 1753
+    },
+    {
+      "path": "docs-current-cmds-echo.md",
+      "filename": "docs-current-cmds-echo.md",
+      "category": "overview",
+      "size_bytes": 1440
+    },
+    {
+      "path": "docs-current-cmds-else.md",
+      "filename": "docs-current-cmds-else.md",
+      "category": "overview",
+      "size_bytes": 798
+    },
+    {
+      "path": "docs-current-cmds-emit.md",
+      "filename": "docs-current-cmds-emit.md",
+      "category": "overview",
+      "size_bytes": 1047
+    },
+    {
+      "path": "docs-current-cmds-end.md",
+      "filename": "docs-current-cmds-end.md",
+      "category": "overview",
+      "size_bytes": 1074
+    },
+    {
+      "path": "docs-current-cmds-eval.md",
+      "filename": "docs-current-cmds-eval.md",
+      "category": "overview",
+      "size_bytes": 901
+    },
+    {
+      "path": "docs-current-cmds-exec.md",
+      "filename": "docs-current-cmds-exec.md",
+      "category": "overview",
+      "size_bytes": 688
+    },
+    {
+      "path": "docs-current-cmds-exit.md",
+      "filename": "docs-current-cmds-exit.md",
+      "category": "overview",
+      "size_bytes": 688
+    },
+    {
+      "path": "docs-current-cmds-export.md",
+      "filename": "docs-current-cmds-export.md",
+      "category": "overview",
+      "size_bytes": 1247
+    },
+    {
+      "path": "docs-current-cmds-false.md",
+      "filename": "docs-current-cmds-false.md",
+      "category": "overview",
+      "size_bytes": 466
+    },
+    {
+      "path": "docs-current-cmds-fg.md",
+      "filename": "docs-current-cmds-fg.md",
+      "category": "overview",
+      "size_bytes": 1049
+    },
+    {
+      "path": "docs-current-cmds-fish-add-path.md",
+      "filename": "docs-current-cmds-fish-add-path.md",
+      "category": "overview",
+      "size_bytes": 5183
+    },
+    {
+      "path": "docs-current-cmds-fish-breakpoint-prompt.md",
+      "filename": "docs-current-cmds-fish-breakpoint-prompt.md",
+      "category": "overview",
+      "size_bytes": 1315
+    },
+    {
+      "path": "docs-current-cmds-fish-clipboard-copy.md",
+      "filename": "docs-current-cmds-fish-clipboard-copy.md",
+      "category": "overview",
+      "size_bytes": 1265
+    },
+    {
+      "path": "docs-current-cmds-fish-clipboard-paste.md",
+      "filename": "docs-current-cmds-fish-clipboard-paste.md",
+      "category": "overview",
+      "size_bytes": 1453
+    },
+    {
+      "path": "docs-current-cmds-fish-command-not-found.md",
+      "filename": "docs-current-cmds-fish-command-not-found.md",
+      "category": "overview",
+      "size_bytes": 2315
+    },
+    {
+      "path": "docs-current-cmds-fish-config.md",
+      "filename": "docs-current-cmds-fish-config.md",
+      "category": "overview",
+      "size_bytes": 5056
+    },
+    {
+      "path": "docs-current-cmds-fish-default-key-bindings.md",
+      "filename": "docs-current-cmds-fish-default-key-bindings.md",
+      "category": "overview",
+      "size_bytes": 714
+    },
+    {
+      "path": "docs-current-cmds-fish-delta.md",
+      "filename": "docs-current-cmds-fish-delta.md",
+      "category": "overview",
+      "size_bytes": 3454
+    },
+    {
+      "path": "docs-current-cmds-fish-git-prompt.md",
+      "filename": "docs-current-cmds-fish-git-prompt.md",
+      "category": "overview",
+      "size_bytes": 8207
+    },
+    {
+      "path": "docs-current-cmds-fish-greeting.md",
+      "filename": "docs-current-cmds-fish-greeting.md",
+      "category": "overview",
+      "size_bytes": 1505
+    },
+    {
+      "path": "docs-current-cmds-fish-hg-prompt.md",
+      "filename": "docs-current-cmds-fish-hg-prompt.md",
+      "category": "overview",
+      "size_bytes": 2363
+    },
+    {
+      "path": "docs-current-cmds-fish-indent.md",
+      "filename": "docs-current-cmds-fish-indent.md",
+      "category": "overview",
+      "size_bytes": 1780
+    },
+    {
+      "path": "docs-current-cmds-fish-is-root-user.md",
+      "filename": "docs-current-cmds-fish-is-root-user.md",
+      "category": "overview",
+      "size_bytes": 702
+    },
+    {
+      "path": "docs-current-cmds-fish-key-reader.md",
+      "filename": "docs-current-cmds-fish-key-reader.md",
+      "category": "overview",
+      "size_bytes": 1434
+    },
+    {
+      "path": "docs-current-cmds-fish-mode-prompt.md",
+      "filename": "docs-current-cmds-fish-mode-prompt.md",
+      "category": "overview",
+      "size_bytes": 2190
+    },
+    {
+      "path": "docs-current-cmds-fish-opt.md",
+      "filename": "docs-current-cmds-fish-opt.md",
+      "category": "overview",
+      "size_bytes": 4331
+    },
+    {
+      "path": "docs-current-cmds-fish-prompt.md",
+      "filename": "docs-current-cmds-fish-prompt.md",
+      "category": "overview",
+      "size_bytes": 1672
+    },
+    {
+      "path": "docs-current-cmds-fish-right-prompt.md",
+      "filename": "docs-current-cmds-fish-right-prompt.md",
+      "category": "overview",
+      "size_bytes": 926
+    },
+    {
+      "path": "docs-current-cmds-fish-should-add-to-history.md",
+      "filename": "docs-current-cmds-fish-should-add-to-history.md",
+      "category": "changelog",
+      "size_bytes": 2072
+    },
+    {
+      "path": "docs-current-cmds-fish-status-to-signal.md",
+      "filename": "docs-current-cmds-fish-status-to-signal.md",
+      "category": "overview",
+      "size_bytes": 838
+    },
+    {
+      "path": "docs-current-cmds-fish-svn-prompt.md",
+      "filename": "docs-current-cmds-fish-svn-prompt.md",
+      "category": "overview",
+      "size_bytes": 3147
+    },
+    {
+      "path": "docs-current-cmds-fish-tab-title.md",
+      "filename": "docs-current-cmds-fish-tab-title.md",
+      "category": "overview",
+      "size_bytes": 1480
+    },
+    {
+      "path": "docs-current-cmds-fish-title.md",
+      "filename": "docs-current-cmds-fish-title.md",
+      "category": "overview",
+      "size_bytes": 1459
+    },
+    {
+      "path": "docs-current-cmds-fish-update-completions.md",
+      "filename": "docs-current-cmds-fish-update-completions.md",
+      "category": "overview",
+      "size_bytes": 629
+    },
+    {
+      "path": "docs-current-cmds-fish-vcs-prompt.md",
+      "filename": "docs-current-cmds-fish-vcs-prompt.md",
+      "category": "overview",
+      "size_bytes": 1379
+    },
+    {
+      "path": "docs-current-cmds-fish-vi-key-bindings.md",
+      "filename": "docs-current-cmds-fish-vi-key-bindings.md",
+      "category": "overview",
+      "size_bytes": 1998
+    },
+    {
+      "path": "docs-current-cmds-fish.md",
+      "filename": "docs-current-cmds-fish.md",
+      "category": "overview",
+      "size_bytes": 5023
+    },
+    {
+      "path": "docs-current-cmds-for.md",
+      "filename": "docs-current-cmds-for.md",
+      "category": "overview",
+      "size_bytes": 1774
+    },
+    {
+      "path": "docs-current-cmds-funced.md",
+      "filename": "docs-current-cmds-funced.md",
+      "category": "overview",
+      "size_bytes": 2161
+    },
+    {
+      "path": "docs-current-cmds-funcsave.md",
+      "filename": "docs-current-cmds-funcsave.md",
+      "category": "overview",
+      "size_bytes": 1444
+    },
+    {
+      "path": "docs-current-cmds-function.md",
+      "filename": "docs-current-cmds-function.md",
+      "category": "overview",
+      "size_bytes": 7118
+    },
+    {
+      "path": "docs-current-cmds-functions.md",
+      "filename": "docs-current-cmds-functions.md",
+      "category": "overview",
+      "size_bytes": 4271
+    },
+    {
+      "path": "docs-current-cmds-help.md",
+      "filename": "docs-current-cmds-help.md",
+      "category": "overview",
+      "size_bytes": 1130
+    },
+    {
+      "path": "docs-current-cmds-history.md",
+      "filename": "docs-current-cmds-history.md",
+      "category": "changelog",
+      "size_bytes": 7405
+    },
+    {
+      "path": "docs-current-cmds-if.md",
+      "filename": "docs-current-cmds-if.md",
+      "category": "overview",
+      "size_bytes": 2175
+    },
+    {
+      "path": "docs-current-cmds-isatty.md",
+      "filename": "docs-current-cmds-isatty.md",
+      "category": "overview",
+      "size_bytes": 1219
+    },
+    {
+      "path": "docs-current-cmds-jobs.md",
+      "filename": "docs-current-cmds-jobs.md",
+      "category": "overview",
+      "size_bytes": 1909
+    },
+    {
+      "path": "docs-current-cmds-math.md",
+      "filename": "docs-current-cmds-math.md",
+      "category": "overview",
+      "size_bytes": 8105
+    },
+    {
+      "path": "docs-current-cmds-nextd.md",
+      "filename": "docs-current-cmds-nextd.md",
+      "category": "overview",
+      "size_bytes": 1419
+    },
+    {
+      "path": "docs-current-cmds-not.md",
+      "filename": "docs-current-cmds-not.md",
+      "category": "overview",
+      "size_bytes": 780
+    },
+    {
+      "path": "docs-current-cmds-open.md",
+      "filename": "docs-current-cmds-open.md",
+      "category": "overview",
+      "size_bytes": 779
+    },
+    {
+      "path": "docs-current-cmds-or.md",
+      "filename": "docs-current-cmds-or.md",
+      "category": "overview",
+      "size_bytes": 1222
+    },
+    {
+      "path": "docs-current-cmds-path.md",
+      "filename": "docs-current-cmds-path.md",
+      "category": "overview",
+      "size_bytes": 18316
+    },
+    {
+      "path": "docs-current-cmds-popd.md",
+      "filename": "docs-current-cmds-popd.md",
+      "category": "overview",
+      "size_bytes": 1158
+    },
+    {
+      "path": "docs-current-cmds-prevd.md",
+      "filename": "docs-current-cmds-prevd.md",
+      "category": "overview",
+      "size_bytes": 1415
+    },
+    {
+      "path": "docs-current-cmds-printf.md",
+      "filename": "docs-current-cmds-printf.md",
+      "category": "overview",
+      "size_bytes": 4312
+    },
+    {
+      "path": "docs-current-cmds-prompt-hostname.md",
+      "filename": "docs-current-cmds-prompt-hostname.md",
+      "category": "overview",
+      "size_bytes": 769
+    },
+    {
+      "path": "docs-current-cmds-prompt-login.md",
+      "filename": "docs-current-cmds-prompt-login.md",
+      "category": "overview",
+      "size_bytes": 709
+    },
+    {
+      "path": "docs-current-cmds-prompt-pwd.md",
+      "filename": "docs-current-cmds-prompt-pwd.md",
+      "category": "overview",
+      "size_bytes": 1979
+    },
+    {
+      "path": "docs-current-cmds-psub.md",
+      "filename": "docs-current-cmds-psub.md",
+      "category": "overview",
+      "size_bytes": 2027
+    },
+    {
+      "path": "docs-current-cmds-pushd.md",
+      "filename": "docs-current-cmds-pushd.md",
+      "category": "overview",
+      "size_bytes": 1477
+    },
+    {
+      "path": "docs-current-cmds-pwd.md",
+      "filename": "docs-current-cmds-pwd.md",
+      "category": "overview",
+      "size_bytes": 905
+    },
+    {
+      "path": "docs-current-cmds-random.md",
+      "filename": "docs-current-cmds-random.md",
+      "category": "overview",
+      "size_bytes": 1633
+    },
+    {
+      "path": "docs-current-cmds-read.md",
+      "filename": "docs-current-cmds-read.md",
+      "category": "overview",
+      "size_bytes": 7802
+    },
+    {
+      "path": "docs-current-cmds-realpath.md",
+      "filename": "docs-current-cmds-realpath.md",
+      "category": "overview",
+      "size_bytes": 1015
+    },
+    {
+      "path": "docs-current-cmds-return.md",
+      "filename": "docs-current-cmds-return.md",
+      "category": "overview",
+      "size_bytes": 1173
+    },
+    {
+      "path": "docs-current-cmds-set-color.md",
+      "filename": "docs-current-cmds-set-color.md",
+      "category": "overview",
+      "size_bytes": 5718
+    },
+    {
+      "path": "docs-current-cmds-set.md",
+      "filename": "docs-current-cmds-set.md",
+      "category": "overview",
+      "size_bytes": 9631
+    },
+    {
+      "path": "docs-current-cmds-source.md",
+      "filename": "docs-current-cmds-source.md",
+      "category": "overview",
+      "size_bytes": 2033
+    },
+    {
+      "path": "docs-current-cmds-status.md",
+      "filename": "docs-current-cmds-status.md",
+      "category": "overview",
+      "size_bytes": 8236
+    },
+    {
+      "path": "docs-current-cmds-string-collect.md",
+      "filename": "docs-current-cmds-string-collect.md",
+      "category": "overview",
+      "size_bytes": 1898
+    },
+    {
+      "path": "docs-current-cmds-string-escape.md",
+      "filename": "docs-current-cmds-string-escape.md",
+      "category": "overview",
+      "size_bytes": 1846
+    },
+    {
+      "path": "docs-current-cmds-string-join.md",
+      "filename": "docs-current-cmds-string-join.md",
+      "category": "overview",
+      "size_bytes": 2544
+    },
+    {
+      "path": "docs-current-cmds-string-join0.md",
+      "filename": "docs-current-cmds-string-join0.md",
+      "category": "overview",
+      "size_bytes": 2549
+    },
+    {
+      "path": "docs-current-cmds-string-length.md",
+      "filename": "docs-current-cmds-string-length.md",
+      "category": "overview",
+      "size_bytes": 1599
+    },
+    {
+      "path": "docs-current-cmds-string-lower.md",
+      "filename": "docs-current-cmds-string-lower.md",
+      "category": "overview",
+      "size_bytes": 592
+    },
+    {
+      "path": "docs-current-cmds-string-match.md",
+      "filename": "docs-current-cmds-string-match.md",
+      "category": "overview",
+      "size_bytes": 5718
+    },
+    {
+      "path": "docs-current-cmds-string-pad.md",
+      "filename": "docs-current-cmds-string-pad.md",
+      "category": "overview",
+      "size_bytes": 2160
+    },
+    {
+      "path": "docs-current-cmds-string-repeat.md",
+      "filename": "docs-current-cmds-string-repeat.md",
+      "category": "overview",
+      "size_bytes": 1691
+    },
+    {
+      "path": "docs-current-cmds-string-replace.md",
+      "filename": "docs-current-cmds-string-replace.md",
+      "category": "overview",
+      "size_bytes": 2485
+    },
+    {
+      "path": "docs-current-cmds-string-shorten.md",
+      "filename": "docs-current-cmds-string-shorten.md",
+      "category": "overview",
+      "size_bytes": 3978
+    },
+    {
+      "path": "docs-current-cmds-string-split.md",
+      "filename": "docs-current-cmds-string-split.md",
+      "category": "overview",
+      "size_bytes": 2948
+    },
+    {
+      "path": "docs-current-cmds-string-split0.md",
+      "filename": "docs-current-cmds-string-split0.md",
+      "category": "overview",
+      "size_bytes": 2937
+    },
+    {
+      "path": "docs-current-cmds-string-sub.md",
+      "filename": "docs-current-cmds-string-sub.md",
+      "category": "overview",
+      "size_bytes": 1375
+    },
+    {
+      "path": "docs-current-cmds-string-trim.md",
+      "filename": "docs-current-cmds-string-trim.md",
+      "category": "overview",
+      "size_bytes": 1097
+    },
+    {
+      "path": "docs-current-cmds-string-unescape.md",
+      "filename": "docs-current-cmds-string-unescape.md",
+      "category": "overview",
+      "size_bytes": 1848
+    },
+    {
+      "path": "docs-current-cmds-string-upper.md",
+      "filename": "docs-current-cmds-string-upper.md",
+      "category": "overview",
+      "size_bytes": 592
+    },
+    {
+      "path": "docs-current-cmds-string.md",
+      "filename": "docs-current-cmds-string.md",
+      "category": "overview",
+      "size_bytes": 34229
+    },
+    {
+      "path": "docs-current-cmds-suspend.md",
+      "filename": "docs-current-cmds-suspend.md",
+      "category": "overview",
+      "size_bytes": 702
+    },
+    {
+      "path": "docs-current-cmds-switch.md",
+      "filename": "docs-current-cmds-switch.md",
+      "category": "overview",
+      "size_bytes": 1891
+    },
+    {
+      "path": "docs-current-cmds-test.md",
+      "filename": "docs-current-cmds-test.md",
+      "category": "overview",
+      "size_bytes": 7926
+    },
+    {
+      "path": "docs-current-cmds-time.md",
+      "filename": "docs-current-cmds-time.md",
+      "category": "overview",
+      "size_bytes": 3874
+    },
+    {
+      "path": "docs-current-cmds-trap.md",
+      "filename": "docs-current-cmds-trap.md",
+      "category": "overview",
+      "size_bytes": 2049
+    },
+    {
+      "path": "docs-current-cmds-true.md",
+      "filename": "docs-current-cmds-true.md",
+      "category": "overview",
+      "size_bytes": 517
+    },
+    {
+      "path": "docs-current-cmds-type.md",
+      "filename": "docs-current-cmds-type.md",
+      "category": "overview",
+      "size_bytes": 2370
+    },
+    {
+      "path": "docs-current-cmds-ulimit.md",
+      "filename": "docs-current-cmds-ulimit.md",
+      "category": "overview",
+      "size_bytes": 4685
+    },
+    {
+      "path": "docs-current-cmds-umask.md",
+      "filename": "docs-current-cmds-umask.md",
+      "category": "overview",
+      "size_bytes": 2694
+    },
+    {
+      "path": "docs-current-cmds-vared.md",
+      "filename": "docs-current-cmds-vared.md",
+      "category": "overview",
+      "size_bytes": 705
+    },
+    {
+      "path": "docs-current-cmds-wait.md",
+      "filename": "docs-current-cmds-wait.md",
+      "category": "overview",
+      "size_bytes": 1368
+    },
+    {
+      "path": "docs-current-cmds-while.md",
+      "filename": "docs-current-cmds-while.md",
+      "category": "overview",
+      "size_bytes": 1091
+    },
+    {
+      "path": "docs-current-cmds.md",
+      "filename": "docs-current-cmds.md",
+      "category": "overview",
+      "size_bytes": 2173
+    },
+    {
+      "path": "docs-current-commands.md",
+      "filename": "docs-current-commands.md",
+      "category": "overview",
+      "size_bytes": 14927
+    },
+    {
+      "path": "docs-current-completions.md",
+      "filename": "docs-current-completions.md",
+      "category": "overview",
+      "size_bytes": 10240
+    },
+    {
+      "path": "docs-current-contributing.md",
+      "filename": "docs-current-contributing.md",
+      "category": "contributing",
+      "size_bytes": 17310
+    },
+    {
+      "path": "docs-current-design.md",
+      "filename": "docs-current-design.md",
+      "category": "architecture",
+      "size_bytes": 7525
+    },
+    {
+      "path": "docs-current-faq.md",
+      "filename": "docs-current-faq.md",
+      "category": "overview",
+      "size_bytes": 17161
+    },
+    {
+      "path": "docs-current-fish-for-bash-users.md",
+      "filename": "docs-current-fish-for-bash-users.md",
+      "category": "overview",
+      "size_bytes": 15379
+    },
+    {
+      "path": "docs-current-index.md",
+      "filename": "docs-current-index.md",
+      "category": "overview",
+      "size_bytes": 7979
+    },
+    {
+      "path": "docs-current-interactive.md",
+      "filename": "docs-current-interactive.md",
+      "category": "overview",
+      "size_bytes": 43971
+    },
+    {
+      "path": "docs-current-language.md",
+      "filename": "docs-current-language.md",
+      "category": "overview",
+      "size_bytes": 110269
+    },
+    {
+      "path": "docs-current-license.md",
+      "filename": "docs-current-license.md",
+      "category": "license",
+      "size_bytes": 43444
+    },
+    {
+      "path": "docs-current-prompt.md",
+      "filename": "docs-current-prompt.md",
+      "category": "overview",
+      "size_bytes": 8786
+    },
+    {
+      "path": "docs-current-relnotes.md",
+      "filename": "docs-current-relnotes.md",
+      "category": "overview",
+      "size_bytes": 400190
+    },
+    {
+      "path": "docs-current-terminal-compatibility.md",
+      "filename": "docs-current-terminal-compatibility.md",
+      "category": "overview",
+      "size_bytes": 11053
+    },
+    {
+      "path": "docs-current-tutorial.md",
+      "filename": "docs-current-tutorial.md",
+      "category": "overview",
+      "size_bytes": 26746
+    },
+    {
+      "path": "index.md",
+      "filename": "index.md",
+      "category": "overview",
+      "size_bytes": 18902
+    }
+  ]
+}

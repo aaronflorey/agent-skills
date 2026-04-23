@@ -8,8 +8,8 @@
 
 ## Repository Layout
 
-- Skill directories use lowercase kebab-case.
-- Each skill entry point is `<skill-name>/SKILL.md`.
+- Skill directories use lowercase kebab-case under `skills/`.
+- Each skill entry point is `skills/<skill-name>/SKILL.md`.
 - Optional supporting material belongs under `references/` or `examples/` inside that skill directory.
 
 ## Local Validation
@@ -20,7 +20,7 @@ Validate all skill frontmatter blocks:
 python3 - <<'PY'
 from pathlib import Path
 import re
-root = Path('.')
+root = Path('skills')
 required = {'name','description','version','source','license'}
 ok = True
 for f in sorted(root.glob('*/SKILL.md')):

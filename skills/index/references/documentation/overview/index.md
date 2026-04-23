@@ -1,0 +1,144 @@
+# Mirrored Documentation Index
+
+- Source root: https://fishshell.com/docs/current/index.html
+- Crawl scope: /docs/current/
+- Pages: 138
+
+- [_ - call fish’s translations¶](docs-current-cmds.md) - https://fishshell.com/docs/current/cmds/_.html
+- [abbr - manage fish abbreviations¶](docs-current-cmds-abbr.md) - https://fishshell.com/docs/current/cmds/abbr.html
+- [alias - create a function¶](docs-current-cmds-alias.md) - https://fishshell.com/docs/current/cmds/alias.html
+- [and - conditionally execute a command¶](docs-current-cmds-and.md) - https://fishshell.com/docs/current/cmds/and.html
+- [argparse - parse options passed to a fish script or function¶](docs-current-cmds-argparse.md) - https://fishshell.com/docs/current/cmds/argparse.html
+- [begin - start a new block of code¶](docs-current-cmds-begin.md) - https://fishshell.com/docs/current/cmds/begin.html
+- [bg - send jobs to background¶](docs-current-cmds-bg.md) - https://fishshell.com/docs/current/cmds/bg.html
+- [bind - handle fish key bindings¶](docs-current-cmds-bind.md) - https://fishshell.com/docs/current/cmds/bind.html
+- [block - temporarily block delivery of events¶](docs-current-cmds-block.md) - https://fishshell.com/docs/current/cmds/block.html
+- [break - stop the current inner loop¶](docs-current-cmds-break.md) - https://fishshell.com/docs/current/cmds/break.html
+- [breakpoint - launch debug mode¶](docs-current-cmds-breakpoint.md) - https://fishshell.com/docs/current/cmds/breakpoint.html
+- [builtin - run a builtin command¶](docs-current-cmds-builtin.md) - https://fishshell.com/docs/current/cmds/builtin.html
+- [case - conditionally execute a block of commands¶](docs-current-cmds-case.md) - https://fishshell.com/docs/current/cmds/case.html
+- [cd - change directory¶](docs-current-cmds-cd.md) - https://fishshell.com/docs/current/cmds/cd.html
+- [cdh - change to a recently visited directory¶](docs-current-cmds-cdh.md) - https://fishshell.com/docs/current/cmds/cdh.html
+- [command - run a program¶](docs-current-cmds-command.md) - https://fishshell.com/docs/current/cmds/command.html
+- [commandline - set or get the current command line buffer¶](docs-current-cmds-commandline.md) - https://fishshell.com/docs/current/cmds/commandline.html
+- [complete - edit command-specific tab-completions¶](docs-current-cmds-complete.md) - https://fishshell.com/docs/current/cmds/complete.html
+- [contains - test if a word is present in a list¶](docs-current-cmds-contains.md) - https://fishshell.com/docs/current/cmds/contains.html
+- [continue - skip the remainder of the current iteration of the current inner loop¶](docs-current-cmds-continue.md) - https://fishshell.com/docs/current/cmds/continue.html
+- [count - count the number of elements of a list¶](docs-current-cmds-count.md) - https://fishshell.com/docs/current/cmds/count.html
+- [dirh - print directory history¶](docs-current-cmds-dirh.md) - https://fishshell.com/docs/current/cmds/dirh.html
+- [dirs - print directory stack¶](docs-current-cmds-dirs.md) - https://fishshell.com/docs/current/cmds/dirs.html
+- [disown - remove a process from the list of jobs¶](docs-current-cmds-disown.md) - https://fishshell.com/docs/current/cmds/disown.html
+- [echo - display a line of text¶](docs-current-cmds-echo.md) - https://fishshell.com/docs/current/cmds/echo.html
+- [else - execute command if a condition is not met¶](docs-current-cmds-else.md) - https://fishshell.com/docs/current/cmds/else.html
+- [emit - emit a generic event¶](docs-current-cmds-emit.md) - https://fishshell.com/docs/current/cmds/emit.html
+- [end - end a block of commands¶](docs-current-cmds-end.md) - https://fishshell.com/docs/current/cmds/end.html
+- [eval - evaluate the specified commands¶](docs-current-cmds-eval.md) - https://fishshell.com/docs/current/cmds/eval.html
+- [exec - execute command in current process¶](docs-current-cmds-exec.md) - https://fishshell.com/docs/current/cmds/exec.html
+- [exit - exit the shell¶](docs-current-cmds-exit.md) - https://fishshell.com/docs/current/cmds/exit.html
+- [export - compatibility function for exporting variables¶](docs-current-cmds-export.md) - https://fishshell.com/docs/current/cmds/export.html
+- [false - return an unsuccessful result¶](docs-current-cmds-false.md) - https://fishshell.com/docs/current/cmds/false.html
+- [fg - bring job to foreground¶](docs-current-cmds-fg.md) - https://fishshell.com/docs/current/cmds/fg.html
+- [fish_add_path - add to the path¶](docs-current-cmds-fish-add-path.md) - https://fishshell.com/docs/current/cmds/fish_add_path.html
+- [fish_breakpoint_prompt - define the prompt when stopped at a breakpoint¶](docs-current-cmds-fish-breakpoint-prompt.md) - https://fishshell.com/docs/current/cmds/fish_breakpoint_prompt.html
+- [fish_clipboard_copy - copy text to the system’s clipboard¶](docs-current-cmds-fish-clipboard-copy.md) - https://fishshell.com/docs/current/cmds/fish_clipboard_copy.html
+- [fish_clipboard_paste - get text from the system’s clipboard¶](docs-current-cmds-fish-clipboard-paste.md) - https://fishshell.com/docs/current/cmds/fish_clipboard_paste.html
+- [fish_command_not_found - what to do when a command wasn’t found¶](docs-current-cmds-fish-command-not-found.md) - https://fishshell.com/docs/current/cmds/fish_command_not_found.html
+- [fish_config - start the web-based configuration interface¶](docs-current-cmds-fish-config.md) - https://fishshell.com/docs/current/cmds/fish_config.html
+- [fish_default_key_bindings - set emacs key bindings for fish¶](docs-current-cmds-fish-default-key-bindings.md) - https://fishshell.com/docs/current/cmds/fish_default_key_bindings.html
+- [fish_delta - compare functions and completions to the default¶](docs-current-cmds-fish-delta.md) - https://fishshell.com/docs/current/cmds/fish_delta.html
+- [fish_git_prompt - output git information for use in a prompt¶](docs-current-cmds-fish-git-prompt.md) - https://fishshell.com/docs/current/cmds/fish_git_prompt.html
+- [fish_greeting - display a welcome message in interactive shells¶](docs-current-cmds-fish-greeting.md) - https://fishshell.com/docs/current/cmds/fish_greeting.html
+- [fish_hg_prompt - output Mercurial information for use in a prompt¶](docs-current-cmds-fish-hg-prompt.md) - https://fishshell.com/docs/current/cmds/fish_hg_prompt.html
+- [fish_indent - indenter and prettifier¶](docs-current-cmds-fish-indent.md) - https://fishshell.com/docs/current/cmds/fish_indent.html
+- [fish_is_root_user - check if the current user is root¶](docs-current-cmds-fish-is-root-user.md) - https://fishshell.com/docs/current/cmds/fish_is_root_user.html
+- [fish_key_reader - explore what characters keyboard keys send¶](docs-current-cmds-fish-key-reader.md) - https://fishshell.com/docs/current/cmds/fish_key_reader.html
+- [fish_mode_prompt - define the appearance of the mode indicator¶](docs-current-cmds-fish-mode-prompt.md) - https://fishshell.com/docs/current/cmds/fish_mode_prompt.html
+- [fish_opt - create an option specification for the argparse command¶](docs-current-cmds-fish-opt.md) - https://fishshell.com/docs/current/cmds/fish_opt.html
+- [fish_prompt - define the appearance of the command line prompt¶](docs-current-cmds-fish-prompt.md) - https://fishshell.com/docs/current/cmds/fish_prompt.html
+- [fish_right_prompt - define the appearance of the right-side command line prompt¶](docs-current-cmds-fish-right-prompt.md) - https://fishshell.com/docs/current/cmds/fish_right_prompt.html
+- [fish_should_add_to_history - decide whether a command should be added to the history¶](docs-current-cmds-fish-should-add-to-history.md) - https://fishshell.com/docs/current/cmds/fish_should_add_to_history.html
+- [fish_status_to_signal - convert exit codes to human-friendly signals¶](docs-current-cmds-fish-status-to-signal.md) - https://fishshell.com/docs/current/cmds/fish_status_to_signal.html
+- [fish_svn_prompt - output Subversion information for use in a prompt¶](docs-current-cmds-fish-svn-prompt.md) - https://fishshell.com/docs/current/cmds/fish_svn_prompt.html
+- [fish_tab_title - define the terminal tab’s title¶](docs-current-cmds-fish-tab-title.md) - https://fishshell.com/docs/current/cmds/fish_tab_title.html
+- [fish_title - define the terminal’s title¶](docs-current-cmds-fish-title.md) - https://fishshell.com/docs/current/cmds/fish_title.html
+- [fish_update_completions - update completions using manual pages¶](docs-current-cmds-fish-update-completions.md) - https://fishshell.com/docs/current/cmds/fish_update_completions.html
+- [fish_vcs_prompt - output version control system information for use in a prompt¶](docs-current-cmds-fish-vcs-prompt.md) - https://fishshell.com/docs/current/cmds/fish_vcs_prompt.html
+- [fish_vi_key_bindings - set vi key bindings for fish¶](docs-current-cmds-fish-vi-key-bindings.md) - https://fishshell.com/docs/current/cmds/fish_vi_key_bindings.html
+- [fish - the friendly interactive shell¶](docs-current-cmds-fish.md) - https://fishshell.com/docs/current/cmds/fish.html
+- [for - perform a set of commands multiple times¶](docs-current-cmds-for.md) - https://fishshell.com/docs/current/cmds/for.html
+- [funced - edit a function interactively¶](docs-current-cmds-funced.md) - https://fishshell.com/docs/current/cmds/funced.html
+- [funcsave - save the definition of a function to the user’s autoload directory¶](docs-current-cmds-funcsave.md) - https://fishshell.com/docs/current/cmds/funcsave.html
+- [function - create a function¶](docs-current-cmds-function.md) - https://fishshell.com/docs/current/cmds/function.html
+- [functions - print or erase functions¶](docs-current-cmds-functions.md) - https://fishshell.com/docs/current/cmds/functions.html
+- [help - display fish documentation¶](docs-current-cmds-help.md) - https://fishshell.com/docs/current/cmds/help.html
+- [history - show and manipulate command history¶](docs-current-cmds-history.md) - https://fishshell.com/docs/current/cmds/history.html
+- [if - conditionally execute a command¶](docs-current-cmds-if.md) - https://fishshell.com/docs/current/cmds/if.html
+- [isatty - test if a file descriptor is a terminal¶](docs-current-cmds-isatty.md) - https://fishshell.com/docs/current/cmds/isatty.html
+- [jobs - print currently running jobs¶](docs-current-cmds-jobs.md) - https://fishshell.com/docs/current/cmds/jobs.html
+- [math - perform mathematics calculations¶](docs-current-cmds-math.md) - https://fishshell.com/docs/current/cmds/math.html
+- [nextd - move forward through directory history¶](docs-current-cmds-nextd.md) - https://fishshell.com/docs/current/cmds/nextd.html
+- [not - negate the exit status of a job¶](docs-current-cmds-not.md) - https://fishshell.com/docs/current/cmds/not.html
+- [open - open file in its default application¶](docs-current-cmds-open.md) - https://fishshell.com/docs/current/cmds/open.html
+- [or - conditionally execute a command¶](docs-current-cmds-or.md) - https://fishshell.com/docs/current/cmds/or.html
+- [path - manipulate and check paths¶](docs-current-cmds-path.md) - https://fishshell.com/docs/current/cmds/path.html
+- [popd - move through directory stack¶](docs-current-cmds-popd.md) - https://fishshell.com/docs/current/cmds/popd.html
+- [prevd - move backward through directory history¶](docs-current-cmds-prevd.md) - https://fishshell.com/docs/current/cmds/prevd.html
+- [printf - display text according to a format string¶](docs-current-cmds-printf.md) - https://fishshell.com/docs/current/cmds/printf.html
+- [prompt_hostname - print the hostname, shortened for use in the prompt¶](docs-current-cmds-prompt-hostname.md) - https://fishshell.com/docs/current/cmds/prompt_hostname.html
+- [prompt_login - describe the login suitable for prompt¶](docs-current-cmds-prompt-login.md) - https://fishshell.com/docs/current/cmds/prompt_login.html
+- [prompt_pwd - print pwd suitable for prompt¶](docs-current-cmds-prompt-pwd.md) - https://fishshell.com/docs/current/cmds/prompt_pwd.html
+- [psub - perform process substitution¶](docs-current-cmds-psub.md) - https://fishshell.com/docs/current/cmds/psub.html
+- [pushd - push directory to directory stack¶](docs-current-cmds-pushd.md) - https://fishshell.com/docs/current/cmds/pushd.html
+- [pwd - output the current working directory¶](docs-current-cmds-pwd.md) - https://fishshell.com/docs/current/cmds/pwd.html
+- [random - generate random number¶](docs-current-cmds-random.md) - https://fishshell.com/docs/current/cmds/random.html
+- [read - read line of input into variables¶](docs-current-cmds-read.md) - https://fishshell.com/docs/current/cmds/read.html
+- [realpath - convert a path to an absolute path without symlinks¶](docs-current-cmds-realpath.md) - https://fishshell.com/docs/current/cmds/realpath.html
+- [return - stop the current inner function¶](docs-current-cmds-return.md) - https://fishshell.com/docs/current/cmds/return.html
+- [set_color - set the terminal color¶](docs-current-cmds-set-color.md) - https://fishshell.com/docs/current/cmds/set_color.html
+- [set - display and change shell variables¶](docs-current-cmds-set.md) - https://fishshell.com/docs/current/cmds/set.html
+- [source - evaluate contents of file¶](docs-current-cmds-source.md) - https://fishshell.com/docs/current/cmds/source.html
+- [status - query fish runtime information¶](docs-current-cmds-status.md) - https://fishshell.com/docs/current/cmds/status.html
+- [string-collect - join strings into one¶](docs-current-cmds-string-collect.md) - https://fishshell.com/docs/current/cmds/string-collect.html
+- [string-escape - escape special characters¶](docs-current-cmds-string-escape.md) - https://fishshell.com/docs/current/cmds/string-escape.html
+- [string-join - join strings with delimiter¶](docs-current-cmds-string-join.md) - https://fishshell.com/docs/current/cmds/string-join.html
+- [string-join0 - join strings with zero bytes¶](docs-current-cmds-string-join0.md) - https://fishshell.com/docs/current/cmds/string-join0.html
+- [string-length - print string lengths¶](docs-current-cmds-string-length.md) - https://fishshell.com/docs/current/cmds/string-length.html
+- [string-lower - convert strings to lowercase¶](docs-current-cmds-string-lower.md) - https://fishshell.com/docs/current/cmds/string-lower.html
+- [string-match - match substrings¶](docs-current-cmds-string-match.md) - https://fishshell.com/docs/current/cmds/string-match.html
+- [string-pad - pad strings to a fixed width¶](docs-current-cmds-string-pad.md) - https://fishshell.com/docs/current/cmds/string-pad.html
+- [string-repeat - multiply a string¶](docs-current-cmds-string-repeat.md) - https://fishshell.com/docs/current/cmds/string-repeat.html
+- [string-replace - replace substrings¶](docs-current-cmds-string-replace.md) - https://fishshell.com/docs/current/cmds/string-replace.html
+- [string-shorten - shorten strings to a width, with an ellipsis¶](docs-current-cmds-string-shorten.md) - https://fishshell.com/docs/current/cmds/string-shorten.html
+- [string-split - split strings by delimiter¶](docs-current-cmds-string-split.md) - https://fishshell.com/docs/current/cmds/string-split.html
+- [string-split0 - split on zero bytes¶](docs-current-cmds-string-split0.md) - https://fishshell.com/docs/current/cmds/string-split0.html
+- [string-sub - extract substrings¶](docs-current-cmds-string-sub.md) - https://fishshell.com/docs/current/cmds/string-sub.html
+- [string-trim - remove trailing whitespace¶](docs-current-cmds-string-trim.md) - https://fishshell.com/docs/current/cmds/string-trim.html
+- [string-unescape - expand escape sequences¶](docs-current-cmds-string-unescape.md) - https://fishshell.com/docs/current/cmds/string-unescape.html
+- [string-upper - convert strings to uppercase¶](docs-current-cmds-string-upper.md) - https://fishshell.com/docs/current/cmds/string-upper.html
+- [string - manipulate strings¶](docs-current-cmds-string.md) - https://fishshell.com/docs/current/cmds/string.html
+- [suspend - suspend the current shell¶](docs-current-cmds-suspend.md) - https://fishshell.com/docs/current/cmds/suspend.html
+- [switch - conditionally execute a block of commands¶](docs-current-cmds-switch.md) - https://fishshell.com/docs/current/cmds/switch.html
+- [test - perform tests on files and text¶](docs-current-cmds-test.md) - https://fishshell.com/docs/current/cmds/test.html
+- [time - measure how long a command or block takes¶](docs-current-cmds-time.md) - https://fishshell.com/docs/current/cmds/time.html
+- [trap - perform an action when the shell receives a signal¶](docs-current-cmds-trap.md) - https://fishshell.com/docs/current/cmds/trap.html
+- [true - return a successful result¶](docs-current-cmds-true.md) - https://fishshell.com/docs/current/cmds/true.html
+- [type - locate a command and describe its type¶](docs-current-cmds-type.md) - https://fishshell.com/docs/current/cmds/type.html
+- [ulimit - set or get resource usage limits¶](docs-current-cmds-ulimit.md) - https://fishshell.com/docs/current/cmds/ulimit.html
+- [umask - set or get the file creation mode mask¶](docs-current-cmds-umask.md) - https://fishshell.com/docs/current/cmds/umask.html
+- [vared - interactively edit the value of an environment variable¶](docs-current-cmds-vared.md) - https://fishshell.com/docs/current/cmds/vared.html
+- [wait - wait for jobs to complete¶](docs-current-cmds-wait.md) - https://fishshell.com/docs/current/cmds/wait.html
+- [while - perform a set of commands multiple times¶](docs-current-cmds-while.md) - https://fishshell.com/docs/current/cmds/while.html
+- [Commands¶](docs-current-commands.md) - https://fishshell.com/docs/current/commands.html
+- [Writing your own completions¶](docs-current-completions.md) - https://fishshell.com/docs/current/completions.html
+- [Contributing To Fish¶](docs-current-contributing.md) - https://fishshell.com/docs/current/contributing.html
+- [Design¶](docs-current-design.md) - https://fishshell.com/docs/current/design.html
+- [Frequently asked questions¶](docs-current-faq.md) - https://fishshell.com/docs/current/faq.html
+- [Fish for bash users¶](docs-current-fish-for-bash-users.md) - https://fishshell.com/docs/current/fish_for_bash_users.html
+- [Introduction¶](docs-current-index.md) - https://fishshell.com/docs/current/index.html
+- [Interactive use¶](docs-current-interactive.md) - https://fishshell.com/docs/current/interactive.html
+- [The fish language¶](docs-current-language.md) - https://fishshell.com/docs/current/language.html
+- [License¶](docs-current-license.md) - https://fishshell.com/docs/current/license.html
+- [Writing your own prompt¶](docs-current-prompt.md) - https://fishshell.com/docs/current/prompt.html
+- [Release notes¶](docs-current-relnotes.md) - https://fishshell.com/docs/current/relnotes.html
+- [Terminal Compatibility¶](docs-current-terminal-compatibility.md) - https://fishshell.com/docs/current/terminal-compatibility.html
+- [Tutorial¶](docs-current-tutorial.md) - https://fishshell.com/docs/current/tutorial.html

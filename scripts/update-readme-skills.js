@@ -10,6 +10,7 @@ const INJECT_MARKER = "<!-- INJECT -->";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const repoRoot = path.resolve(__dirname, "..");
+const skillsRoot = path.join(repoRoot, "skills");
 const readmePath = path.join(repoRoot, "README.md");
 
 function normalizeScalar(value) {
@@ -111,7 +112,7 @@ async function pathExists(filePath) {
 }
 
 async function listSkills() {
-  const entries = await readdir(repoRoot, { withFileTypes: true });
+  const entries = await readdir(skillsRoot, { withFileTypes: true });
   const skills = [];
 
   for (const entry of entries) {
@@ -119,7 +120,7 @@ async function listSkills() {
       continue;
     }
 
-    const skillFile = path.join(repoRoot, entry.name, "SKILL.md");
+    const skillFile = path.join(skillsRoot, entry.name, "SKILL.md");
     if (!(await pathExists(skillFile))) {
       continue;
     }
@@ -147,7 +148,7 @@ function renderTable(skills) {
     "|---|---|",
     ...skills.map(
       (skill) =>
-        `| [${escapeCell(skill.name)}](${encodeURI(skill.dir)}/) | ${escapeCell(skill.description)} |`,
+        `| [${escapeCell(skill.name)}](skills/${encodeURI(skill.dir)}/) | ${escapeCell(skill.description)} |`,
     ),
   ].join("\n");
 }

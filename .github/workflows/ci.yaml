@@ -36,7 +36,7 @@ jobs:
           from pathlib import Path
           import re
 
-          root = Path('.')
+          root = Path('skills')
           required = {'name', 'description', 'version', 'source', 'license'}
           ok = True
 

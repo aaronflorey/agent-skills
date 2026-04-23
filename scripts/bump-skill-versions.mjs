@@ -99,11 +99,11 @@ function skillDirsForPaths(paths) {
 
   for (const filePath of paths) {
     const parts = filePath.split("/");
-    if (parts.length < 2) {
+    if (parts.length < 3 || parts[0] !== "skills") {
       continue;
     }
 
-    const skillDir = parts[0];
+    const skillDir = parts[1];
     skillDirs.add(skillDir);
   }
 
@@ -115,7 +115,7 @@ async function existingSkillDirs(paths) {
   const existing = [];
 
   for (const skillDir of candidates) {
-    const skillFile = path.join(repoRoot, skillDir, "SKILL.md");
+    const skillFile = path.join(repoRoot, "skills", skillDir, "SKILL.md");
     const check = await gitAllowFailure("ls-files", "--error-unmatch", path.relative(repoRoot, skillFile));
 
     if (check.ok) {
@@ -152,7 +152,7 @@ async function main() {
   const bumped = [];
 
   for (const skillDir of await existingSkillDirs(stagedPaths)) {
-    const skillFile = path.join(repoRoot, skillDir, "SKILL.md");
+    const skillFile = path.join(repoRoot, "skills", skillDir, "SKILL.md");
     const relativeSkillFile = path.relative(repoRoot, skillFile);
 
     const unstaged = await git("diff", "--name-only", "--", relativeSkillFile);
