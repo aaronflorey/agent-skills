@@ -1,3 +1,4 @@
 .skill-meta.json
 .skillseeker-cache
+node_modules
 output
