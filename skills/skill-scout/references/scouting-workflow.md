@@ -12,7 +12,9 @@ that supplied this skill unless it is also the user's active project.
 
 ## 2. Inspect High-Signal Files
 
-Check the smallest useful set first:
+Run `brief --json` first when the command is installed. Use its languages,
+tools, dependencies, and config file evidence to seed the search. Then verify
+the smallest useful set of project files before ranking a technology P0/P1:
 
 | Ecosystem | High-signal files |
 |---|---|

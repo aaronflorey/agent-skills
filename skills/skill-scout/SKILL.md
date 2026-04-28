@@ -15,19 +15,21 @@ repository that originally distributed this skill.
 ## Workflow
 
 1. Confirm the target project root.
-2. Inspect manifests and config files to identify high-value technologies.
-3. Rank frameworks, major packages, platforms, and design systems by impact.
-4. Research matching skills from marketplaces, curated catalogs, official repos,
+2. Run `brief --json` when available to seed the technology inventory.
+3. Inspect manifests and config files to verify high-value technologies.
+4. Rank frameworks, major packages, platforms, and design systems by impact.
+5. Research matching skills from marketplaces, curated catalogs, official repos,
    and GitHub skill repositories.
-5. Add Taste Skill for projects with frontend, product UI, marketing UI, design
+6. Add Taste Skill for projects with frontend, product UI, marketing UI, design
    systems, mobile UI, or visual redesign work.
-6. Write or update `kasetto.yaml` with only verified Kasetto-compatible sources.
-7. Run `kst sync --config kasetto.yaml --dry-run` when `kst` is available.
+7. Write or update `kasetto.yaml` with only verified Kasetto-compatible sources.
+8. Run `kst sync --config kasetto.yaml --dry-run` when `kst` is available.
 
 Read these references before editing config:
 
 | Task | Read |
 |---|---|
+| `brief --json` discovery | `references/brief-discovery.md` |
 | Project detection and prioritization | `references/scouting-workflow.md` |
 | Kasetto config rules and examples | `references/kasetto-config.md` |
 
@@ -35,6 +37,9 @@ Read these references before editing config:
 
 - Treat direct dependencies, framework config files, and runtime platform config
   as stronger evidence than filenames or transitive lockfile entries.
+- Treat `brief --json` as discovery evidence, not final proof. Promote findings
+  only after verification from direct dependencies, config files, imports, or
+  source files.
 - Prefer official, highly adopted, recently maintained, or already-trusted skill
   repositories over anonymous marketplace entries.
 - Do not add a skill unless you can identify a Git or local source that Kasetto
