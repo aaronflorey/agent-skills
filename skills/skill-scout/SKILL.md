@@ -1,7 +1,7 @@
 ---
 name: skill-scout
 description: Analyze the current target project, identify high-value frameworks and major dependencies, research popular agent skills for that stack, and write or update a Kasetto config. Use when asked to scout, recommend, install, or manage project-specific agent skills with kasetto, kst, or kasetto.yaml.
-version: 1.0.1
+version: 1.0.2
 source: local
 license: MIT
 ---
