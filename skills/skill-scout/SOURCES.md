@@ -19,6 +19,8 @@
   avoid accidental self-analysis when distributed from a skill library.
 - The Kasetto guidance forbids adding marketplace-only identifiers because
   Kasetto expects Git host URLs or local paths.
+- Online research is mandatory for P0/P1 technologies so agents do not stop at
+  currently installed local skills and miss better project-specific sources.
 - Taste Skill is recommended only when the target project has a design-bearing UI
   surface or the user requests design work.
 - `brief --json` is used as a first-pass discovery source, but findings still
@@ -32,3 +34,5 @@
   pinned refs, and dry-run validation.
 - Discovery guidance covers both automated `brief --json` summaries and manual
   fallback when `brief` is unavailable or incomplete.
+- Research guidance requires external source attempts and explicit user approval
+  before producing local-only recommendations.

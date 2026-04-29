@@ -31,6 +31,7 @@ Read these references before editing config:
 |---|---|
 | `brief --json` discovery | `references/brief-discovery.md` |
 | Project detection and prioritization | `references/scouting-workflow.md` |
+| Mandatory online skill research | `references/online-research.md` |
 | Kasetto config rules and examples | `references/kasetto-config.md` |
 
 ## Discovery Rules
@@ -66,7 +67,11 @@ Prioritize these findings when present:
 
 ## Marketplace Research
 
-Use multiple sources when possible:
+Research online before selecting skills for every P0/P1 technology. Local
+installed skills are useful candidates, but they are not a complete search.
+
+Use at least two external sources per P0/P1 technology when network/search tools
+are available:
 
 - LobeHub Skills Marketplace:
   `npx -y @lobehub/market-cli skills search --q "<technology>" --sort installCount --order desc --output json`
@@ -78,6 +83,9 @@ Use multiple sources when possible:
 
 For each candidate, capture the source URL, skill name, matched technology,
 evidence, and reason it should or should not be added.
+
+If online search is unavailable, do not silently produce a local-only result.
+Report the limitation and ask before continuing with only installed skills.
 
 ## Kasetto Output Contract
 

@@ -8,6 +8,7 @@ tools:
   write: true
   edit: true
   skill: true
+  websearch: true
   webfetch: true
   question: true
 ---
@@ -32,10 +33,14 @@ Discovery requirements:
   mobile UI, design system, Storybook, Figma-adjacent, redesign, or visual polish work
 
 Research requirements:
-- research matching skills for each P0/P1 technology using live sources when possible
+- research matching skills online for every P0/P1 technology before choosing skills
+- use at least two external sources per P0/P1 technology when network/search tools are available
+- do not stop after checking installed skills in `~/.agents/skills`, `.agents/skills`, or other local skill folders
+- treat local installed skills as one candidate source, not as the complete search space
 - prefer official, trusted, maintained, or already-known skill repositories
 - only add skills with a Git or local source that Kasetto can sync
 - defer marketplace-only, opaque, paid, private, or unaudited candidates unless the user approves
+- if online search is unavailable, say so explicitly and ask before producing a local-only recommendation
 - record why each selected skill was added and why notable candidates were deferred
 
 Kasetto requirements:

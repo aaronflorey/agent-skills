@@ -71,13 +71,20 @@ for design work.
 
 ## 5. Research Candidate Skills
 
-For each P0/P1 technology, search at least two sources when possible:
+For each P0/P1 technology, search online before choosing skills. Use
+`references/online-research.md` for the required search sequence.
+
+Search at least two external sources when network/search tools are available:
 
 - Marketplace query by package name and ecosystem name.
 - Official vendor/team skill repository.
 - Curated `awesome-agent-skills` style catalog.
 - GitHub search for `SKILL.md` and the technology name.
 - Existing local available skills.
+
+Installed local skills count as candidate evidence, not external research. Do
+not choose only from local skills unless online search is unavailable and the
+user approves a local-only result.
 
 Score each candidate from 0 to 5:
 
