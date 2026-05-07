@@ -1,0 +1,430 @@
+# Getting Started ​
+
+Source: https://bootstrap-vue-next.github.io/bootstrap-vue-next/docs
+
+##### On this page
+
+-   [Why BootstrapVueNext? ​](#why-bootstrapvuenext)
+    
+-   [Migrating from BootstrapVue ​](#migrating-from-bootstrapvue)
+    
+-   [Contribute and Support 🙌 ​](#contribute-and-support-🙌)
+    
+-   [Install ​](#install)
+    -   [Installation - Vue.js ​](#installation-vue-js)
+        
+-   [Setup ​](#setup)
+    -   [BApp Component (Recommended) ​](#bapp-component-recommended)
+        
+    -   [Plugin Approach (Legacy) ​](#plugin-approach-legacy)
+        
+    -   [Automatic Registering of Components ​](#automatic-registering-of-components)
+        -   [Aliasing ​](#aliasing)
+            
+    -   [Installation - Nuxt.js 3 ​](#installation-nuxt-js-3)
+        
+    -   [Installation - TypeScript ​](#installation-typescript)
+        
+    -   [Installation - CDN ​](#installation-cdn)
+        
+-   [Tree-shaking ​](#tree-shaking)
+    -   [Tree-shake CSS ​](#tree-shake-css)
+        
+    -   [Tree-shaking with BApp ​](#tree-shaking-with-bapp)
+        
+    -   [Exposed methods and tree-shaking ​](#exposed-methods-and-tree-shaking)
+        
+-   [Comparison with BootstrapVue ​](#comparison-with-bootstrapvue)
+    
+
+# Getting Started [​](#getting-started)
+
+Get started with BootstrapVueNext and Bootstrap `v5`, the world's most popular framework for building responsive, mobile-first sites.
+
+[Edit this page on GitHub](https://github.com/bootstrap-vue-next/bootstrap-vue-next/edit/main/apps/docs/src/docs.md)
+
+## Why BootstrapVueNext? [​](#why-bootstrapvuenext)
+
+BootstrapVueNext is an attempt to have the [BootstrapVue](https://bootstrap-vue.github.io/bootstrap-vue/) components in Vue3, Bootstrap 5, and typescript. Another goal is to have the components written in a simple and readable way for a better developer experience.
+
+## Migrating from BootstrapVue [​](#migrating-from-bootstrapvue)
+
+If you are migrating from BootstrapVue, please refer to our [migration guide](/bootstrap-vue-next/docs/migration-guide.html)
+
+## Contribute and Support 🙌 [​](#contribute-and-support-🙌)
+
+This project is in the **late stages of alpha version**. While most features are functioning as expected, you may still encounter some issues. Your contributions at this stage can be particularly impactful in shaping the final product. If you're interested in contributing, here's how you can help:
+
+-   submit an [issue](https://github.com/bootstrap-vue-next/bootstrap-vue-next/issues)
+-   or better, a [pull request](https://github.com/bootstrap-vue-next/bootstrap-vue-next/pulls)
+
+Read our [Contribution Guide](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md) on how to start helping.
+
+## Install [​](#install)
+
+### Installation - Vue.js [​](#installation-vue-js)
+
+-   First install the package
+
+PNPMBUNYARNNPM
+
+bash
+
+```
+pnpm add bootstrap bootstrap-vue-next
+```
+
+bash
+
+```
+bun add bootstrap bootstrap-vue-next
+```
+
+bash
+
+```
+yarn add bootstrap bootstrap-vue-next
+```
+
+bash
+
+```
+npm i bootstrap bootstrap-vue-next
+```
+
+## Setup [​](#setup)
+
+Bootstrap-vue-next **requires** one of the following setup methods for the library to function properly. The new **BApp component approach** is recommended for new projects, while the **plugin approach** is still supported for backward compatibility. Both approaches work for application mounting and unit testing.
+
+Required Step
+
+You **must** use either the `BApp` component or the `createBootstrap` plugin. Without one of these, the library's internal services (orchestrators, registries, RTL support, etc.) will not be available and components that depend on them will not work correctly.
+
+### BApp Component (Recommended) [​](#bapp-component-recommended)
+
+The modern way to setup bootstrap-vue-next using the `BApp` component:
+
+See the [BApp component documentation](/bootstrap-vue-next/docs/components/app.html) for complete configuration options.
+
+vue
+
+```
+<!-- App.vue -->
+<template>
+  <BApp>
+    <!-- Your application content -->
+    <router-view />
+  </BApp>
+</template>
+
+<script setup lang="ts">
+import {BApp} from 'bootstrap-vue-next'
+</script>
+```
+
+typescript
+
+```
+// main.ts
+import {createApp} from 'vue'
+import App from './App.vue'
+
+// Add the necessary CSS
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+
+const app = createApp(App)
+app.mount('#app')
+```
+
+Vue Provide/Inject Limitation
+
+Composables like `useToast()`, `useModal()`, and `usePopover()` **cannot** be called in the same component that declares `<BApp>`. They rely on values provided by `BApp`, and Vue's `inject` only works in child components — not in the component that calls `provide` itself.
+
+To use these composables, place `<BApp>` at least one component level above where the composables are called. See the [BApp documentation](/bootstrap-vue-next/docs/components/app.html#working-with-composables) for more details.
+
+### Plugin Approach (Legacy) [​](#plugin-approach-legacy)
+
+The traditional plugin-based setup is still supported:
+
+typescript
+
+```
+// main.js/ts
+import {createApp} from 'vue'
+import {createBootstrap} from 'bootstrap-vue-next/plugins/createBootstrap'
+
+// Add the necessary CSS
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+
+const app = createApp(App)
+app.use(createBootstrap()) // Important
+app.mount('#app')
+```
+
+Now, you can begin importing and using components
+
+WARNING
+
+If you are using individual plugins such as `modalControllerPlugin`, `toastControllerPlugin`, or `popoverControllerPlugin`, please see the [`BApp` documentation](/bootstrap-vue-next/docs/components/app.html#backward-compatibility) for additional details.
+
+### Automatic Registering of Components [​](#automatic-registering-of-components)
+
+In Addition to Setup
+
+This step is **optional** and is used **in addition to** the [BApp](#bapp-component-recommended) or [Plugin](#plugin-approach-legacy) setup above. Its sole purpose is to allow automatic importing of components — you still need the BApp or plugin setup for the library to function.
+
+To have components automatically registered **and** tree-shaken, we recommend [unplugin-vue-components](https://github.com/antfu/unplugin-vue-components). Read their docs for additional details. We supply a resolver
+
+PNPMBUNYARNNPM
+
+bash
+
+```
+pnpm add unplugin-vue-components -D
+```
+
+bash
+
+```
+bun add unplugin-vue-components -D
+```
+
+bash
+
+```
+yarn add unplugin-vue-components -D
+```
+
+bash
+
+```
+npm i unplugin-vue-components -D
+```
+
+The following is an example of a basic `vite.config.js/ts`. All you need to do is add **Components** to the Vite **plugins** option, with the additional imports:
+
+ts
+
+```
+// vite.config.js/ts
+import {defineConfig} from 'vite'
+import vue from '@vitejs/plugin-vue'
+import Components from 'unplugin-vue-components/vite'
+import {BootstrapVueNextResolver} from 'bootstrap-vue-next/resolvers'
+
+export default defineConfig({
+  plugins: [
+    vue(),
+    Components({
+      resolvers: [BootstrapVueNextResolver()],
+    }),
+  ],
+})
+```
+
+#### Aliasing [​](#aliasing)
+
+With the `BootstrapVueNextResolver` we also have an option for aliasing components like so:
+
+ts
+
+```
+import {Components} from 'unplugin-vue-components'
+import {BootstrapVueNextResolver} from 'bootstrap-vue-next/resolvers'
+
+Components({
+  resolvers: [
+    BootstrapVueNextResolver({
+      aliases: {
+        BInput: 'BFormInput',
+      },
+    }),
+  ],
+})
+```
+
+### Installation - Nuxt.js 3 [​](#installation-nuxt-js-3)
+
+In Addition to Setup
+
+The Nuxt module handles **component auto-registration** and **tree-shaking** automatically, so you do **not** need the [Automatic Registering of Components](#automatic-registering-of-components) step. However, you still need to set up the library using [BApp](#bapp-component-recommended) or the [Plugin approach](#plugin-approach-legacy) in your Nuxt application for the library's internal services to work.
+
+In your Nuxt3 application, install the necessary packages for `bootstrap-vue-next`.
+
+PNPMBUNYARNNPM
+
+bash
+
+```
+pnpm add bootstrap bootstrap-vue-next @bootstrap-vue-next/nuxt
+```
+
+bash
+
+```
+bun add bootstrap bootstrap-vue-next @bootstrap-vue-next/nuxt
+```
+
+bash
+
+```
+yarn add bootstrap bootstrap-vue-next @bootstrap-vue-next/nuxt
+```
+
+bash
+
+```
+npm i bootstrap bootstrap-vue-next @bootstrap-vue-next/nuxt
+```
+
+Open your `nuxt.config.js/ts` file and configure your application to use `bootstrap-vue-next`. The components will be imported automatically as needed.
+
+ts
+
+```
+// nuxt.config.js/ts
+export default defineNuxtConfig({
+  modules: ['@bootstrap-vue-next/nuxt'],
+  css: ['bootstrap/dist/css/bootstrap.min.css'],
+})
+```
+
+Enjoy it in your app without manual imports, and automatic tree-shaking.
+
+vue
+
+```
+<template>
+  <div>
+    <BButton variant="primary" @click="show = !show">Click me</BButton>
+    <BModal v-model="show">Test</BModal>
+  </div>
+</template>
+
+<script setup lang="ts">
+const show = ref(false)
+</script>
+```
+
+You can customize the options with the bootstrapVueNext key in your nuxt.config.
+
+ts
+
+```
+// nuxt.config.js/ts
+export default defineNuxtConfig({
+  modules: ['@bootstrap-vue-next/nuxt'],
+  bootstrapVueNext: {
+    composables: true, // Will include all composables
+    // composables: {useBreadcrumb: true, useColorMode: true, all: false}, // Will include only useBreadcrumb & useColorMode
+    // composables: {useBreadcrumb: false, useColorMode: false, all: true} // Will include everything except useBreadcrumb & useColorMode
+    directives: {all: true}, // Will include all directives
+    css: true, // Will include the module's CSS. If set to false, you can add the CSS manually in the 'css' property below
+  },
+  css: [
+    // 'bootstrap/dist/css/bootstrap.min.css' // Not necessary if `css: true`
+  ],
+})
+```
+
+This is mainly for the purpose of naming conflicts with other imports. It should not affect tree-shaking
+
+### Installation - TypeScript [​](#installation-typescript)
+
+In Addition to Setup
+
+This step is **optional** and is used **in addition to** the setup above. These peer dependencies add proper type definitions to the package. Without them, the affected types default to `any`. If you are not using the components or features that rely on these packages, you are unlikely to encounter any issues.
+
+This package uses optional peer dependencies to generate type definitions for enhanced functionality. These dependencies are not installed by default to avoid unnecessary bloat in projects that don't require these features. However, if you want full type support, you need to manually install the required packages.
+
+PNPMBUNYARNNPM
+
+bash
+
+```
+pnpm add @floating-ui/vue @vueuse/core vue-router
+```
+
+bash
+
+```
+bun add @floating-ui/vue @vueuse/core vue-router
+```
+
+bash
+
+```
+yarn add @floating-ui/vue @vueuse/core vue-router
+```
+
+bash
+
+```
+npm i @floating-ui/vue @vueuse/core vue-router
+```
+
+### Installation - CDN [​](#installation-cdn)
+
+BootstrapVueNext is available through `jsdelivr`. You can add the package by using the following
+
+html
+
+```
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-vue-next@{{version}}/dist/bootstrap-vue-next.umd.min.js"></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap-vue-next@{{version}}/dist/bootstrap-vue-next.min.css"
+  rel="stylesheet"
+/>
+```
+
+-   **NOTE** Do not forget to set the version!
+
+Note: Links should be loaded after Bootstrap and Vue
+
+Alternatively the ESM package is available as well
+
+html
+
+```
+<script type="module">
+  import bootstrapVueNext from 'https://cdn.jsdelivr.net/npm/bootstrap-vue-next@{{version}}/+esm'
+</script>
+```
+
+## Tree-shaking [​](#tree-shaking)
+
+If you are concerned about the size of your application, you should utilize [tree-shaking](https://vuejs.org/guide/best-practices/performance#bundle-size-and-tree-shaking). Below are some pointers on optimizing tree-shaking in the context of BootstrapVueNext.
+
+### Tree-shake CSS [​](#tree-shake-css)
+
+If you are using one of the preferred installation methods, JS will be tree-shaken by default. The one thing we are not able to do automatically is optimize CSS. Methods like PurgeCSS are not ideal because of a limitation with the dynamic nature of class renderings and Vue (Problematic code like: `[btn-${props.variant}]: props.variant !== undefined`). With that being said, BootstrapVueNext does not handle CSS imports from Bootstrap, we only add some additional CSS ourselves. So, using a method such as [Lean Sass Imports](https://getbootstrap.com/docs/5.3/customize/optimize/#lean-sass-imports) from the Bootstrap documentation is likely the best way to achieve the tiniest possible application size. Though it is not automatic, it should prove the safest bet for minifying your application.
+
+### Tree-shaking with BApp [​](#tree-shaking-with-bapp)
+
+When using the **BApp component approach**, you automatically get optimal tree-shaking as only the components and composables you actually use are included in your bundle.
+
+When using the **plugin approach**, `createBootstrap` is a utility that provides everything required for the library to work. However, some plugins may not be needed and can be individually imported. All plugins are appended with `Plugin` (`registryPlugin`, `orchestratorPlugin`, etc.), so you can select only what is needed.
+
+The `createBootstrap` plugin is approximately ~20kb gzipped, with orchestrator functionality accounting for the majority. Use individual plugin imports if you want the tiniest possible bundle size.
+
+Note: The `bootstrapPlugin` is required by all components if one chooses to use this installation method
+
+### Exposed methods and tree-shaking [​](#exposed-methods-and-tree-shaking)
+
+In order to correctly type exposed methods, you need to explicitly import them from BootstrapVueNext. When doing this, import the component (not just the type) and use the full path to improve tree-shaking.
+
+vue
+
+```
+<script setup lang="ts">
+import {BTab} from 'bootstrap-vue-next/components/BTabs'
+</script>
+```
+
+## Comparison with BootstrapVue [​](#comparison-with-bootstrapvue)
+
+BootstrapVue is the parent project for which this is based on. We consider BootstrapVue as the best implementation of Bootstrap `v4`. We strive for a full compatibility list for BootstrapVue. However, due to the nature of the rewrite, some features may be missing or changed. If anyone has spotted a missing compatibility feature, we request that you submit a GitHub issue or contribute to the [parity report](https://github.com/bootstrap-vue-next/bootstrap-vue-next/blob/main/CONTRIBUTING.md#help-verify-bootstrapvue-and-bootstrap-v5-parity).
+
+If you are migrating from BootstrapVue, please refer to our [migration guide](/bootstrap-vue-next/docs/migration-guide.html)

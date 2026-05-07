@@ -14,6 +14,15 @@ For each verified P0/P1 technology:
 4. Read candidate `SKILL.md` content when feasible before adding it.
 5. Add only candidates with Git or local sources that Kasetto can sync.
 
+Start with SkillsHub resolve for fast intent-to-skill discovery:
+
+```bash
+bash references/resolve-skillshub.sh "<technology> <project goal>"
+```
+
+Then cross-check top candidates via GitHub or vendor sources before adding to
+`kasetto.yaml`.
+
 Use at least two external sources when network/search tools are available. If
 only one source is available, report that limitation in the final response.
 
@@ -34,6 +43,15 @@ Marketplace example:
 
 ```bash
 npx -y @lobehub/market-cli skills search --q "<technology>" --sort installCount --order desc --output json
+```
+
+SkillsHub resolve example:
+
+```bash
+curl -G "https://skillshub.wtf/api/v1/skills/resolve" \
+  --data-urlencode "task=build cloudflare workers with wrangler and tests" \
+  --data-urlencode "limit=10" \
+  --data-urlencode "threshold=0.3"
 ```
 
 GitHub CLI examples when `gh` is available:
@@ -69,5 +87,5 @@ need approval before writing a local-only kasetto.yaml.
 If online research succeeds, report searched sources:
 
 ```markdown
-Online research: searched LobeHub, GitHub code search, and existing local skills.
+Online research: searched SkillsHub resolve, LobeHub, GitHub code search, and existing local skills.
 ```

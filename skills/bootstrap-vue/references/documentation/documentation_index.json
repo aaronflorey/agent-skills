@@ -1,0 +1,604 @@
+{
+  "total_files": 85,
+  "categories": {
+    "overview": [
+      "bootstrap-vue-next-docs-components-accordion.md",
+      "bootstrap-vue-next-docs-components-alert.md",
+      "bootstrap-vue-next-docs-components-app.md",
+      "bootstrap-vue-next-docs-components-aspect.md",
+      "bootstrap-vue-next-docs-components-autocomplete.md",
+      "bootstrap-vue-next-docs-components-avatar.md",
+      "bootstrap-vue-next-docs-components-badge.md",
+      "bootstrap-vue-next-docs-components-breadcrumb.md",
+      "bootstrap-vue-next-docs-components-button-group.md",
+      "bootstrap-vue-next-docs-components-button-toolbar.md",
+      "bootstrap-vue-next-docs-components-button.md",
+      "bootstrap-vue-next-docs-components-card.md",
+      "bootstrap-vue-next-docs-components-carousel.md",
+      "bootstrap-vue-next-docs-components-collapse.md",
+      "bootstrap-vue-next-docs-components-dropdown.md",
+      "bootstrap-vue-next-docs-components-form-checkbox.md",
+      "bootstrap-vue-next-docs-components-form-file.md",
+      "bootstrap-vue-next-docs-components-form-group.md",
+      "bootstrap-vue-next-docs-components-form-input.md",
+      "bootstrap-vue-next-docs-components-form-otp.md",
+      "bootstrap-vue-next-docs-components-form-radio.md",
+      "bootstrap-vue-next-docs-components-form-rating.md",
+      "bootstrap-vue-next-docs-components-form-select.md",
+      "bootstrap-vue-next-docs-components-form-spinbutton.md",
+      "bootstrap-vue-next-docs-components-form-tags.md",
+      "bootstrap-vue-next-docs-components-form-textarea.md",
+      "bootstrap-vue-next-docs-components-form.md",
+      "bootstrap-vue-next-docs-components-grid-system.md",
+      "bootstrap-vue-next-docs-components-image.md",
+      "bootstrap-vue-next-docs-components-input-group.md",
+      "bootstrap-vue-next-docs-components-link.md",
+      "bootstrap-vue-next-docs-components-list-group.md",
+      "bootstrap-vue-next-docs-components-modal.md",
+      "bootstrap-vue-next-docs-components-nav.md",
+      "bootstrap-vue-next-docs-components-navbar.md",
+      "bootstrap-vue-next-docs-components-offcanvas.md",
+      "bootstrap-vue-next-docs-components-overlay.md",
+      "bootstrap-vue-next-docs-components-pagination.md",
+      "bootstrap-vue-next-docs-components-placeholder.md",
+      "bootstrap-vue-next-docs-components-popover.md",
+      "bootstrap-vue-next-docs-components-progress.md",
+      "bootstrap-vue-next-docs-components-sample.md",
+      "bootstrap-vue-next-docs-components-spinner.md",
+      "bootstrap-vue-next-docs-components-table.md",
+      "bootstrap-vue-next-docs-components-tabs.md",
+      "bootstrap-vue-next-docs-components-toast.md",
+      "bootstrap-vue-next-docs-components-tooltip.md",
+      "bootstrap-vue-next-docs-components.md",
+      "bootstrap-vue-next-docs-composables-usebreadcrumb.md",
+      "bootstrap-vue-next-docs-composables-usecolormode.md",
+      "bootstrap-vue-next-docs-composables-usemodal.md",
+      "bootstrap-vue-next-docs-composables-usepopover.md",
+      "bootstrap-vue-next-docs-composables-usescrollspy.md",
+      "bootstrap-vue-next-docs-composables-usetoast.md",
+      "bootstrap-vue-next-docs-composables-usetoggle.md",
+      "bootstrap-vue-next-docs-composables.md",
+      "bootstrap-vue-next-docs-configurations-customizing-styles.md",
+      "bootstrap-vue-next-docs-configurations-global-options.md",
+      "bootstrap-vue-next-docs-configurations.md",
+      "bootstrap-vue-next-docs-directives-bcolormode.md",
+      "bootstrap-vue-next-docs-directives-bmodal.md",
+      "bootstrap-vue-next-docs-directives-bpopover.md",
+      "bootstrap-vue-next-docs-directives-btoggle.md",
+      "bootstrap-vue-next-docs-directives-btooltip.md",
+      "bootstrap-vue-next-docs-directives.md",
+      "bootstrap-vue-next-docs-icons.md",
+      "bootstrap-vue-next-docs-migration-guide.md",
+      "bootstrap-vue-next-docs-reference-accessibility.md",
+      "bootstrap-vue-next-docs-reference-color-variants.md",
+      "bootstrap-vue-next-docs-reference-form-validation.md",
+      "bootstrap-vue-next-docs-reference-images.md",
+      "bootstrap-vue-next-docs-reference-router-links.md",
+      "bootstrap-vue-next-docs-reference-settings.md",
+      "bootstrap-vue-next-docs-reference-size-props-and-classes.md",
+      "bootstrap-vue-next-docs-reference-spacing-classes.md",
+      "bootstrap-vue-next-docs-reference-starter-templates.md",
+      "bootstrap-vue-next-docs-reference-theming-bootstrap.md",
+      "bootstrap-vue-next-docs-reference-third-party-libraries.md",
+      "bootstrap-vue-next-docs-reference-type-safe-options.md",
+      "bootstrap-vue-next-docs-reference-utility-classes.md",
+      "bootstrap-vue-next-docs-reference.md",
+      "bootstrap-vue-next-docs-types.md",
+      "bootstrap-vue-next-docs.md",
+      "bootstrap-vue-next.md",
+      "index.md"
+    ]
+  },
+  "files": [
+    {
+      "path": "bootstrap-vue-next-docs-components-accordion.md",
+      "filename": "bootstrap-vue-next-docs-components-accordion.md",
+      "category": "overview",
+      "size_bytes": 17854
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-alert.md",
+      "filename": "bootstrap-vue-next-docs-components-alert.md",
+      "category": "overview",
+      "size_bytes": 27401
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-app.md",
+      "filename": "bootstrap-vue-next-docs-components-app.md",
+      "category": "overview",
+      "size_bytes": 14112
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-aspect.md",
+      "filename": "bootstrap-vue-next-docs-components-aspect.md",
+      "category": "overview",
+      "size_bytes": 2478
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-autocomplete.md",
+      "filename": "bootstrap-vue-next-docs-components-autocomplete.md",
+      "category": "overview",
+      "size_bytes": 19453
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-avatar.md",
+      "filename": "bootstrap-vue-next-docs-components-avatar.md",
+      "category": "overview",
+      "size_bytes": 29305
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-badge.md",
+      "filename": "bootstrap-vue-next-docs-components-badge.md",
+      "category": "overview",
+      "size_bytes": 10948
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-breadcrumb.md",
+      "filename": "bootstrap-vue-next-docs-components-breadcrumb.md",
+      "category": "overview",
+      "size_bytes": 10376
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-button-group.md",
+      "filename": "bootstrap-vue-next-docs-components-button-group.md",
+      "category": "overview",
+      "size_bytes": 5644
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-button-toolbar.md",
+      "filename": "bootstrap-vue-next-docs-components-button-toolbar.md",
+      "category": "overview",
+      "size_bytes": 6527
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-button.md",
+      "filename": "bootstrap-vue-next-docs-components-button.md",
+      "category": "overview",
+      "size_bytes": 16261
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-card.md",
+      "filename": "bootstrap-vue-next-docs-components-card.md",
+      "category": "overview",
+      "size_bytes": 43044
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-carousel.md",
+      "filename": "bootstrap-vue-next-docs-components-carousel.md",
+      "category": "overview",
+      "size_bytes": 26991
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-collapse.md",
+      "filename": "bootstrap-vue-next-docs-components-collapse.md",
+      "category": "overview",
+      "size_bytes": 15959
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-dropdown.md",
+      "filename": "bootstrap-vue-next-docs-components-dropdown.md",
+      "category": "overview",
+      "size_bytes": 63666
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-checkbox.md",
+      "filename": "bootstrap-vue-next-docs-components-form-checkbox.md",
+      "category": "overview",
+      "size_bytes": 38720
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-file.md",
+      "filename": "bootstrap-vue-next-docs-components-form-file.md",
+      "category": "overview",
+      "size_bytes": 18792
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-group.md",
+      "filename": "bootstrap-vue-next-docs-components-form-group.md",
+      "category": "overview",
+      "size_bytes": 25075
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-input.md",
+      "filename": "bootstrap-vue-next-docs-components-form-input.md",
+      "category": "overview",
+      "size_bytes": 25971
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-otp.md",
+      "filename": "bootstrap-vue-next-docs-components-form-otp.md",
+      "category": "overview",
+      "size_bytes": 9882
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-radio.md",
+      "filename": "bootstrap-vue-next-docs-components-form-radio.md",
+      "category": "overview",
+      "size_bytes": 30488
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-rating.md",
+      "filename": "bootstrap-vue-next-docs-components-form-rating.md",
+      "category": "overview",
+      "size_bytes": 21587
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-select.md",
+      "filename": "bootstrap-vue-next-docs-components-form-select.md",
+      "category": "overview",
+      "size_bytes": 27160
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-spinbutton.md",
+      "filename": "bootstrap-vue-next-docs-components-form-spinbutton.md",
+      "category": "overview",
+      "size_bytes": 16772
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-tags.md",
+      "filename": "bootstrap-vue-next-docs-components-form-tags.md",
+      "category": "overview",
+      "size_bytes": 46362
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form-textarea.md",
+      "filename": "bootstrap-vue-next-docs-components-form-textarea.md",
+      "category": "overview",
+      "size_bytes": 20117
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-form.md",
+      "filename": "bootstrap-vue-next-docs-components-form.md",
+      "category": "overview",
+      "size_bytes": 29266
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-grid-system.md",
+      "filename": "bootstrap-vue-next-docs-components-grid-system.md",
+      "category": "overview",
+      "size_bytes": 38041
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-image.md",
+      "filename": "bootstrap-vue-next-docs-components-image.md",
+      "category": "overview",
+      "size_bytes": 17432
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-input-group.md",
+      "filename": "bootstrap-vue-next-docs-components-input-group.md",
+      "category": "overview",
+      "size_bytes": 13672
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-link.md",
+      "filename": "bootstrap-vue-next-docs-components-link.md",
+      "category": "overview",
+      "size_bytes": 12858
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-list-group.md",
+      "filename": "bootstrap-vue-next-docs-components-list-group.md",
+      "category": "overview",
+      "size_bytes": 21301
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-modal.md",
+      "filename": "bootstrap-vue-next-docs-components-modal.md",
+      "category": "overview",
+      "size_bytes": 52971
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-nav.md",
+      "filename": "bootstrap-vue-next-docs-components-nav.md",
+      "category": "overview",
+      "size_bytes": 35849
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-navbar.md",
+      "filename": "bootstrap-vue-next-docs-components-navbar.md",
+      "category": "overview",
+      "size_bytes": 27892
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-offcanvas.md",
+      "filename": "bootstrap-vue-next-docs-components-offcanvas.md",
+      "category": "overview",
+      "size_bytes": 33978
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-overlay.md",
+      "filename": "bootstrap-vue-next-docs-components-overlay.md",
+      "category": "overview",
+      "size_bytes": 31229
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-pagination.md",
+      "filename": "bootstrap-vue-next-docs-components-pagination.md",
+      "category": "overview",
+      "size_bytes": 21020
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-placeholder.md",
+      "filename": "bootstrap-vue-next-docs-components-placeholder.md",
+      "category": "overview",
+      "size_bytes": 17184
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-popover.md",
+      "filename": "bootstrap-vue-next-docs-components-popover.md",
+      "category": "overview",
+      "size_bytes": 43790
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-progress.md",
+      "filename": "bootstrap-vue-next-docs-components-progress.md",
+      "category": "overview",
+      "size_bytes": 11371
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-sample.md",
+      "filename": "bootstrap-vue-next-docs-components-sample.md",
+      "category": "overview",
+      "size_bytes": 116
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-spinner.md",
+      "filename": "bootstrap-vue-next-docs-components-spinner.md",
+      "category": "overview",
+      "size_bytes": 8720
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-table.md",
+      "filename": "bootstrap-vue-next-docs-components-table.md",
+      "category": "overview",
+      "size_bytes": 211512
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-tabs.md",
+      "filename": "bootstrap-vue-next-docs-components-tabs.md",
+      "category": "overview",
+      "size_bytes": 35942
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-toast.md",
+      "filename": "bootstrap-vue-next-docs-components-toast.md",
+      "category": "overview",
+      "size_bytes": 26904
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components-tooltip.md",
+      "filename": "bootstrap-vue-next-docs-components-tooltip.md",
+      "category": "overview",
+      "size_bytes": 30160
+    },
+    {
+      "path": "bootstrap-vue-next-docs-components.md",
+      "filename": "bootstrap-vue-next-docs-components.md",
+      "category": "overview",
+      "size_bytes": 16152
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usebreadcrumb.md",
+      "filename": "bootstrap-vue-next-docs-composables-usebreadcrumb.md",
+      "category": "overview",
+      "size_bytes": 2583
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usecolormode.md",
+      "filename": "bootstrap-vue-next-docs-composables-usecolormode.md",
+      "category": "overview",
+      "size_bytes": 1578
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usemodal.md",
+      "filename": "bootstrap-vue-next-docs-composables-usemodal.md",
+      "category": "overview",
+      "size_bytes": 8914
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usepopover.md",
+      "filename": "bootstrap-vue-next-docs-composables-usepopover.md",
+      "category": "overview",
+      "size_bytes": 5484
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usescrollspy.md",
+      "filename": "bootstrap-vue-next-docs-composables-usescrollspy.md",
+      "category": "overview",
+      "size_bytes": 16389
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usetoast.md",
+      "filename": "bootstrap-vue-next-docs-composables-usetoast.md",
+      "category": "overview",
+      "size_bytes": 7741
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables-usetoggle.md",
+      "filename": "bootstrap-vue-next-docs-composables-usetoggle.md",
+      "category": "overview",
+      "size_bytes": 2906
+    },
+    {
+      "path": "bootstrap-vue-next-docs-composables.md",
+      "filename": "bootstrap-vue-next-docs-composables.md",
+      "category": "overview",
+      "size_bytes": 3626
+    },
+    {
+      "path": "bootstrap-vue-next-docs-configurations-customizing-styles.md",
+      "filename": "bootstrap-vue-next-docs-configurations-customizing-styles.md",
+      "category": "overview",
+      "size_bytes": 3161
+    },
+    {
+      "path": "bootstrap-vue-next-docs-configurations-global-options.md",
+      "filename": "bootstrap-vue-next-docs-configurations-global-options.md",
+      "category": "overview",
+      "size_bytes": 2493
+    },
+    {
+      "path": "bootstrap-vue-next-docs-configurations.md",
+      "filename": "bootstrap-vue-next-docs-configurations.md",
+      "category": "overview",
+      "size_bytes": 892
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives-bcolormode.md",
+      "filename": "bootstrap-vue-next-docs-directives-bcolormode.md",
+      "category": "overview",
+      "size_bytes": 1457
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives-bmodal.md",
+      "filename": "bootstrap-vue-next-docs-directives-bmodal.md",
+      "category": "overview",
+      "size_bytes": 13774
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives-bpopover.md",
+      "filename": "bootstrap-vue-next-docs-directives-bpopover.md",
+      "category": "overview",
+      "size_bytes": 15986
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives-btoggle.md",
+      "filename": "bootstrap-vue-next-docs-directives-btoggle.md",
+      "category": "overview",
+      "size_bytes": 17652
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives-btooltip.md",
+      "filename": "bootstrap-vue-next-docs-directives-btooltip.md",
+      "category": "overview",
+      "size_bytes": 13746
+    },
+    {
+      "path": "bootstrap-vue-next-docs-directives.md",
+      "filename": "bootstrap-vue-next-docs-directives.md",
+      "category": "overview",
+      "size_bytes": 2509
+    },
+    {
+      "path": "bootstrap-vue-next-docs-icons.md",
+      "filename": "bootstrap-vue-next-docs-icons.md",
+      "category": "overview",
+      "size_bytes": 6043
+    },
+    {
+      "path": "bootstrap-vue-next-docs-migration-guide.md",
+      "filename": "bootstrap-vue-next-docs-migration-guide.md",
+      "category": "overview",
+      "size_bytes": 116457
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-accessibility.md",
+      "filename": "bootstrap-vue-next-docs-reference-accessibility.md",
+      "category": "overview",
+      "size_bytes": 15453
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-color-variants.md",
+      "filename": "bootstrap-vue-next-docs-reference-color-variants.md",
+      "category": "overview",
+      "size_bytes": 8185
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-form-validation.md",
+      "filename": "bootstrap-vue-next-docs-reference-form-validation.md",
+      "category": "overview",
+      "size_bytes": 542
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-images.md",
+      "filename": "bootstrap-vue-next-docs-reference-images.md",
+      "category": "overview",
+      "size_bytes": 968
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-router-links.md",
+      "filename": "bootstrap-vue-next-docs-reference-router-links.md",
+      "category": "overview",
+      "size_bytes": 7652
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-settings.md",
+      "filename": "bootstrap-vue-next-docs-reference-settings.md",
+      "category": "overview",
+      "size_bytes": 384
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-size-props-and-classes.md",
+      "filename": "bootstrap-vue-next-docs-reference-size-props-and-classes.md",
+      "category": "overview",
+      "size_bytes": 506
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-spacing-classes.md",
+      "filename": "bootstrap-vue-next-docs-reference-spacing-classes.md",
+      "category": "overview",
+      "size_bytes": 464
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-starter-templates.md",
+      "filename": "bootstrap-vue-next-docs-reference-starter-templates.md",
+      "category": "overview",
+      "size_bytes": 471
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-theming-bootstrap.md",
+      "filename": "bootstrap-vue-next-docs-reference-theming-bootstrap.md",
+      "category": "overview",
+      "size_bytes": 531
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-third-party-libraries.md",
+      "filename": "bootstrap-vue-next-docs-reference-third-party-libraries.md",
+      "category": "overview",
+      "size_bytes": 491
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-type-safe-options.md",
+      "filename": "bootstrap-vue-next-docs-reference-type-safe-options.md",
+      "category": "overview",
+      "size_bytes": 10654
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference-utility-classes.md",
+      "filename": "bootstrap-vue-next-docs-reference-utility-classes.md",
+      "category": "overview",
+      "size_bytes": 495
+    },
+    {
+      "path": "bootstrap-vue-next-docs-reference.md",
+      "filename": "bootstrap-vue-next-docs-reference.md",
+      "category": "overview",
+      "size_bytes": 4803
+    },
+    {
+      "path": "bootstrap-vue-next-docs-types.md",
+      "filename": "bootstrap-vue-next-docs-types.md",
+      "category": "overview",
+      "size_bytes": 13006
+    },
+    {
+      "path": "bootstrap-vue-next-docs.md",
+      "filename": "bootstrap-vue-next-docs.md",
+      "category": "overview",
+      "size_bytes": 14792
+    },
+    {
+      "path": "bootstrap-vue-next.md",
+      "filename": "bootstrap-vue-next.md",
+      "category": "overview",
+      "size_bytes": 3685
+    },
+    {
+      "path": "index.md",
+      "filename": "index.md",
+      "category": "overview",
+      "size_bytes": 13110
+    }
+  ]
+}

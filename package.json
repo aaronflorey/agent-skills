@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@canonical/harnesses": "^0.27.0",
+    "@canonical/task": "^0.27.0"
+  }
+}

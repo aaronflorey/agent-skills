@@ -1,7 +1,7 @@
 ---
 name: skill-scout
 description: Analyze the active project, identify high-value technologies, research compatible agent skills, and create or update a project-scoped kasetto.yaml. Use when asked to scout, recommend, install, update, or manage project-specific agent skills with kasetto, kst, or kasetto.yaml.
-version: 1.1.0
+version: 1.2.0
 source: local
 license: MIT
 ---
@@ -117,6 +117,8 @@ Research online before selecting skills for every P0/P1 technology.
 
 Use at least two external discovery sources per P0/P1 technology when network/search tools are available:
 
+* SkillsHub Resolve API (`https://skillshub.wtf/docs`)
+* `bash references/resolve-skillshub.sh "<task describing the technology and goal>"`
 * LobeHub Skills Marketplace
 * `npx -y @lobehub/market-cli skills search --q "<technology>" --sort installCount --order desc --output json`
 * `VoltAgent/awesome-agent-skills`
@@ -158,6 +160,7 @@ Use these tools when available. Do not fail the scout if they are missing.
 
 | Tool                  | Use                                                                                                                     |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `references/resolve-skillshub.sh` | Query SkillsHub resolve API for ranked skill candidates from natural-language task descriptions                         |
 | `rg`                  | Fast source search and fallback discovery                                                                               |
 | `fd`                  | Fast manifest/config discovery                                                                                          |
 | `jq`                  | Parse `brief --json`, `package.json`, lockfile metadata, and tool output                                                |
