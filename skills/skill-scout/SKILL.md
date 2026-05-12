@@ -1,7 +1,7 @@
 ---
 name: skill-scout
 description: Analyze the active project, identify high-value technologies, research compatible agent skills, and create or update a project-scoped kasetto.yaml. Use when asked to scout, recommend, install, update, or manage project-specific agent skills with kasetto, kst, or kasetto.yaml.
-version: 1.2.0
+version: 1.3.0
 source: local
 license: MIT
 ---
@@ -17,13 +17,15 @@ The target is the user's active project root, not the repository that distribute
 - Prefer evidence over guesses.
 - Prefer a small set of high-impact skills over a large generic bundle.
 - Prefer official, maintained, popular, and source-auditable skills.
+- Prefer direct language, framework, devops, platform, and workflow skills over generic design or broad bundle skills when both fit.
+- Treat stars and recent activity as soft trust signals, not hard gates.
 - Treat marketplaces as discovery surfaces, not automatic trust authorities.
 - Only write Kasetto-compatible Git or local sources.
 - Never run a real sync/install unless the user explicitly asks.
 
 ## Sub-Agent Strategy
 
-Use sub-agents when the host agent supports them. If sub-agents are unavailable, perform the same roles sequentially.
+When the host agent supports sub-agents or task delegation, use them for discovery and research. If sub-agents are unavailable, perform the same roles sequentially and say so in the final response.
 
 Recommended roles:
 
@@ -34,7 +36,7 @@ Recommended roles:
 | `kasetto-planner`   | Convert approved candidates into a minimal `kasetto.yaml` patch       | Proposed YAML changes and duplicate/conflict notes              |
 | `validator`         | Run safe validation commands only                                     | Dry-run result and warnings                                     |
 
-Use sub-agents for discovery and research because these tasks are parallelizable. Keep final YAML editing in the main agent unless the host agent has reliable patch isolation.
+The `skill-researcher` phase is mandatory when sub-agents are available. Launch the bundled researcher agent from `agents/skill-scout-researcher.md` or an equivalent isolated research worker instead of doing all online research in the main agent. Keep final YAML editing in the main agent unless the host agent has reliable patch isolation.
 
 ## Required References
 
@@ -69,7 +71,7 @@ Run `brief --json` when available:
 
 ```bash
 command -v brief >/dev/null && brief --json
-````
+```
 
 Treat `brief --json` as discovery evidence only. Verify high-value findings against direct evidence:
 
@@ -109,21 +111,22 @@ High-value signals include:
 * Developer platforms: Cloudflare Workers/Pages/D1/R2/KV/Queues, Vercel, Netlify, Supabase, Firebase, AWS CDK/SST, Terraform, Pulumi
 * Major ecosystems: Charmbracelet, macOS/iOS Swift, Laravel packages, Nuxt modules, VueUse, Vite, Bun, GoReleaser, release-please
 
-Add Taste Skill as a candidate when the project includes frontend, product UI, marketing UI, mobile UI, visual redesign, Storybook, Figma-adjacent workflows, or design-system work. Still verify that a usable Kasetto source exists before adding it.
+Add Taste Skill as a candidate when the project includes frontend, product UI, marketing UI, mobile UI, visual redesign, Storybook, Figma-adjacent workflows, or design-system work. Do not let a design-only candidate displace a stronger direct language, framework, devops, or platform skill unless design work is the project's dominant surface. Still verify that a usable Kasetto source exists before adding it.
 
 ### 4. Research Skills
 
 Research online before selecting skills for every P0/P1 technology.
 
-Use at least two external discovery sources per P0/P1 technology when network/search tools are available:
+Use at least two external discovery sources per P0/P1 technology when network/search tools are available. Start by probing preferred curated sources and only then fall back to generic search:
 
+* preferred curated pack: `Jeffallan/claude-skills` for language, framework, devops, platform, and workflow skills
+* preferred curated catalog: `VoltAgent/awesome-agent-skills`
 * SkillsHub Resolve API (`https://skillshub.wtf/docs`)
 * `bash references/resolve-skillshub.sh "<task describing the technology and goal>"`
+* official vendor/team repositories containing `SKILL.md`
 * LobeHub Skills Marketplace
 * `npx -y @lobehub/market-cli skills search --q "<technology>" --sort installCount --order desc --output json`
-* `VoltAgent/awesome-agent-skills`
-* official vendor/team repositories containing `SKILL.md`
-* GitHub search for `SKILL.md` plus the technology name
+* GitHub code search for `SKILL.md` plus the technology name
 * trusted local skills already installed in agent skill directories
 
 Local installed skills are candidates, not the complete search space.
@@ -136,6 +139,9 @@ technology:
 source_url:
 kasetto_source:
 source_type: git | local | marketplace-only | unknown
+adoption_signals:
+  stars:
+  last_updated:
 evidence:
 trust:
 maintenance:
@@ -149,6 +155,7 @@ Reject or defer candidates when:
 * no Git or local source can be identified
 * the source is paid, opaque, private, provenance-free, or unaudited
 * the skill is generic and overlaps with a more specific trusted skill
+* a broad or design-oriented skill is outranked by a direct language, framework, devops, or platform skill from a trusted curated or official source
 * the repository appears abandoned or low-quality
 * the skill does not clearly match a verified P0/P1 technology
 

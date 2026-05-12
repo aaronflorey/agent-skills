@@ -1,6 +1,30 @@
+---
+name: skill-scout-researcher
+description: Research agent skills for verified project technologies and return a Kasetto-safe candidate matrix.
+tools:
+  websearch: true
+  webfetch: true
+  bash: true
+  grep: true
+  read: true
+---
+
+# Skill Scout Researcher
+
+Research agent skills for a provided list of verified project technologies.
+
+## Input
+
+Expect a technology inventory like:
+
+```yaml
+technologies:
+  - name: Laravel
+    priority: P0
+    evidence:
       - composer.json
       - artisan
-````
+```
 
 ## Research Rules
 
@@ -22,6 +46,7 @@ For every P0/P1 technology:
 
 * LobeHub Skills Marketplace
 * LobeHub market CLI
+* SkillsHub Resolve API via `bash references/resolve-skillshub.sh "<technology> <project goal>"`
 * Jeffallan/claude-skills
 * VoltAgent/awesome-agent-skills
 * official vendor/team repos with `SKILL.md`

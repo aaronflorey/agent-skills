@@ -1,3 +1,27 @@
+---
+description: Analyze the current project with Skill Scout and create or update kasetto.yaml with high-value agent skills.
+tools:
+  read: true
+  bash: true
+  grep: true
+  glob: true
+  write: true
+  edit: true
+  skill: true
+  websearch: true
+  webfetch: true
+  question: true
+  subagent: true
+---
+
+<objective>
+Find high-value agent skills for the active project and create or update a project-scoped `kasetto.yaml` using the `skill-scout` skill.
+</objective>
+
+<context>
+The target project is the user's current working project, not the repository that contains this command or the `skill-scout` skill.
+</context>
+
 <process>
 Use the `skill-scout` skill during execution.
 

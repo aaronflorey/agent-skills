@@ -1,0 +1,20 @@
+{
+  "lockfileVersion": 1,
+  "configVersion": 1,
+  "workspaces": {
+    "": {
+      "dependencies": {
+        "@canonical/harnesses": "^0.27.0",
+        "@canonical/task": "^0.27.0",
+        "zx": "^8.8.5",
+      },
+    },
+  },
+  "packages": {
+    "@canonical/harnesses": ["@canonical/harnesses@0.27.0", "", { "dependencies": { "@canonical/task": "^0.27.0" } }, "sha512-05gCNbAUT2+MgL1JhWOXSEZsQKqnHnbyF6D854b7liwVneg5QuCrRf5YVh6Sm+O0UmVQnVjrcoObWW+jtLhoIw=="],
+
+    "@canonical/task": ["@canonical/task@0.27.0", "", {}, "sha512-xrK7Gi2uj2bPUwqYOLmzzAFebKEAGxbrrHeUOzYbul4vkNWqiGE73/Un2Hm7l6q1eXh3nDPzexQhOWmlmCZAhg=="],
+
+    "zx": ["zx@8.8.5", "", { "bin": { "zx": "build/cli.js" } }, "sha512-SNgDF5L0gfN7FwVOdEFguY3orU5AkfFZm9B5YSHog/UDHv+lvmd82ZAsOenOkQixigwH2+yyH198AwNdKhj+RA=="],
+  }
+}

@@ -1,3 +1,52 @@
+# Scouting Workflow
+
+Use this workflow in the current target project. Do not analyze the skill library
+that supplied this skill unless it is also the user's active project.
+
+## 1. Confirm Project Root
+
+- Prefer the current git worktree root.
+- If there are nested apps, inspect the active package or app the user named.
+- If multiple apps are equally plausible, scan each app and label findings by
+  path.
+
+## 2. Inspect High-Signal Files
+
+Run `brief --json` first when the command is installed. Use its languages,
+tools, dependencies, and config file evidence to seed the search. Then verify
+the smallest useful set of project files before ranking a technology P0/P1:
+
+| Ecosystem | High-signal files |
+|---|---|
+| JavaScript/TypeScript | `package.json`, `nuxt.config.*`, `next.config.*`, `vite.config.*`, `astro.config.*`, `svelte.config.*`, `tailwind.config.*`, `components.json` |
+| PHP | `composer.json`, `artisan`, `bootstrap/app.php`, `config/*.php` |
+| Go | `go.mod`, `cmd/**`, `main.go` |
+| Rust | `Cargo.toml`, `src/main.rs`, `tauri.conf.json` |
+| Python | `pyproject.toml`, `requirements*.txt`, `manage.py`, `app/main.py` |
+| Swift/Apple | `Package.swift`, `*.xcodeproj`, `*.xcworkspace`, `*.swift`, `Info.plist` |
+| Cloud/platform | `wrangler.toml`, `wrangler.jsonc`, `vercel.json`, `netlify.toml`, `firebase.json`, `sst.config.*`, Terraform/Pulumi files |
+| Design/UI | `figma`, `storybook`, `.stories.*`, Tailwind/shadcn/Radix config, `src/components`, `app/components` |
+
+Use lockfiles only to verify versions or confirm direct dependencies. Avoid
+promoting a transitive package unless source code imports it directly.
+
+## 3. Detect High-Value Technologies
+
+Create a ranked list with this evidence model:
+
+| Priority | Evidence |
+|---|---|
+| P0 | Primary app framework, runtime platform, or UI framework used by most code |
+| P1 | Direct major dependency that shapes architecture or developer workflow |
+| P2 | Tooling/package useful for a narrow task but not central to the project |
+| Reject | Transitive, unused, stale, or incidental package |
+
+Examples:
+
+- `github.com/spf13/cobra` in `go.mod` plus `cmd/root.go` imports: P0/P1 CLI skill.
+- `github.com/spf13/viper` in `go.mod` plus config bootstrap code: P1 config skill.
+- `github.com/charmbracelet/bubbletea` imports: P0/P1 Charmbracelet skill.
+- `laravel/framework` in `composer.json` plus `artisan`: P0 Laravel skills.
 - `nuxt` in `package.json` plus `nuxt.config.ts`: P0 Nuxt skill.
 - `vue`, `@vitejs/plugin-vue`, and `.vue` files: P0/P1 Vue skill.
 - `wrangler.toml` or Cloudflare bindings: P0 Cloudflare/Workers skills.
@@ -63,6 +112,15 @@ framework, devops, or platform specialist.
 If the provisional result adds only a generic design-oriented skill while P0/P1
 evidence includes Rust, CLI, backend, platform, or CI signals, rerank the
 candidates and record why no direct-match specialist was added.
+
+Example expected outcome:
+
+- Verified signals: Rust application in `Cargo.toml`, CLI parsing via `clap`, CI via `.github/workflows/*.yml`
+- Preferred additions:
+  - `rust-engineer` from `Jeffallan/claude-skills`
+  - `cli-developer` from `Jeffallan/claude-skills`
+  - `devops-engineer` from `Jeffallan/claude-skills` when GitHub Actions or deployment automation is a meaningful P1 signal
+- Generic skills such as `frontend-design` should not win this comparison unless the repo also has stronger frontend or visual design evidence than its Rust/CLI/CI surface.
 
 ## 6. Safety Checks
 
