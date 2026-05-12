@@ -1,27 +1,3 @@
----
-name: skill-scout-researcher
-description: Research agent skills for verified project technologies and return a Kasetto-safe candidate matrix.
-tools:
-  websearch: true
-  webfetch: true
-  bash: true
-  grep: true
-  read: true
----
-
-# Skill Scout Researcher
-
-Research agent skills for a provided list of verified project technologies.
-
-## Input
-
-Expect a technology inventory like:
-
-```yaml
-technologies:
-  - name: Laravel
-    priority: P0
-    evidence:
       - composer.json
       - artisan
 ````
@@ -30,18 +6,23 @@ technologies:
 
 For every P0/P1 technology:
 
-1. Search at least two external sources when network access is available.
-2. Check local installed skills only as an additional source.
-3. Prefer Git/local sources that Kasetto can sync.
-4. Reject marketplace-only entries unless a source repository is identifiable.
-5. Prefer official, maintained, popular, narrow, high-signal skills.
-6. Avoid generic skills when a specific framework/platform skill exists.
-7. Do not recommend broad bundles unless most included skills match the project.
+1. Probe preferred curated sources first, especially `Jeffallan/claude-skills` for language, framework, devops, platform, and workflow matches.
+2. Use `VoltAgent/awesome-agent-skills` as a curated discovery catalog when it helps locate high-trust Git-backed skills.
+3. Search at least two external sources when network access is available.
+4. Check local installed skills only as an additional source.
+5. Prefer Git/local sources that Kasetto can sync.
+6. Reject marketplace-only entries unless a source repository is identifiable.
+7. Prefer official, maintained, popular, narrow, high-signal skills.
+8. Use stars and recent activity as soft trust signals, not hard filters.
+9. Avoid generic skills when a specific framework, platform, CLI, Rust, or devops skill exists.
+10. Do not recommend broad bundles unless most included skills match the project.
+11. If the strongest project signals are Rust, CLI, backend, platform, or CI, explain explicitly why any selected design-oriented candidate beat the direct-match specialists.
 
 ## Sources To Check
 
 * LobeHub Skills Marketplace
 * LobeHub market CLI
+* Jeffallan/claude-skills
 * VoltAgent/awesome-agent-skills
 * official vendor/team repos with `SKILL.md`
 * GitHub search for `SKILL.md` and the technology name
@@ -59,6 +40,9 @@ candidates:
     source_url:
     kasetto_source:
     source_type: git | local | marketplace-only | unknown
+    adoption_signals:
+      stars:
+      last_updated:
     evidence:
       - 
     trust_notes:

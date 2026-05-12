@@ -1,0 +1,20 @@
+{
+  "skill_name": "skill-researcher",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I just opened a monorepo. apps/web uses Next.js, React, and Tailwind. packages/ai imports @anthropic-ai/sdk. My immediate task is to make the dashboard UI feel much more polished and less generic. Which skill should I use for this project right now?",
+      "expected_output": "Identifies the repo as a monorepo, focuses on apps/web for the current task, recommends frontend-design as the best skill, mentions claude-api only as a runner-up or secondary context, and explains why the UI task outweighs the Anthropic SDK presence."
+    },
+    {
+      "id": 2,
+      "prompt": "This repository has package.json with @modelcontextprotocol/sdk and several server tools. The task is to build a new GitHub integration for the MCP server. Find the best skill for this project.",
+      "expected_output": "Detects MCP/server signals, recommends mcp-builder as the best match, and justifies the choice from both the package markers and the user's task."
+    },
+    {
+      "id": 3,
+      "prompt": "The repo contains docs/, ADRs, and design notes. There is some Python code, but my task is to turn rough notes into a technical proposal for the team. Which skill fits best?",
+      "expected_output": "Recognizes that the current job is documentation-centered rather than implementation-centered, recommends doc-coauthoring, and explains why the codebase language is secondary for this task."
+    }
+  ]
+}

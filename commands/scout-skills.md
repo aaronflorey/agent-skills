@@ -1,31 +1,9 @@
----
-description: Analyze the current project with Skill Scout and create or update kasetto.yaml with high-value agent skills.
-tools:
-  read: true
-  bash: true
-  grep: true
-  glob: true
-  write: true
-  edit: true
-  skill: true
-  websearch: true
-  webfetch: true
-  question: true
-  subagent: true
----
-
-<objective>
-Find high-value agent skills for the active project and create or update a project-scoped `kasetto.yaml` using the `skill-scout` skill.
-</objective>
-
-<context>
-The target project is the user's current working project, not the repository that contains this command or the `skill-scout` skill.
-</context>
-
 <process>
 Use the `skill-scout` skill during execution.
 
-If sub-agents are supported, split the work into these roles:
+If sub-agents are supported, you must split the work and actually launch them for discovery/research rather than only describing the roles. At minimum, delegate the research phase to the bundled `skill-scout-researcher` agent and keep final YAML editing in the main agent.
+
+Use these roles:
 
 1. `project-inventory`
    - Determine the target project root.
@@ -56,17 +34,21 @@ Discovery requirements:
 - run `brief --json` when available and use it as first-pass discovery only
 - verify important findings against manifests, config files, imports, source files, CI, or deployment files
 - identify high-value frameworks, major packages, platforms, and design surfaces
-- include Taste Skill as a candidate when the project has frontend, product UI, marketing UI, mobile UI, design system, Storybook, Figma-adjacent, redesign, or visual polish work
+- include Taste Skill as a candidate when the project has frontend, product UI, marketing UI, mobile UI, design system, Storybook, Figma-adjacent, redesign, or visual polish work, but do not let it displace stronger direct language/framework/devops/platform matches unless design is the dominant project surface
 
 Research requirements:
 - research matching skills online for every P0/P1 technology before choosing skills
+- start each P0/P1 research pass by probing preferred curated sources, especially `Jeffallan/claude-skills` for language/framework/devops/platform skills and `VoltAgent/awesome-agent-skills` as a curated discovery catalog
+- use `bash references/resolve-skillshub.sh "<technology> <project goal>"` when shell/network access is available, then cross-check the results against Git-backed sources
 - use at least two external sources per P0/P1 technology when network/search tools are available
 - do not stop after checking installed skills in `~/.agents/skills`, `.agents/skills`, `.claude/skills`, `.codex/skills`, or other local skill folders
 - treat local installed skills as one candidate source, not as the complete search space
-- prefer official, trusted, maintained, or already-known skill repositories
+- prefer official, trusted, maintained, or already-known skill repositories, but let a direct curated language/framework/devops/platform match outrank a generic broad skill
+- use stars and recent repository activity as soft quality signals when comparing curated/community sources
 - only add skills with a Git or local source that Kasetto can sync
 - defer marketplace-only, opaque, paid, private, or unaudited candidates unless the user approves
 - if online search is unavailable, say so explicitly and ask before producing a local-only recommendation
+- do not treat a generic design-oriented or preinstalled skill pack as the default fallback when the repo has stronger verified Rust, CLI, backend, platform, or CI signals
 - record why each selected skill was added and why notable candidates were deferred
 
 Kasetto requirements:
