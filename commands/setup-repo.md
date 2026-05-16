@@ -30,8 +30,9 @@ Inspect the repository first:
 - detect existing test, lint, build, package, and release commands from manifests, scripts, Makefiles, Taskfiles, Justfiles, or workflows
 - detect whether Docker distribution is actually relevant
 - detect whether Homebrew packaging is relevant; only CLI tools should get Homebrew tap setup
+- detect whether a JavaScript or TypeScript repo is a publishable npm package, a CLI tool with `bin` entrypoints, or both
 - detect whether the repo already has `kasetto.yaml` or other project-scoped skill config
-- detect whether the repo already has signing, notarization, App Store, Packagist, Cargo publish, or Homebrew release evidence before automating those paths
+- detect whether the repo already has signing, notarization, App Store, npm publishing, Packagist, Cargo publish, or Homebrew release evidence before automating those paths
 
 Use these skills during execution:
 - `skill-scout`
@@ -86,9 +87,12 @@ Release setup requirements:
 - a GoReleaser or release-packaging job must check out the created tag before running
 - include caching in workflow setup steps
 - `release-please` should use the native github actions token `${{ secrets.GITHUB_TOKEN }}`
+- when npm publishing is configured, use `NPM_TOKEN` as the workflow secret and do not publish packages marked `private: true`
 - when Homebrew publishing is configured, make sure `HOMEBREW_TAP_GITHUB_TOKEN` is used as a workflow secret input for the release path (repo: aaronflorey/homebrew-tap)
 
 Project-type release rules:
+- JavaScript/TypeScript packages: prefer `release-please` for changelog, tags, and GitHub releases. If the package is publishable to the npm registry, set up release automation to build, verify, and publish it to npm on release using Bun-based install/build/test commands and `NPM_TOKEN`.
+- JavaScript/TypeScript CLI tools: prefer `release-please` for changelog, tags, and GitHub releases. On release, compile CLI entrypoints with Bun's executable bundler (`bun build --compile`; see https://bun.com/docs/bundler/executables) and upload the executable artifacts to the GitHub Release when binary distribution fits the repo. Also support optional npm registry publishing for CLIs when the package metadata indicates npm distribution is intended or the user opts in; keep npm publishing gated by `NPM_TOKEN` and skip it for `private: true` packages.
 - Laravel repos: prefer `release-please` for changelog, tags, and GitHub releases. Do not add GoReleaser, Homebrew, or Docker unless the Laravel repo also ships a real CLI, binary, or container distribution. For packages, keep release automation compatible with Packagist-style version tags.
 - Go CLI repos: prefer `release-please` plus `.goreleaser.yaml` for GitHub Releases, multi-platform archives, checksums, and Homebrew publishing when the CLI is intended for installation. Add Docker only when the repo clearly ships a containerized runtime.
 - Rust CLI repos: prefer `release-please` for tag and changelog automation. Use native Cargo build and test flows by default. Add GoReleaser only when the repo needs cross-platform archives, GitHub release assets, or Homebrew publishing and that fits the repo's existing packaging direction.
@@ -98,6 +102,8 @@ Release tool decision table:
 
 | Repo shape | Prefer | Add `goreleaser`? | Notes |
 |---|---|---|---|
+| JavaScript/TypeScript package | `release-please` + npm publish | No | Build and verify with Bun, then publish to npm with `NPM_TOKEN` when the package is publishable |
+| JavaScript/TypeScript CLI | `release-please` + Bun executable build | Usually no | Compile CLI entrypoints with `bun build --compile`; optionally publish to npm when package metadata or user choice supports it |
 | Laravel app or package | `release-please` | No, unless the repo also ships a real binary/CLI | Keep tags and changelog automation simple and compatible with PHP package release flows |
 | Go CLI | `release-please` + `goreleaser` | Yes, usually | Best fit for cross-platform archives, checksums, GitHub release assets, and Homebrew |
 | Rust CLI | `release-please` | Only when binary release packaging is needed beyond Cargo alone | Prefer native Cargo workflows unless release assets or Homebrew justify extra tooling |
@@ -127,6 +133,7 @@ Testing workflow requirements:
 Execution constraints:
 - do not modify unrelated files
 - do not fabricate package-manager metadata, docker images, release targets, tap details, bundle IDs, signing identities, provisioning profiles, or notarization credentials
+- do not fabricate npm package names, scopes, access levels, executable entrypoints, or publish intent; infer them from `package.json` and repo docs, or ask one short question when needed
 - when migrating a JS/TS repo to Bun, do not leave half-migrated package-manager state; either complete the Bun standardization or explain exactly what blocked it
 - ask at most one short question only if a required decision cannot be derived from the repo
 - preserve working existing setup and make focused improvements instead of rewriting everything
@@ -136,6 +143,7 @@ Final response requirements:
 - summarize what was added or updated
 - list what was intentionally skipped and why
 - call out any required secrets, especially `HOMEBREW_TAP_GITHUB_TOKEN`, and any platform-specific signing or publishing secrets only if the setup actually uses them
+- call out `NPM_TOKEN` when npm publishing is configured, and state whether npm publishing is required or optional for the repo shape
 - report whether `mise.toml` was created or updated and whether Bun standardization was applied for JS/TS repos
 - report whether `kasetto.yaml` was created or updated and whether `kst sync --config kasetto.yaml --dry-run` was run
 - note any manual follow-up the user still needs to do
