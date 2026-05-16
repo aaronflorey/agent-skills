@@ -10,13 +10,17 @@ import { pathToFileURL } from "node:url";
 export type PublishConfig = {
   skills: string[];
   commands: string[];
+  agents?: string[];
 };
 
 const REPO_ROOT = path.resolve(import.meta.dir, "..");
+const DEFAULT_CONFIG_PATH = path.join(import.meta.dir, "publish-opencode.config.ts");
 const SKILLS_SOURCE_DIR = path.join(REPO_ROOT, "skills");
 const COMMANDS_SOURCE_DIR = path.join(REPO_ROOT, "commands");
+const AGENTS_SOURCE_DIR = path.join(REPO_ROOT, "agents");
 const SKILLS_TARGET_DIR = path.join(os.homedir(), ".agents/skills");
 const COMMANDS_TARGET_DIR = path.join(os.homedir(), ".config/opencode/command");
+const AGENTS_TARGET_DIR = path.join(os.homedir(), ".config/opencode/agents");
 
 type Options = {
   configPath: string;
@@ -26,6 +30,7 @@ type Options = {
 type LoadedConfig = {
   skills: string[];
   commands: string[];
+  agents: string[];
 };
 
 async function main() {
@@ -34,6 +39,7 @@ async function main() {
 
   await mkdir(SKILLS_TARGET_DIR, { recursive: true });
   await mkdir(COMMANDS_TARGET_DIR, { recursive: true });
+  await mkdir(AGENTS_TARGET_DIR, { recursive: true });
 
   for (const skill of config.skills) {
     const sourceDir = path.join(SKILLS_SOURCE_DIR, skill);
@@ -47,6 +53,14 @@ async function main() {
     const sourceFile = path.join(COMMANDS_SOURCE_DIR, fileName);
     const targetFile = path.join(COMMANDS_TARGET_DIR, fileName);
     await ensureFileExists(sourceFile, `command \`${command}\``);
+    await syncPath(sourceFile, targetFile, options);
+  }
+
+  for (const agent of config.agents) {
+    const fileName = normalizeMarkdownName(agent);
+    const sourceFile = path.join(AGENTS_SOURCE_DIR, fileName);
+    const targetFile = path.join(AGENTS_TARGET_DIR, fileName);
+    await ensureFileExists(sourceFile, `agent \`${agent}\``);
     await syncPath(sourceFile, targetFile, options);
   }
 }
@@ -70,25 +84,24 @@ function parseArgs(args: string[]): Options {
   }
 
   const configPath = positional[0];
-  if (!configPath) {
-    printUsage();
-    throw new Error("Missing config path");
-  }
 
   return {
-    configPath: path.resolve(process.cwd(), configPath),
+    configPath: configPath ? path.resolve(process.cwd(), configPath) : DEFAULT_CONFIG_PATH,
     dryRun,
   };
 }
 
 function printUsage() {
-  console.log(`Usage: bun scripts/publish-opencode.ts <config-file> [--dry-run]
+  console.log(`Usage: bun scripts/publish-opencode.ts [config-file] [--dry-run]
+
+Defaults to ${DEFAULT_CONFIG_PATH}
 
 Config module example:
 
 export default {
   skills: ["skill-scout"],
   commands: ["scout-skills"],
+  agents: ["scout"],
 } satisfies PublishConfig;
 `);
 }
@@ -105,7 +118,16 @@ async function loadConfig(configPath: string): Promise<LoadedConfig> {
   return {
     skills: normalizeList(raw.skills, "skills"),
     commands: normalizeList(raw.commands, "commands"),
+    agents: normalizeOptionalList(raw.agents, "agents"),
   };
+}
+
+function normalizeOptionalList(value: unknown, field: string): string[] {
+  if (value == null) {
+    return [];
+  }
+
+  return normalizeList(value, field);
 }
 
 function normalizeList(value: unknown, field: string): string[] {
@@ -138,7 +160,11 @@ function normalizeList(value: unknown, field: string): string[] {
 }
 
 function normalizeCommandName(command: string): string {
-  return command.endsWith(".md") ? command : `${command}.md`;
+  return normalizeMarkdownName(command);
+}
+
+function normalizeMarkdownName(name: string): string {
+  return name.endsWith(".md") ? name : `${name}.md`;
 }
 
 async function ensureDirectoryExists(dirPath: string, label: string) {
