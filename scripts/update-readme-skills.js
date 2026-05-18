@@ -28,7 +28,10 @@ function normalizeScalar(value) {
 
 function collapseBlock(lines, style) {
   if (style === "|") {
-    return lines.map((line) => line.trim()).join("\n").trim();
+    return lines
+      .map((line) => line.trim())
+      .join("\n")
+      .trim();
   }
 
   return lines

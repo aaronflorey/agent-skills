@@ -116,7 +116,11 @@ async function existingSkillDirs(paths) {
 
   for (const skillDir of candidates) {
     const skillFile = path.join(repoRoot, "skills", skillDir, "SKILL.md");
-    const check = await gitAllowFailure("ls-files", "--error-unmatch", path.relative(repoRoot, skillFile));
+    const check = await gitAllowFailure(
+      "ls-files",
+      "--error-unmatch",
+      path.relative(repoRoot, skillFile),
+    );
 
     if (check.ok) {
       existing.push(skillDir);
@@ -157,7 +161,9 @@ async function main() {
 
     const unstaged = await git("diff", "--name-only", "--", relativeSkillFile);
     if (unstaged.split("\n").some((line) => line.trim() === relativeSkillFile)) {
-      throw new Error(`${relativeSkillFile} has unstaged changes; stage or stash them before committing`);
+      throw new Error(
+        `${relativeSkillFile} has unstaged changes; stage or stash them before committing`,
+      );
     }
 
     const headFile = await gitAllowFailure("show", `HEAD:${relativeSkillFile}`);
