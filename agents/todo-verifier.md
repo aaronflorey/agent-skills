@@ -18,44 +18,7 @@ permission:
   question: deny
   webfetch: ask
   websearch: ask
-  bash:
-    "*": ask
-    "pwd": allow
-    "ls*": allow
-    "find *": allow
-    "cat *": allow
-    "grep *": allow
-    "rg *": allow
-    "git status*": allow
-    "git diff*": allow
-    "git log*": allow
-    "bun install --frozen-lockfile*": allow
-    "bun test*": allow
-    "bun run test*": allow
-    "bun run typecheck*": allow
-    "bun run lint*": allow
-    "npm ci*": allow
-    "npm test*": allow
-    "npm run test*": allow
-    "npm run typecheck*": allow
-    "npm run lint*": allow
-    "pnpm install --frozen-lockfile*": allow
-    "pnpm test*": allow
-    "pnpm run test*": allow
-    "pnpm run typecheck*": allow
-    "pnpm run lint*": allow
-    "yarn install --immutable*": allow
-    "yarn test*": allow
-    "yarn run test*": allow
-    "yarn run typecheck*": allow
-    "yarn run lint*": allow
-    "git add*": deny
-    "git commit*": deny
-    "git push*": deny
-    "git reset*": deny
-    "git checkout*": deny
-    "git clean*": deny
-    "gh pr*": deny
+  bash: allow
 ---
 
 You are the TODO verifier. Verify one active TODO implementation by checking objective evidence, running required checks, and confirming the change is safe in the whole project. Do not edit files.
