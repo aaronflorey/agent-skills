@@ -50,6 +50,23 @@ Use the read-only `explore` subagent for repository discovery when available. As
 
 If `explore` is unavailable, perform this discovery yourself. Do not delegate writing to any subagent.
 
+## Required clarification interview
+
+Before writing or updating requirements, TODO rows, task briefs, or traceability, identify every PRD ambiguity that could cause an implementation agent to make the wrong product, architecture, API, security, storage, dependency, UX, or verification decision.
+
+Interview the user relentlessly only on those implementation-risk ambiguities. Do not ask questions for the sake of asking. Do not ask about details that are already resolved by the PRD, approved plans, explicit user arguments, or strong existing repository conventions.
+
+For each necessary question:
+
+- Use the `question` tool.
+- Ask one decision at a time when the answer affects later questions.
+- Explain the ambiguity and the concrete implementation risk.
+- Provide your recommended answer as the first option and label it `(Recommended)`.
+- Include concise alternatives when they are viable.
+- Use the answer to resolve dependent branches of the design tree before moving on.
+
+Continue until the remaining PRD is clear enough to produce requirements and task briefs that an executor can implement without guessing. If the user declines to decide or an ambiguity cannot be resolved, create a blocked decision task instead of hiding the choice inside an implementation task.
+
 ## Output contract
 
 Create or update this default layout unless the repository already has a clearly equivalent planning convention:

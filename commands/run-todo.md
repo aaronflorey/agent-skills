@@ -17,7 +17,7 @@ Arguments supplied by the user, if any: `$ARGUMENTS`
 - Use the Task tool to invoke these exact subagents: `todo-executor`, `todo-reviewer`, and `todo-verifier`.
 - Do not run more than one executor or repair task at the same time.
 - Do not mark a TODO complete until both reviewer and verifier return `PASS` and you have personally checked that their work was substantive.
-- Do not commit until the user explicitly approves completion and commit in the current session.
+- Do not commit until the user explicitly approves completion and commit in the current session, except when this workflow is being executed by `/run-all-todos` under that command's explicit current-session commit authorization.
 - Do not push.
 - Do not include unrelated pre-existing user changes in the final commit.
 - Do not skip review or verification after implementation or repair.
@@ -37,6 +37,10 @@ Read these before selecting or running a TODO:
 7. Project manifests and test/lint/typecheck configuration relevant to the selected TODO
 
 If the active TODO has no `.planning/todos/<TODO-ID>.md`, use the matching detailed brief in `.planning/TODO.md`. If both exist, prefer `.planning/todos/<TODO-ID>.md` and use `.planning/TODO.md` as queue/status state.
+
+## Run-all-todos authorization exception
+
+When and only when this workflow is executed by `/run-all-todos`, the user's act of running `/run-all-todos` is explicit current-session approval to mark each successfully completed TODO complete and commit it. In that mode, skip the per-TODO approval prompt in Step 7, but keep every other implementation, review, verification, audit, state-update, staging, commit, and no-push rule.
 
 ## Step 1: Inspect repository and choose the active TODO
 
@@ -138,14 +142,14 @@ When and only when review and verification both pass and you have audited their 
    - Checks run and outcomes
    - Any residual risks or skipped checks
    - Commit message you plan to use
-2. Ask the user to approve marking the TODO complete and committing.
-3. Approval must be explicit in the current session. Do not infer approval from earlier instructions, project rules, or general user intent.
+2. Ask the user to approve marking the TODO complete and committing, unless this workflow is running under `/run-all-todos` explicit current-session commit authorization.
+3. Approval must be explicit in the current session. Do not infer approval from earlier instructions, project rules, or general user intent. `/run-all-todos` is explicit current-session approval only for the TODOs it runs.
 
-If the user does not approve, do not mark complete and do not commit.
+If approval is required and the user does not approve, do not mark complete and do not commit.
 
 ## Step 8: Mark complete and commit after approval
 
-Only after explicit user approval:
+Only after explicit user approval, including `/run-all-todos` current-session authorization when applicable:
 
 1. Update `.planning/TODO.md`:
    - Mark the active TODO `complete`.

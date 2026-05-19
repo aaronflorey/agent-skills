@@ -46,6 +46,23 @@ Read these before writing tasks:
 
 If `PRD.md` is missing, unreadable, or contradicts an approved plan, stop and report the exact blocker. Do not invent requirements.
 
+## Clarification interview
+
+Before writing or updating requirements, TODO rows, task briefs, or traceability, identify every PRD ambiguity that could cause an implementation agent to make the wrong product, architecture, API, security, storage, dependency, UX, or verification decision.
+
+Interview the user relentlessly only on those implementation-risk ambiguities. Do not ask questions for the sake of asking. Do not ask about details that are already resolved by the PRD, approved plans, explicit user arguments, or strong existing repository conventions.
+
+For each necessary question:
+
+- Use the `question` tool when available.
+- Ask one decision at a time when the answer affects later questions.
+- Explain the ambiguity and the concrete implementation risk.
+- Provide your recommended answer as the first option and label it `(Recommended)`.
+- Include concise alternatives when they are viable.
+- Use the answer to resolve dependent branches of the design tree before moving on.
+
+Continue until the remaining PRD is clear enough to produce requirements and task briefs that an executor can implement without guessing. If the user declines to decide or an ambiguity cannot be resolved, create a blocked decision task instead of hiding the choice inside an implementation task.
+
 ## Slicing standard
 
 Every implementation task must be executable by one sub-agent in one focused run.
@@ -91,15 +108,16 @@ Follow this process exactly:
 
 1. Read the PRD fully and list the product outcomes, non-goals, constraints, user-visible behaviors, data/state requirements, integrations, and verification requirements.
 2. Inspect the repository enough to identify current structure, package manager, language, test commands, and naming conventions.
-3. Convert PRD requirements into a dependency graph. Put prerequisites first: project skeleton, schemas, types, state, core logic, adapters, interfaces, then documentation.
-4. Create phases around natural gates. Each phase should end with a review task.
-5. Create implementation tasks that each have one objective, exact expected files, acceptance criteria, checks, and stop conditions.
-6. Create review tasks after meaningful implementation groups. Review tasks must compare implementation against the task brief, PRD, and approved plan.
-7. Create decision tasks for unresolved choices. Mark them `blocked`; do not hide decisions inside implementation tasks.
-8. Write `TODO.md` as a compact queue summary and status tracker.
-9. Write one detailed brief file per task under `.planning/todos/`.
-10. Write `.planning/TODO-TRACE.md` mapping PRD requirements to task IDs and listing unresolved decisions.
-11. Run a final planning quality pass: no vague tasks, no hidden decisions, no duplicate work, no unverified requirements, no orphan PRD requirements.
+3. Run the clarification interview for implementation-risk ambiguities and record resolved decisions in the generated planning artifacts.
+4. Convert PRD requirements into a dependency graph. Put prerequisites first: project skeleton, schemas, types, state, core logic, adapters, interfaces, then documentation.
+5. Create phases around natural gates. Each phase should end with a review task.
+6. Create implementation tasks that each have one objective, exact expected files, acceptance criteria, checks, and stop conditions.
+7. Create review tasks after meaningful implementation groups. Review tasks must compare implementation against the task brief, PRD, and approved plan.
+8. Create decision tasks for unresolved choices. Mark them `blocked`; do not hide decisions inside implementation tasks.
+9. Write `TODO.md` as a compact queue summary and status tracker.
+10. Write one detailed brief file per task under `.planning/todos/`.
+11. Write `.planning/TODO-TRACE.md` mapping PRD requirements to task IDs and listing unresolved decisions.
+12. Run a final planning quality pass: no vague tasks, no hidden decisions, no duplicate work, no unverified requirements, no orphan PRD requirements.
 
 ## TODO.md requirements
 
