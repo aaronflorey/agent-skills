@@ -13,17 +13,25 @@ export type PublishConfig = {
   agents?: string[];
 };
 
+const installable = {
+  agents: ['docs-writer', 'package-finder', 'scout', 'todo-executor', 'todo-reviewer', 'todo-verifier'],
+  skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go'],
+  commands: ['add-todo', 'docs', 'prd-to-todo', 'run-all-todos', 'run-todo', 'scout-skills', 'setup-repo'],
+} as LoadedConfig;
+
 const REPO_ROOT = path.resolve(import.meta.dir, "..");
-const DEFAULT_CONFIG_PATH = path.join(import.meta.dir, "publish-opencode.config.ts");
 const SKILLS_SOURCE_DIR = path.join(REPO_ROOT, "skills");
 const COMMANDS_SOURCE_DIR = path.join(REPO_ROOT, "commands");
 const AGENTS_SOURCE_DIR = path.join(REPO_ROOT, "agents");
 const SKILLS_TARGET_DIR = path.join(os.homedir(), ".agents/skills");
 const COMMANDS_TARGET_DIR = path.join(os.homedir(), ".config/opencode/command");
 const AGENTS_TARGET_DIR = path.join(os.homedir(), ".config/opencode/agents");
+const AGENT_MD_TARGET_DIRS = [
+  path.join(os.homedir(), ".config/opencode/AGENTS.md"),
+  path.join(os.homedir(), ".agents/AGENTS.md"),
+];
 
 type Options = {
-  configPath: string;
   dryRun: boolean;
 };
 
@@ -35,20 +43,19 @@ type LoadedConfig = {
 
 async function main() {
   const options = parseArgs(process.argv.slice(2));
-  const config = await loadConfig(options.configPath);
 
   await mkdir(SKILLS_TARGET_DIR, { recursive: true });
   await mkdir(COMMANDS_TARGET_DIR, { recursive: true });
   await mkdir(AGENTS_TARGET_DIR, { recursive: true });
 
-  for (const skill of config.skills) {
+  for (const skill of installable.skills) {
     const sourceDir = path.join(SKILLS_SOURCE_DIR, skill);
     const targetDir = path.join(SKILLS_TARGET_DIR, skill);
     await ensureDirectoryExists(sourceDir, `skill \`${skill}\``);
     await syncDirectory(sourceDir, targetDir, options);
   }
 
-  for (const command of config.commands) {
+  for (const command of installable.commands) {
     const fileName = normalizeCommandName(command);
     const sourceFile = path.join(COMMANDS_SOURCE_DIR, fileName);
     const targetFile = path.join(COMMANDS_TARGET_DIR, fileName);
@@ -56,11 +63,22 @@ async function main() {
     await syncPath(sourceFile, targetFile, options);
   }
 
-  for (const agent of config.agents) {
+  for (const agent of installable.agents) {
     const fileName = normalizeMarkdownName(agent);
     const sourceFile = path.join(AGENTS_SOURCE_DIR, fileName);
     const targetFile = path.join(AGENTS_TARGET_DIR, fileName);
     await ensureFileExists(sourceFile, `agent \`${agent}\``);
+    await syncPath(sourceFile, targetFile, options);
+  }
+
+  await installAgentsMd(options);
+}
+
+async function installAgentsMd(options) {
+  const sourceFile = path.join(REPO_ROOT, "other", "AGENTS.md");
+  await ensureFileExists(sourceFile, "AGENTS.md");
+
+  for (const targetFile of AGENT_MD_TARGET_DIRS) {
     await syncPath(sourceFile, targetFile, options);
   }
 }
@@ -83,43 +101,13 @@ function parseArgs(args: string[]): Options {
     positional.push(arg);
   }
 
-  const configPath = positional[0];
-
   return {
-    configPath: configPath ? path.resolve(process.cwd(), configPath) : DEFAULT_CONFIG_PATH,
     dryRun,
   };
 }
 
 function printUsage() {
-  console.log(`Usage: bun scripts/publish-opencode.ts [config-file] [--dry-run]
-
-Defaults to ${DEFAULT_CONFIG_PATH}
-
-Config module example:
-
-export default {
-  skills: ["skill-scout"],
-  commands: ["scout-skills"],
-  agents: ["scout"],
-} satisfies PublishConfig;
-`);
-}
-
-async function loadConfig(configPath: string): Promise<LoadedConfig> {
-  const moduleUrl = pathToFileURL(configPath).href;
-  const module = await import(moduleUrl);
-  const raw = module.default ?? module.config;
-
-  if (!raw || typeof raw !== "object") {
-    throw new Error(`Config file must export a default object: ${configPath}`);
-  }
-
-  return {
-    skills: normalizeList(raw.skills, "skills"),
-    commands: normalizeList(raw.commands, "commands"),
-    agents: normalizeOptionalList(raw.agents, "agents"),
-  };
+console.log(`Usage: bun scripts/install.ts [--dry-run]`);
 }
 
 function normalizeOptionalList(value: unknown, field: string): string[] {
