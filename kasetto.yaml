@@ -1,5 +1,8 @@
 scope: project
 destination: .agents/skills
 skills:
-  - source: https://github.com/aaronflorey/agent-skills
-    skills: []
+  - source: https://github.com/Jeffallan/claude-skills
+    skills:
+      - code-documenter
+      - prompt-engineer
+      - the-fool

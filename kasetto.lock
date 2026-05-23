@@ -1,5 +1,32 @@
 version: 1
-last_run: '1778900500'
-skills: {}
+last_run: '1779504883'
+skills:
+  https://github.com/Jeffallan/claude-skills::code-documenter:
+    destination: /Users/aaronflorey/Code/agent-skills/.agents/skills/code-documenter
+    hash: 3f29c96402e3d6387e366f7e6d75d756635b0d33cdd123c198a8dc7d1fcfcc10
+    skill: code-documenter
+    description: Generates, formats, and validates technical documentation — including docstrings, OpenAPI/Swagger specs, JSDoc annotations, doc portals, and user guides. Use when adding docstrings to functions or classes, creating API documentation, building documentation sites, or writing tutorials and user guides. Invoke for OpenAPI/Swagger specs, JSDoc, doc portals, getting started guides.
+    source: https://github.com/Jeffallan/claude-skills
+    source_revision: branch:main
+    updated_at: '1779504883'
+    scope: project
+  https://github.com/Jeffallan/claude-skills::prompt-engineer:
+    destination: /Users/aaronflorey/Code/agent-skills/.agents/skills/prompt-engineer
+    hash: 4614e04056ce0ee43024e4631914f16f1b268fef1d5b38068145ff243e14e4a8
+    skill: prompt-engineer
+    description: Writes, refactors, and evaluates prompts for LLMs — generating optimized prompt templates, structured output schemas, evaluation rubrics, and test suites. Use when designing prompts for new LLM applications, refactoring existing prompts for better accuracy or token efficiency, implementing chain-of-thought or few-shot learning, creating system prompts with personas and guardrails, building JSON/function-calling schemas, or developing prompt evaluation frameworks to measure and improve model performance.
+    source: https://github.com/Jeffallan/claude-skills
+    source_revision: branch:main
+    updated_at: '1779504883'
+    scope: project
+  https://github.com/Jeffallan/claude-skills::the-fool:
+    destination: /Users/aaronflorey/Code/agent-skills/.agents/skills/the-fool
+    hash: 6689e944330f489c3fcdd04b0880feee55fd574c12f64bb118a6dcad25a30705
+    skill: the-fool
+    description: Use when challenging ideas, plans, decisions, or proposals using structured critical reasoning. Invoke to play devil's advocate, run a pre-mortem, red team, or audit evidence and assumptions.
+    source: https://github.com/Jeffallan/claude-skills
+    source_revision: branch:main
+    updated_at: '1779504883'
+    scope: project
 assets: {}
-latest_report: '{"run_id":"1778900500","config":"/Users/aaronflorey/Code/agent-skills/kasetto.yaml","destination":"/Users/aaronflorey/Code/agent-skills/.agents/skills","dry_run":false,"summary":{"installed":0,"updated":0,"removed":0,"unchanged":0,"broken":0,"failed":0},"actions":[]}'
+latest_report: '{"run_id":"1779504883","config":"/Users/aaronflorey/Code/agent-skills/kasetto.yaml","destination":"/Users/aaronflorey/Code/agent-skills/.agents/skills","dry_run":false,"summary":{"installed":3,"updated":0,"removed":0,"unchanged":0,"broken":0,"failed":0},"actions":[{"source":"https://github.com/Jeffallan/claude-skills","skill":"code-documenter","status":"installed","error":null},{"source":"https://github.com/Jeffallan/claude-skills","skill":"prompt-engineer","status":"installed","error":null},{"source":"https://github.com/Jeffallan/claude-skills","skill":"the-fool","status":"installed","error":null}]}'

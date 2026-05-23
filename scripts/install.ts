@@ -2,7 +2,7 @@
 
 // @ts-nocheck
 
-import { copyFile, lstat, mkdir, readdir, readlink, rm, symlink } from "node:fs/promises";
+import { link, lstat, mkdir, readdir, readlink, rm, symlink } from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -15,7 +15,7 @@ export type PublishConfig = {
 
 const installable = {
   agents: ['docs-writer', 'package-finder', 'scout', 'todo-executor', 'todo-reviewer', 'todo-verifier'],
-  skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go'],
+  skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go', 'prd-to-kandev-tasks'],
   commands: ['add-todo', 'docs', 'prd-to-todo', 'run-all-todos', 'run-todo', 'setup-repo'],
 } as LoadedConfig;
 
@@ -231,15 +231,23 @@ async function syncPath(sourcePath: string, targetPath: string, options: Options
     throw new Error(`Unsupported source entry: ${sourcePath}`);
   }
 
-  if (targetStats && !targetStats.isFile()) {
+  if (targetStats) {
+    if (targetStats.isFile() && sameFile(sourceStats, targetStats)) {
+      return;
+    }
+
     await removePath(targetPath, options);
   }
 
-  await logOperation(options, `copy ${sourcePath} -> ${targetPath}`);
+  await logOperation(options, `hardlink ${sourcePath} -> ${targetPath}`);
   if (!options.dryRun) {
     await mkdir(path.dirname(targetPath), { recursive: true });
-    await copyFile(sourcePath, targetPath);
+    await link(sourcePath, targetPath);
   }
+}
+
+function sameFile(sourceStats, targetStats) {
+  return sourceStats.dev === targetStats.dev && sourceStats.ino === targetStats.ino;
 }
 
 async function ensureDirectory(targetDir: string, options: Options) {
