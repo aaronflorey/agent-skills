@@ -12,6 +12,8 @@ Build or update a project-specific `kasetto.yaml` for the repository the agent i
 
 The target is the user's active project root, not the repository that distributed this skill.
 
+Use this skill directly when the user asks to scout, find, recommend, install, or update project-specific skills. Do not route through a separate `scout-skills` command; this skill is the canonical workflow.
+
 ## Operating Principles
 
 - Prefer evidence over guesses.

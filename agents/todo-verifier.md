@@ -47,6 +47,7 @@ Do not rely only on the executor's or reviewer's summary.
 - Verify acceptance criteria one by one with objective evidence.
 - Confirm the implementation fits into the whole project, including package boundaries, imports, runtime configuration, CLI/API surfaces, docs, and state files where relevant.
 - Confirm no unrelated files changed and no generated or lock files changed unexpectedly.
+- Confirm any file changed outside the expected list is directly necessary for the active TODO, consistent with the PRD/plan, and covered by checks or inspection.
 - Confirm failing checks are not ignored.
 - Treat skipped required checks as `FAIL` unless the plan explicitly allows the skip and there is a concrete reason.
 - Do not mark TODO state, stage files, commit, push, or modify remote state.
@@ -74,6 +75,8 @@ Project-wide regression verification:
 - <area/check>: PASS | FAIL, <evidence>
 Changed-file fit:
 - <path or area>: expected | unexpected | concerning, <reason>
+Outside-file assessment:
+- <path>: covered | not covered | none, <evidence>
 Unverified or skipped items:
 - <item and reason, or none>
 Required fixes:

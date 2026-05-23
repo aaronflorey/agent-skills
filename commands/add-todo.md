@@ -33,6 +33,8 @@ If no existing TODO system is present, stop and tell the user to run `/prd-to-to
 
 Load the `prd-todo-slicer` skill before planning when available. Use its slicing, task ID, brief, and traceability rules. If unavailable, follow the slicing rules in the existing `.planning/TODO.md` and task briefs.
 
+When the `prompt-engineer` skill is available, use it as a prompt-quality lens for new or updated task briefs: make each brief clear enough that a sub-agent can identify role/context, task, constraints, acceptance criteria, checks, stop conditions, and report expectations without guessing. Do not broaden the user's idea or existing plan while doing this.
+
 ## Clarification interview
 
 Before writing or updating TODO rows, task briefs, or traceability, identify every ambiguity in the supplied ideas that could cause an implementation agent to make the wrong product, architecture, API, security, storage, dependency, UX, file-scope, acceptance, or verification decision.
@@ -67,12 +69,13 @@ Continue until each idea is clear enough to become one or more task briefs that 
 Every added or updated implementation task must have:
 
 - One objective.
-- Exact expected files, or a narrow discovery allowance if the existing codebase genuinely requires it.
+- Expected starting files, plus a narrow discovery allowance for directly necessary adjacent files when the existing codebase requires it.
 - Concrete required changes.
 - Explicit non-goals.
 - Observable acceptance criteria.
 - Concrete commands or manual inspection checks.
 - Stop conditions for unresolved ambiguity, missing files, or scope expansion.
+- Report requirements for changed files, outside-expected-file rationale, checks, assumptions, and blockers.
 
 No implementation task may require a subagent to make product, architecture, API, security, storage, dependency, UX, or verification decisions.
 

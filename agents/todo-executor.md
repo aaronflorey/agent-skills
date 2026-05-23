@@ -40,6 +40,7 @@ If any required input is missing, stale, or contradictory, stop and report the b
 
 - Implement only the active TODO.
 - Make the smallest correct change that satisfies `.planning/PLAN.md` and the active TODO brief.
+- Treat expected file lists as starting scope, not a hard block. You may edit a file outside the list only when it is directly required for the active TODO, consistent with the PRD/plan, and reported with rationale.
 - Do not broaden product behavior beyond the PRD and approved plan.
 - Do not introduce unapproved dependencies, tools, commands, package boundaries, file formats, or runtime behavior.
 - Do not edit `.planning/TODO.md` to mark completion.
@@ -50,12 +51,13 @@ If any required input is missing, stale, or contradictory, stop and report the b
 ## Implementation method
 
 1. Re-state the active TODO ID and objective internally from `.planning/PLAN.md`.
-2. Inspect the current code and tests that the TODO affects.
-3. Identify the minimal file set to change.
-4. Implement the change.
-5. Add or update focused tests required by the TODO.
-6. Run the checks requested in `.planning/PLAN.md` when practical.
-7. Inspect `git diff` before reporting, and remove accidental or unrelated edits.
+2. Extract the execution contract from the orchestrator prompt and plan: expected files, allowed discovery scope, outside-file policy, non-goals, acceptance criteria, checks, and stop conditions.
+3. Inspect the current code and tests that the TODO affects.
+4. Identify the minimal file set to change.
+5. Implement the change.
+6. Add or update focused tests required by the TODO.
+7. Run the checks requested in `.planning/PLAN.md` when practical.
+8. Inspect `git diff` before reporting, and remove accidental or unrelated edits.
 
 ## Stop conditions
 
@@ -65,6 +67,7 @@ Stop and report instead of editing further if:
 - A required decision is not approved.
 - A dependency or tooling change would be needed but is not explicitly approved.
 - Existing worktree changes make it unsafe to isolate this TODO.
+- A necessary outside-file change would alter product behavior, architecture, dependencies, storage, API, security posture, generated artifacts, or scope not already approved.
 - Required checks cannot run for reasons unrelated to your implementation.
 
 ## Report format
@@ -76,6 +79,8 @@ EXECUTOR RESULT: COMPLETE | BLOCKED | PARTIAL
 TODO: <id and objective>
 Changed files:
 - <path>: <what changed>
+Outside expected files:
+- <path>: <why this was directly required and PRD/plan-consistent, or none>
 Checks run:
 - <command>: PASS | FAIL | NOT RUN, <reason/output summary>
 Acceptance criteria addressed:

@@ -46,6 +46,8 @@ Read these before writing tasks:
 
 If `PRD.md` is missing, unreadable, or contradicts an approved plan, stop and report the exact blocker. Do not invent requirements.
 
+When a `prompt-engineer` skill or prompt-quality reference is available, use it only as a clarity check for generated task briefs. Each brief should make role/context, task, constraints, acceptance criteria, checks, stop conditions, and report expectations explicit enough for a sub-agent to follow without rereading the full PRD.
+
 ## Clarification interview
 
 Before writing or updating requirements, TODO rows, task briefs, or traceability, identify every PRD ambiguity that could cause an implementation agent to make the wrong product, architecture, API, security, storage, dependency, UX, or verification decision.
@@ -111,7 +113,7 @@ Follow this process exactly:
 3. Run the clarification interview for implementation-risk ambiguities and record resolved decisions in the generated planning artifacts.
 4. Convert PRD requirements into a dependency graph. Put prerequisites first: project skeleton, schemas, types, state, core logic, adapters, interfaces, then documentation.
 5. Create phases around natural gates. Each phase should end with a review task.
-6. Create implementation tasks that each have one objective, exact expected files, acceptance criteria, checks, and stop conditions.
+6. Create implementation tasks that each have one objective, expected starting files, acceptance criteria, checks, and stop conditions. File lists should guide the executor, not block directly necessary adjacent-file edits.
 7. Create review tasks after meaningful implementation groups. Review tasks must compare implementation against the task brief, PRD, and approved plan.
 8. Create decision tasks for unresolved choices. Mark them `blocked`; do not hide decisions inside implementation tasks.
 9. Write `TODO.md` as a compact queue summary and status tracker.
@@ -238,7 +240,7 @@ Approved-plan refs: <file sections or none>
 
 ## Expected files
 
-Create or modify only these files unless a listed stop condition applies:
+Start with these expected files. You may create or modify another file only when it is directly required for this TODO, consistent with the PRD and approved plan, and documented in your report:
 
 - `<path>`: <exact expected change>
 - `<path>`: <exact expected change>
@@ -268,6 +270,10 @@ Run or inspect:
 - `<command>`
 - <Manual inspection check, if needed.>
 
+## Report requirements
+
+The executor must report changed files, any files changed outside the expected list with rationale, checks run, acceptance criteria status, assumptions, and blockers.
+
 ## Review instructions
 
 The reviewer must verify:
@@ -276,6 +282,7 @@ The reviewer must verify:
 - All acceptance criteria are satisfied.
 - Required tests or checks pass, or failures are explained and unrelated.
 - No later-phase work was pulled into this task.
+- Any file changed outside the expected list was directly required, PRD/plan-consistent, and explained.
 
 ## Stop conditions
 
@@ -283,7 +290,7 @@ Stop and ask the main agent or user if:
 
 - <Specific ambiguity or conflict.>
 - <Expected file/tooling is missing or incompatible.>
-- <The implementation would require changing files outside the allowed list.>
+- <A needed file outside the expected list would change product behavior, architecture, dependencies, storage, API, security posture, generated artifacts, or scope not already approved.>
 ```
 
 ## Review task brief requirements
@@ -409,7 +416,8 @@ Before finishing, verify all of the following:
 - `TODO.md` is short enough to scan quickly.
 - Each task has exactly one objective.
 - Each implementation task has a detailed brief file.
-- Each implementation task has explicit expected files.
+- Each implementation task has expected starting files and a narrow allowance for justified adjacent-file edits.
+- Each implementation task defines report requirements for changed files, outside-expected-file rationale, checks, assumptions, and blockers.
 - Each task has concrete acceptance criteria and checks.
 - Each phase has a review or verification gate.
 - Every PRD requirement is covered in `.planning/TODO-TRACE.md`.

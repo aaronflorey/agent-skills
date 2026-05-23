@@ -60,7 +60,8 @@ When and only when this workflow is executed by `/run-all-todos`, the user's act
    - TODO ID and objective
    - Source documents consulted
    - Current repository state summary
-   - Exact files expected to change, if known
+   - Files expected to change, if known, plus any allowed discovery scope for necessary adjacent files
+   - Outside-expected-file policy and how exceptions must be reported
    - Required implementation scope
    - Explicit non-goals and forbidden changes
    - Acceptance criteria
@@ -75,17 +76,20 @@ Invoke `todo-executor` with a focused prompt containing:
 
 - Active TODO ID
 - Paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, and the detailed TODO brief
-- Instruction to implement only the active TODO
-- Instruction to make the smallest correct change
+- A stable context packet with these headings in this order: `Active TODO`, `Source paths`, `Objective`, `Expected files`, `Allowed discovery scope`, `Outside-file policy`, `Non-goals`, `Acceptance criteria`, `Required checks`, `Stop conditions`, `Report requirements`
+- Instruction to implement only the active TODO and make the smallest correct change
+- Instruction that expected file lists are a starting scope, not a hard block: if a necessary file outside the list must change to satisfy the active TODO, the executor may change it only when the change is directly required, consistent with the PRD/plan, and reported with rationale under `Outside expected files`
 - Instruction not to mark TODO state complete and not to commit
 - Required checks it should run if practical
-- Requirement to report changed files, tests/checks run, issues encountered, and any assumptions
+- Requirement to report changed files, outside-expected-file changes, tests/checks run, issues encountered, and any assumptions
+
+Repeat the active TODO ID, outside-file policy, and stop conditions at the end of the executor prompt so they remain prominent in long contexts.
 
 After `todo-executor` returns:
 
 1. Inspect its report.
 2. Inspect `git diff --stat` and relevant diffs yourself.
-3. Confirm the executor did not change unrelated files or expand scope.
+3. Confirm the executor did not change unrelated files or expand scope. A change outside the expected file list is acceptable only when it is necessary for the active TODO, consistent with the PRD/plan, and explained in the executor report under `Outside expected files`.
 4. If the executor stopped due to ambiguity, propagate the decision to the user instead of guessing.
 5. If the executor made no meaningful progress, do not proceed to approval. Either re-delegate with a narrower repair prompt or stop with a clear blocker.
 
@@ -95,15 +99,15 @@ Run both review and verification after every implementation or repair pass. They
 
 ### Review delegation
 
-Invoke `todo-reviewer` with the active TODO ID and the paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, the detailed brief, and the current diff.
+Invoke `todo-reviewer` with the active TODO ID, the same context packet headings used for the executor, the paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, the detailed brief, and the current diff.
 
-The reviewer must evaluate the implementation against the whole project, not only changed lines. It must check fit with architecture, package boundaries, tests, documentation, configuration, PRD intent, non-goals, and regression risk.
+The reviewer must evaluate the implementation against the whole project, not only changed lines. It must check fit with architecture, package boundaries, tests, documentation, configuration, PRD intent, non-goals, outside-expected-file rationale, and regression risk.
 
 ### Verification delegation
 
-Invoke `todo-verifier` with the active TODO ID and the paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, the detailed brief, and the current diff.
+Invoke `todo-verifier` with the active TODO ID, the same context packet headings used for the executor, the paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, the detailed brief, and the current diff.
 
-The verifier must run or inspect every required check and confirm project-wide correctness. It must verify the code fits into the entire project and does not break existing behavior. It must not pass if required checks were skipped without a valid blocker.
+The verifier must run or inspect every required check and confirm project-wide correctness. It must verify the code fits into the entire project, outside-expected-file changes are justified and covered, and existing behavior is not broken. It must not pass if required checks were skipped without a valid blocker.
 
 ## Step 5: Audit subagent work
 
@@ -114,6 +118,7 @@ Before treating review or verification as valid, ensure:
 - The reviewer explicitly references the active TODO, PRD/plan alignment, changed files, project integration, and regression risk.
 - The verifier lists actual commands/checks run, their outcomes, and acceptance criteria results.
 - Both reports consider the whole project, not only the edited files.
+- Both reports explicitly assess any changes outside the expected file list, or state that there were none.
 - Neither report relies only on the executor's summary.
 - Any skipped check is explained with a concrete reason and is treated as a blocker unless the TODO brief or project plan allows it.
 

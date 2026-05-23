@@ -16,8 +16,10 @@ export type PublishConfig = {
 const installable = {
   agents: ['docs-writer', 'package-finder', 'scout', 'todo-executor', 'todo-reviewer', 'todo-verifier'],
   skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go'],
-  commands: ['add-todo', 'docs', 'prd-to-todo', 'run-all-todos', 'run-todo', 'scout-skills', 'setup-repo'],
+  commands: ['add-todo', 'docs', 'prd-to-todo', 'run-all-todos', 'run-todo', 'setup-repo'],
 } as LoadedConfig;
+
+const obsoleteCommands = ['scout-skills'];
 
 const REPO_ROOT = path.resolve(import.meta.dir, "..");
 const SKILLS_SOURCE_DIR = path.join(REPO_ROOT, "skills");
@@ -61,6 +63,10 @@ async function main() {
     const targetFile = path.join(COMMANDS_TARGET_DIR, fileName);
     await ensureFileExists(sourceFile, `command \`${command}\``);
     await syncPath(sourceFile, targetFile, options);
+  }
+
+  for (const command of obsoleteCommands) {
+    await removePath(path.join(COMMANDS_TARGET_DIR, normalizeCommandName(command)), options);
   }
 
   for (const agent of installable.agents) {

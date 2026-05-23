@@ -48,6 +48,7 @@ Evaluate all of the following:
 - Active TODO objective is satisfied and no required acceptance criterion is missing.
 - Implementation matches `.planning/PRD.md` intent and approved implementation-plan constraints.
 - Changes are limited to the active TODO; no unrelated or speculative scope was added.
+- Any file changed outside the expected list is directly necessary for the active TODO, consistent with the PRD/plan, and explained by the executor.
 - Integration with the whole project is sound: architecture, package boundaries, naming, APIs, data flow, configuration, CLI behavior, and docs where relevant.
 - Existing behavior is not broken or silently changed.
 - Tests are adequate for the behavior and edge cases required by the TODO.
@@ -75,6 +76,8 @@ Files inspected:
 - <path>
 Project integration assessment:
 - <architecture/package/API/config/docs/regression notes>
+Outside-file assessment:
+- <path>: expected | justified | unjustified | none, <reason>
 Findings:
 - [critical|major|minor] <issue, evidence, impact>
 Required fixes:

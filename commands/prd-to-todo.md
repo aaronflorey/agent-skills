@@ -28,6 +28,8 @@ Load the `prd-todo-slicer` skill before planning.
 
 If the skill is unavailable, look for `.opencode/skills/prd-todo-slicer/SKILL.md` and read it directly. If neither is available, use the fallback rules in this command, but clearly report that the reusable skill was not found.
 
+When the `prompt-engineer` skill is available, use it as a prompt-quality lens for the generated TODO briefs: each brief should have clear role/context, task, constraints, acceptance criteria, checks, stop conditions, and report expectations. Do not let prompt optimization override the PRD, approved plan, or repository conventions.
+
 ## Required discovery
 
 Before writing files, gather only the information needed to create safe TODO slices.
@@ -184,7 +186,7 @@ Approved-plan refs: <file sections or none>
 
 ## Expected files
 
-Create or modify only these files unless a stop condition applies:
+Start with these expected files. You may create or modify another file only when it is directly required for this TODO, consistent with the PRD and approved plan, and documented in your report:
 
 - `<path>`: <exact expected change>
 
@@ -212,6 +214,10 @@ Run or inspect:
 - `<command>`
 - <Manual inspection check if needed.>
 
+## Report requirements
+
+The executor must report changed files, any files changed outside the expected list with rationale, checks run, acceptance criteria status, assumptions, and blockers.
+
 ## Review instructions
 
 The reviewer must verify:
@@ -220,6 +226,7 @@ The reviewer must verify:
 - All acceptance criteria are satisfied.
 - Required tests or checks pass, or failures are explained and unrelated.
 - No later-phase work was pulled into this task.
+- Any file changed outside the expected list was directly required, PRD/plan-consistent, and explained.
 
 ## Stop conditions
 
@@ -227,7 +234,7 @@ Stop and ask the orchestrator or user if:
 
 - <Specific ambiguity or conflict.>
 - <Expected file/tooling is missing or incompatible.>
-- <The implementation would require changing files outside the allowed list.>
+- <A needed file outside the expected list would change product behavior, architecture, dependencies, storage, API, security posture, generated artifacts, or scope not already approved.>
 ```
 
 Review task briefs must not add feature scope. They must instruct the reviewer to compare all phase work against the PRD, approved plan, task briefs, architecture, tests, config, and regression risk.
@@ -252,7 +259,8 @@ Before finishing, inspect your generated files and verify:
 - `.planning/TODO.md` is short, scannable, and not overloaded with execution details.
 - Every implementation task has exactly one objective.
 - Every implementation task has a detailed brief file.
-- Every implementation task names expected files.
+- Every implementation task names expected starting files and allows directly necessary adjacent-file edits when justified.
+- Every implementation task defines report requirements for changed files, outside-expected-file rationale, checks, assumptions, and blockers.
 - Every task has concrete acceptance criteria and checks.
 - Every phase has a review or verification gate.
 - Ambiguities are represented as blocked decision tasks.
