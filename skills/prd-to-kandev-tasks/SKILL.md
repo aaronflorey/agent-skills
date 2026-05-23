@@ -1,6 +1,9 @@
 ---
 name: prd-to-kandev-tasks
 description: Break PRDs, specs, or feature briefs into Kandev task graphs and submit them through MCP or agentctl. Use when asked to decompose product work, create Kandev tasks, slice PRDs into agent-ready work, or submit task graphs without blocking assigned agents.
+version: 1.0.0
+source: local
+license: MIT
 kandev:
   system: true
   version: "0.42.0"

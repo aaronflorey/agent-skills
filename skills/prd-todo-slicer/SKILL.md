@@ -1,6 +1,8 @@
 ---
 name: prd-todo-slicer
 description: Break a PRD.md into a small, deterministic TODO.md queue and per-task briefs that sub-agents can execute safely one task at a time.
+version: 1.0.0
+source: local
 license: MIT
 compatibility: opencode
 metadata:

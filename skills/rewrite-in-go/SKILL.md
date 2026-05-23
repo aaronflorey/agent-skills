@@ -1,6 +1,9 @@
 ---
 name: rewrite-in-go
 description: Reimplement an existing application in Go while preserving observable behavior. Use when asked to port, rewrite, migrate, rebuild, or replace an existing app with a Go implementation, especially CLI tools, services, agents, scrapers, or source-driven automation systems. Avoid for greenfield Go features or small Go refactors.
+version: 1.0.0
+source: local
+license: MIT
 ---
 
 # Rewrite Existing Applications in Go
