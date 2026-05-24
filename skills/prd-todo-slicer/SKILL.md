@@ -93,6 +93,29 @@ When a task is too large, split by this order:
 8. Documentation or migration notes.
 9. Final review and verification.
 
+## Blocker policy
+
+Plan to keep implementation moving. A TODO should block only when it needs a human-level decision that is not already resolved by the PRD, an approved plan, current-session user instructions, or strong repository conventions.
+
+Real blockers include unapproved changes to product behavior, public API or CLI contracts, persistence or migrations, security posture, dependency or tooling choices, architecture boundaries, external integrations, or user-facing UX decisions.
+
+Do not turn normal implementation work into blockers. Executors should repair or adapt within the active TODO when they encounter:
+
+- Expected-file lists that are stale, incomplete, duplicated, or too narrow.
+- Adjacent files that must change to wire the requested behavior into the project.
+- Missing helper files, interfaces, constructors, tests, fixtures, or seams that can be added using existing conventions.
+- Failing tests or checks caused by the active implementation.
+- Existing generated files or generated equivalents that should be reused instead of duplicated.
+- Planning state that is stale but can be refreshed from `.planning/TODO.md`, `.planning/PRD.md`, the detailed brief, git status, and current repository evidence.
+
+When an executor edits outside the expected file list, it must keep the change directly tied to the active TODO and report the file plus rationale. When a needed outside-file edit would change one of the real-blocker areas above, make that a decision task instead of hiding it inside an implementation task.
+
+## Generated artifact policy
+
+Generated artifacts are repository evidence. If a generator or previous task already produced the class, type, interface, fixture, schema, mock, or file needed by the active TODO, the executor should reuse or adapt references to that artifact instead of creating a duplicate.
+
+Create a blocker only when choosing or changing the generated artifact would alter product behavior, public contracts, storage, security, architecture, dependencies, or generator configuration beyond what the PRD or approved plan already allows.
+
 ## Task ID rules
 
 Use stable IDs:
@@ -115,7 +138,7 @@ Follow this process exactly:
 3. Run the clarification interview for implementation-risk ambiguities and record resolved decisions in the generated planning artifacts.
 4. Convert PRD requirements into a dependency graph. Put prerequisites first: project skeleton, schemas, types, state, core logic, adapters, interfaces, then documentation.
 5. Create phases around natural gates. Each phase should end with a review task.
-6. Create implementation tasks that each have one objective, expected starting files, acceptance criteria, checks, and stop conditions. File lists should guide the executor, not block directly necessary adjacent-file edits.
+6. Create implementation tasks that each have one objective, expected starting files, acceptance criteria, checks, blocker policy, generated-artifact policy, and stop conditions. File lists should guide the executor, not block directly necessary adjacent-file edits.
 7. Create review tasks after meaningful implementation groups. Review tasks must compare implementation against the task brief, PRD, and approved plan.
 8. Create decision tasks for unresolved choices. Mark them `blocked`; do not hide decisions inside implementation tasks.
 9. Write `TODO.md` as a compact queue summary and status tracker.
@@ -183,12 +206,13 @@ Last update: <YYYY-MM-DD>
 - Work on one TODO per run.
 - Before editing code, read the matching detailed brief in `.planning/todos/`.
 - If `.planning/PLAN.md` is used by this repository, rebuild it from the active detailed brief and the approved implementation plan before implementation.
+- Treat `.planning/PLAN.md` as active execution state, not the PRD source of truth. Use `.planning/PRD.md` or the supplied PRD path for PRD references.
 - Use focused sub-agents when available: executor for implementation, reviewer for plan/PRD review, verifier for behavior/check validation, repair for focused fixes.
 - Do not run multiple executor sub-agents against the same TODO at the same time.
 - The main agent remains responsible for orchestration, final judgement, and state updates.
 - Do not skip a review TODO after an implementation TODO group.
 - Do not mark a TODO complete until checks and review/verification pass.
-- Stop and ask if a TODO requires choices not already approved.
+- Stop and ask only for unapproved product, public API, persistence, security, dependency, architecture, integration, or UX decisions. Repair normal implementation issues, failing checks, stale expected-file lists, and directly required adjacent-file edits within the active TODO.
 - Do not commit unless explicitly approved by the user in the current run.
 
 ## Sub-Agent Responsibilities
@@ -276,6 +300,16 @@ Run or inspect:
 
 The executor must report changed files, any files changed outside the expected list with rationale, checks run, acceptance criteria status, assumptions, and blockers.
 
+## Blocker policy
+
+Do not stop just because the expected file list is incomplete, a directly required adjacent file must change, a helper/test/seam is missing, checks fail, or an existing generated artifact should be reused. Make the smallest PRD-consistent change and report the rationale.
+
+Stop only if the task needs an unapproved product, public API or CLI, persistence or migration, security, dependency or tooling, architecture, external integration, or UX decision.
+
+## Generated artifacts
+
+If a generated artifact or generated equivalent already exists, reuse it or adapt references to it instead of creating a duplicate. Stop only if choosing or changing the artifact would affect a real blocker area.
+
 ## Review instructions
 
 The reviewer must verify:
@@ -285,14 +319,15 @@ The reviewer must verify:
 - Required tests or checks pass, or failures are explained and unrelated.
 - No later-phase work was pulled into this task.
 - Any file changed outside the expected list was directly required, PRD/plan-consistent, and explained.
+- Existing generated artifacts were reused instead of duplicated when applicable.
 
 ## Stop conditions
 
 Stop and ask the main agent or user if:
 
 - <Specific ambiguity or conflict.>
-- <Expected file/tooling is missing or incompatible.>
-- <A needed file outside the expected list would change product behavior, architecture, dependencies, storage, API, security posture, generated artifacts, or scope not already approved.>
+- <A required file, generated artifact, or tool is missing and cannot be reconstructed, reused, or replaced safely from existing repository conventions.>
+- <A needed change would alter product behavior, public API or CLI contracts, persistence or migrations, security posture, dependencies or tooling, architecture, external integrations, UX, generator configuration, or scope not already approved.>
 ```
 
 ## Review task brief requirements
@@ -419,6 +454,7 @@ Before finishing, verify all of the following:
 - Each task has exactly one objective.
 - Each implementation task has a detailed brief file.
 - Each implementation task has expected starting files and a narrow allowance for justified adjacent-file edits.
+- Each implementation task includes a blocker policy that prevents stale expected-file lists, adjacent wiring, missing helpers, generated artifacts, or failing checks from becoming human blockers by default.
 - Each implementation task defines report requirements for changed files, outside-expected-file rationale, checks, assumptions, and blockers.
 - Each task has concrete acceptance criteria and checks.
 - Each phase has a review or verification gate.

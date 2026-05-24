@@ -46,7 +46,8 @@ If command invocation is supported in the active environment, invoke `/run-todo`
 - Do not continue to the next TODO while the current TODO has uncommitted changes.
 - Do not push.
 - Stop if unrelated pre-existing changes cannot be safely separated from active TODO changes.
-- Stop if the active TODO requires a product, architecture, dependency, UX, security, storage, API, or verification choice that is not already approved by `.planning/PRD.md`, `.planning/IMPLEMENTATION-PLAN.md`, the active TODO brief, existing project conventions, or the user's current-session answers.
+- Stop only if the active TODO requires a product, public API or CLI, persistence or migration, security, dependency or tooling, architecture, external integration, or UX choice that is not already approved by `.planning/PRD.md`, `.planning/IMPLEMENTATION-PLAN.md`, the active TODO brief, existing project conventions, or the user's current-session answers.
+- Do not stop for normal implementation issues covered by `run-todo`: stale expected-file lists, directly required adjacent-file edits, missing helper/test/seam files, generated artifacts that should be reused, or checks failing because of the active implementation. Repair those within the active TODO when PRD-consistent.
 - Stop if required files are missing and cannot be reconstructed safely.
 - Stop if review or verification fails after the repair attempts allowed by `run-todo`.
 

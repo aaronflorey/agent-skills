@@ -41,6 +41,8 @@ Read or inspect:
 
 Do not rely only on the executor's summary.
 
+Treat `.planning/PLAN.md` as active execution state, not as the PRD source of truth. Use `.planning/PRD.md`, the approved implementation plan, `.planning/TODO.md`, the active brief, git status, and repository evidence to identify stale plan text instead of turning it into an automatic failure.
+
 ## Review checklist
 
 Evaluate all of the following:
@@ -49,6 +51,8 @@ Evaluate all of the following:
 - Implementation matches `.planning/PRD.md` intent and approved implementation-plan constraints.
 - Changes are limited to the active TODO; no unrelated or speculative scope was added.
 - Any file changed outside the expected list is directly necessary for the active TODO, consistent with the PRD/plan, and explained by the executor.
+- Expected-file lists are treated as starting scope, not hard allowlists; directly required adjacent-file edits are acceptable when explained and PRD-consistent.
+- Existing generated artifacts or generated equivalents were reused instead of duplicated when applicable.
 - Integration with the whole project is sound: architecture, package boundaries, naming, APIs, data flow, configuration, CLI behavior, and docs where relevant.
 - Existing behavior is not broken or silently changed.
 - Tests are adequate for the behavior and edge cases required by the TODO.
@@ -56,6 +60,10 @@ Evaluate all of the following:
 - Dependency, tooling, schema, generated-file, or runtime-state changes are approved and necessary.
 - No unapproved shortcuts, placeholders, mocked behavior, or TODO comments were introduced as substitutes for implementation.
 - Security, privacy, filesystem, and command-execution behavior are safe for the project's expected use.
+
+## Blocker policy review
+
+Do not fail a TODO merely because implementation touched directly required adjacent files, added missing helper/test/seam files, fixed checks caused by the active implementation, or reused existing generated artifacts. Fail only when that work is unrelated, unexplained, inconsistent with the PRD/plan, or crosses into an unapproved product, public API/CLI, persistence/migration, security, dependency/tooling, architecture, external integration, UX, generator configuration, or scope decision.
 
 ## Passing standard
 

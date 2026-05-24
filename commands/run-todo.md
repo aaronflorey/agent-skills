@@ -21,7 +21,8 @@ Arguments supplied by the user, if any: `$ARGUMENTS`
 - Do not push.
 - Do not include unrelated pre-existing user changes in the final commit.
 - Do not skip review or verification after implementation or repair.
-- Stop and ask the user if the active TODO requires a product, architecture, dependency, or UX choice that is not already approved by `.planning/PRD.md`, `.planning/IMPLEMENTATION-PLAN.md`, the active TODO brief, or existing project conventions.
+- Stop and ask the user only if the active TODO requires a product, public API or CLI, persistence or migration, security, dependency or tooling, architecture, external integration, or UX choice that is not already approved by `.planning/PRD.md`, `.planning/IMPLEMENTATION-PLAN.md`, the active TODO brief, existing project conventions, or current-session user instructions.
+- Do not stop for normal implementation issues such as stale expected-file lists, directly required adjacent-file edits, missing helper/test/seam files, generated artifacts that should be reused, or checks failing because of the active implementation. Repair those within the active TODO when they are PRD-consistent and report the rationale.
 - If any required file is missing and cannot be reconstructed safely, stop before changing product code.
 
 ## Required source material
@@ -37,6 +38,8 @@ Read these before selecting or running a TODO:
 7. Project manifests and test/lint/typecheck configuration relevant to the selected TODO
 
 If the active TODO has no `.planning/todos/<TODO-ID>.md`, use the matching detailed brief in `.planning/TODO.md`. If both exist, prefer `.planning/todos/<TODO-ID>.md` and use `.planning/TODO.md` as queue/status state.
+
+Treat `.planning/PRD.md` as the PRD source of truth and `.planning/PLAN.md` as disposable active execution state for the selected TODO. Do not use stale `.planning/PLAN.md` content as evidence against the current PRD, TODO queue, detailed brief, git status, or repository state.
 
 ## Run-all-todos authorization exception
 
@@ -66,9 +69,14 @@ When and only when this workflow is executed by `/run-all-todos`, the user's act
    - Explicit non-goals and forbidden changes
    - Acceptance criteria
    - Required checks from the TODO brief and project configuration
+   - Blocker policy: stop only for unapproved product, public API/CLI, persistence/migration, security, dependency/tooling, architecture, integration, or UX decisions; repair normal implementation issues within scope
+   - Generated artifact policy: reuse existing generated classes, types, files, fixtures, schemas, or equivalents instead of duplicating them unless changing them would affect an unapproved real-blocker area
    - Stop conditions
-3. Update `.planning/TODO.md` to show the active TODO as `in_progress` and `Current TODO: <TODO-ID>` if it is safe to do so. Do not mark it complete.
-4. If `.planning/PLAN.md` conflicts with `.planning/PRD.md`, the approved implementation plan, or the TODO brief, stop and ask the user.
+3. Build the current repository state summary from fresh evidence, including `git status --short`; do not carry forward stale state from a previous `.planning/PLAN.md`.
+4. Deduplicate expected-file entries and label them as expected starting files, not a hard allowlist.
+5. If the detailed TODO brief status disagrees with `.planning/TODO.md`, treat `.planning/TODO.md` as queue state and update the brief status only when doing so is a safe planning-state sync for the active TODO.
+6. Update `.planning/TODO.md` to show the active TODO as `in_progress` and `Current TODO: <TODO-ID>` if it is safe to do so. Do not mark it complete.
+7. If `.planning/PLAN.md` conflicts with `.planning/PRD.md`, the approved implementation plan, or the TODO brief after refreshing from current evidence, stop and ask the user.
 
 ## Step 3: Delegate implementation
 
@@ -76,21 +84,23 @@ Invoke `todo-executor` with a focused prompt containing:
 
 - Active TODO ID
 - Paths to `.planning/TODO.md`, `.planning/PRD.md`, `.planning/PLAN.md`, and the detailed TODO brief
-- A stable context packet with these headings in this order: `Active TODO`, `Source paths`, `Objective`, `Expected files`, `Allowed discovery scope`, `Outside-file policy`, `Non-goals`, `Acceptance criteria`, `Required checks`, `Stop conditions`, `Report requirements`
+- A stable context packet with these headings in this order: `Active TODO`, `Source paths`, `Objective`, `Expected files`, `Allowed discovery scope`, `Outside-file policy`, `Blocker policy`, `Generated artifact policy`, `Non-goals`, `Acceptance criteria`, `Required checks`, `Stop conditions`, `Report requirements`
 - Instruction to implement only the active TODO and make the smallest correct change
 - Instruction that expected file lists are a starting scope, not a hard block: if a necessary file outside the list must change to satisfy the active TODO, the executor may change it only when the change is directly required, consistent with the PRD/plan, and reported with rationale under `Outside expected files`
+- Instruction to reuse existing generated artifacts or generated equivalents instead of creating duplicates when that satisfies the active TODO
+- Instruction to continue through normal implementation issues instead of escalating them: stale expected-file lists, directly required adjacent wiring, missing helper/test/seam files, generated artifacts, and failing checks caused by the implementation should be repaired within scope
 - Instruction not to mark TODO state complete and not to commit
 - Required checks it should run if practical
 - Requirement to report changed files, outside-expected-file changes, tests/checks run, issues encountered, and any assumptions
 
-Repeat the active TODO ID, outside-file policy, and stop conditions at the end of the executor prompt so they remain prominent in long contexts.
+Repeat the active TODO ID, outside-file policy, blocker policy, generated artifact policy, and stop conditions at the end of the executor prompt so they remain prominent in long contexts.
 
 After `todo-executor` returns:
 
 1. Inspect its report.
 2. Inspect `git diff --stat` and relevant diffs yourself.
 3. Confirm the executor did not change unrelated files or expand scope. A change outside the expected file list is acceptable only when it is necessary for the active TODO, consistent with the PRD/plan, and explained in the executor report under `Outside expected files`.
-4. If the executor stopped due to ambiguity, propagate the decision to the user instead of guessing.
+4. If the executor stopped due to a real blocker decision, propagate the decision to the user instead of guessing. If it stopped for a normal implementation issue covered by the blocker policy, re-delegate with a narrower repair prompt instead of asking the user.
 5. If the executor made no meaningful progress, do not proceed to approval. Either re-delegate with a narrower repair prompt or stop with a clear blocker.
 
 ## Step 4: Review and verify independently
@@ -130,7 +140,7 @@ If reviewer or verifier finds issues:
 
 1. Summarize only the concrete defects.
 2. Invoke `todo-executor` again as a repair agent.
-3. The repair prompt must instruct it to fix only the listed defects, preserve all accepted work, avoid new scope, and not commit.
+3. The repair prompt must instruct it to fix only the listed defects, preserve all accepted work, avoid new scope, reuse existing generated artifacts when applicable, continue through normal implementation issues covered by the blocker policy, and not commit.
 4. After repair, run review and verification again.
 5. Repeat until both reviewer and verifier return substantive `PASS`.
 6. If the same issue remains after two repair attempts, mark the TODO `blocked`, record the blocker in `.planning/TODO.md`, and stop without committing.

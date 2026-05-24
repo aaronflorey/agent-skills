@@ -95,6 +95,8 @@ If existing planning files are present:
 
 Every implementation task must be small enough for a single focused executor subagent to complete in one run without making product, architecture, API, security, storage, or tooling decisions.
 
+Use blocker policy aggressively to avoid false blockers. An implementation task should stop only for an unapproved product, public API or CLI, persistence or migration, security, dependency or tooling, architecture, external integration, or UX decision. Do not make stale expected-file lists, directly required adjacent-file edits, missing helper/test/seam files, generated artifacts, or failing implementation checks into human blockers by default.
+
 A task is too large if it:
 
 - Combines unrelated concerns.
@@ -218,6 +220,16 @@ Run or inspect:
 
 The executor must report changed files, any files changed outside the expected list with rationale, checks run, acceptance criteria status, assumptions, and blockers.
 
+## Blocker policy
+
+Do not stop just because the expected file list is incomplete, a directly required adjacent file must change, a helper/test/seam is missing, checks fail, or an existing generated artifact should be reused. Make the smallest PRD-consistent change and report the rationale.
+
+Stop only if the task needs an unapproved product, public API or CLI, persistence or migration, security, dependency or tooling, architecture, external integration, or UX decision.
+
+## Generated artifacts
+
+If a generated artifact or generated equivalent already exists, reuse it or adapt references to it instead of creating a duplicate. Stop only if choosing or changing the artifact would affect a real blocker area.
+
 ## Review instructions
 
 The reviewer must verify:
@@ -227,14 +239,15 @@ The reviewer must verify:
 - Required tests or checks pass, or failures are explained and unrelated.
 - No later-phase work was pulled into this task.
 - Any file changed outside the expected list was directly required, PRD/plan-consistent, and explained.
+- Existing generated artifacts were reused instead of duplicated when applicable.
 
 ## Stop conditions
 
 Stop and ask the orchestrator or user if:
 
 - <Specific ambiguity or conflict.>
-- <Expected file/tooling is missing or incompatible.>
-- <A needed file outside the expected list would change product behavior, architecture, dependencies, storage, API, security posture, generated artifacts, or scope not already approved.>
+- <A required file, generated artifact, or tool is missing and cannot be reconstructed, reused, or replaced safely from existing repository conventions.>
+- <A needed change would alter product behavior, public API or CLI contracts, persistence or migrations, security posture, dependencies or tooling, architecture, external integrations, UX, generator configuration, or scope not already approved.>
 ```
 
 Review task briefs must not add feature scope. They must instruct the reviewer to compare all phase work against the PRD, approved plan, task briefs, architecture, tests, config, and regression risk.
@@ -260,6 +273,7 @@ Before finishing, inspect your generated files and verify:
 - Every implementation task has exactly one objective.
 - Every implementation task has a detailed brief file.
 - Every implementation task names expected starting files and allows directly necessary adjacent-file edits when justified.
+- Every implementation task includes blocker policy and generated-artifact guidance so normal integration work does not become a human blocker.
 - Every implementation task defines report requirements for changed files, outside-expected-file rationale, checks, assumptions, and blockers.
 - Every task has concrete acceptance criteria and checks.
 - Every phase has a review or verification gate.

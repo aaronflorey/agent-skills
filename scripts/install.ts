@@ -15,7 +15,7 @@ export type PublishConfig = {
 
 const installable = {
   agents: ['docs-writer', 'package-finder', 'scout', 'todo-executor', 'todo-reviewer', 'todo-verifier'],
-  skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go', 'prd-to-kandev-tasks'],
+  skills: ['mise', 'lefthook', 'prd-todo-slicer', 'skill-researcher', 'skill-scout', 'rewrite-in-go', 'prd-to-kandev-tasks', 'find-domain'],
   commands: ['add-todo', 'docs', 'prd-to-todo', 'run-all-todos', 'run-todo', 'setup-repo'],
 } as LoadedConfig;
 

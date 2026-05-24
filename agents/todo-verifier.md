@@ -40,6 +40,8 @@ Read or inspect:
 
 Do not rely only on the executor's or reviewer's summary.
 
+Treat `.planning/PLAN.md` as active execution state, not as the PRD source of truth. Use `.planning/PRD.md`, the approved implementation plan, `.planning/TODO.md`, the active brief, git status, and repository evidence to identify stale plan text instead of turning it into an automatic failure.
+
 ## Verification duties
 
 - Run every check required by `.planning/PLAN.md` and the active TODO brief when possible.
@@ -48,6 +50,8 @@ Do not rely only on the executor's or reviewer's summary.
 - Confirm the implementation fits into the whole project, including package boundaries, imports, runtime configuration, CLI/API surfaces, docs, and state files where relevant.
 - Confirm no unrelated files changed and no generated or lock files changed unexpectedly.
 - Confirm any file changed outside the expected list is directly necessary for the active TODO, consistent with the PRD/plan, and covered by checks or inspection.
+- Treat expected-file lists as starting scope, not hard allowlists; directly required adjacent-file edits are acceptable when explained, checked, and PRD-consistent.
+- Confirm existing generated artifacts or generated equivalents were reused instead of duplicated when applicable.
 - Confirm failing checks are not ignored.
 - Treat skipped required checks as `FAIL` unless the plan explicitly allows the skip and there is a concrete reason.
 - Do not mark TODO state, stage files, commit, push, or modify remote state.
@@ -57,6 +61,8 @@ Do not rely only on the executor's or reviewer's summary.
 Return `PASS` only when all required acceptance criteria are verified, required checks pass, project-wide integration is sound, and skipped checks are either not required or explicitly allowed with a concrete explanation.
 
 Return `FAIL` if any required check fails, cannot run, is skipped without approval, or leaves project correctness uncertain.
+
+Do not fail solely because the implementation repaired normal in-scope issues such as missing helper/test/seam files, stale expected-file lists, adjacent wiring, or generated artifact reuse. Fail when those changes are unrelated, unexplained, uncovered by checks or inspection, inconsistent with the PRD/plan, or introduce an unapproved product, public API/CLI, persistence/migration, security, dependency/tooling, architecture, external integration, UX, generator configuration, or scope decision.
 
 ## Report format
 
