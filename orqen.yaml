@@ -1,0 +1,12 @@
+scope: project
+destination: .agents/skills
+skills:
+    - source: https://github.com/jeffallan/claude-skills
+      skills:
+        - prompt-engineer
+    - source: https://github.com/vercel-labs/skills
+      skills:
+        - find-skills
+    - source: https://github.com/openai/skills
+      skills:
+        - skill-creator
